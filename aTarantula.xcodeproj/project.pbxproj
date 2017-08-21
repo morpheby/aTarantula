@@ -61,7 +61,7 @@
 		69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.release.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.release.xcconfig"; sourceTree = "<group>"; };
 		753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aTarantula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.debug.xcconfig"; sourceTree = "<group>"; };
-		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrawlableObject.swift; path = crawler/CrawlableObject.swift; sourceTree = SOURCE_ROOT; };
+		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
 		F6BEFC011F4AA58E00CA7AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,12 +73,7 @@
 		F6C4638C1F474BF000782C88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6C4638F1F474BF000782C88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6C463911F474BF000782C88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F6C463981F474C9400782C88 /* CrawlBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlBook.swift; sourceTree = "<group>"; };
-		F6C463991F474C9400782C88 /* CrawlBooklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlBooklist.swift; sourceTree = "<group>"; };
 		F6C4639A1F474C9400782C88 /* Crawler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
-		F6C4639B1F474C9400782C88 /* CrawlProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlProfile.swift; sourceTree = "<group>"; };
-		F6C4639C1F474C9400782C88 /* CrawlReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlReviews.swift; sourceTree = "<group>"; };
-		F6C4639D1F474C9400782C88 /* CrawlThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlThemes.swift; sourceTree = "<group>"; };
 		F6C463A91F474CEB00782C88 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		F6C463AA1F474CEB00782C88 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,12 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */,
-				F6C463981F474C9400782C88 /* CrawlBook.swift */,
-				F6C463991F474C9400782C88 /* CrawlBooklist.swift */,
 				F6C4639A1F474C9400782C88 /* Crawler.swift */,
-				F6C4639B1F474C9400782C88 /* CrawlProfile.swift */,
-				F6C4639C1F474C9400782C88 /* CrawlReviews.swift */,
-				F6C4639D1F474C9400782C88 /* CrawlThemes.swift */,
 			);
 			path = crawler;
 			sourceTree = "<group>";
