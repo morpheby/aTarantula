@@ -1,0 +1,12 @@
+
+Packages
+.build
+xcuserdata
+DerivedData/
+.DS_Store
+
+Package.pins
+
+Podfile.lock
+Pods/
+

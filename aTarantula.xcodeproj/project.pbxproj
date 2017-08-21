@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		584DB4C1D7844CFD122FAD25 /* Pods_aTarantula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */; };
+		F6BEFBD51F47E3FA00CA7AB4 /* CrawlableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */; };
+		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; };
+		F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6BEFC0B1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift */; };
+		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463881F474BF000782C88 /* AppDelegate.swift */; };
+		F6C4638B1F474BF000782C88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4638A1F474BF000782C88 /* ViewController.swift */; };
+		F6C4638D1F474BF000782C88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6C4638C1F474BF000782C88 /* Assets.xcassets */; };
+		F6C463901F474BF000782C88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6C4638E1F474BF000782C88 /* Main.storyboard */; };
+		F6C463AB1F474CEB00782C88 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463A91F474CEB00782C88 /* Deque.swift */; };
+		F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463AA1F474CEB00782C88 /* Utils.swift */; };
+		F6C463AD1F47543500782C88 /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4639A1F474C9400782C88 /* Crawler.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6BEFC031F4AA58E00CA7AB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6C4637D1F474BF000782C88 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F6BEFBFD1F4AA58E00CA7AB4;
+			remoteInfo = TarantulaPluginCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6BEFBE61F4AA49800CA7AB4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6BEFC281F4AA6F100CA7AB4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.release.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.release.xcconfig"; sourceTree = "<group>"; };
+		753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aTarantula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.debug.xcconfig"; sourceTree = "<group>"; };
+		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CrawlableObject.swift; path = crawler/CrawlableObject.swift; sourceTree = SOURCE_ROOT; };
+		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
+		F6BEFC011F4AA58E00CA7AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6BEFC0A1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlingPluginProtocol.swift; sourceTree = "<group>"; };
+		F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ATARCsvExporterPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6C463851F474BF000782C88 /* aTarantula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aTarantula.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6C463881F474BF000782C88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F6C4638A1F474BF000782C88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F6C4638C1F474BF000782C88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F6C4638F1F474BF000782C88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F6C463911F474BF000782C88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6C463981F474C9400782C88 /* CrawlBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlBook.swift; sourceTree = "<group>"; };
+		F6C463991F474C9400782C88 /* CrawlBooklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlBooklist.swift; sourceTree = "<group>"; };
+		F6C4639A1F474C9400782C88 /* Crawler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
+		F6C4639B1F474C9400782C88 /* CrawlProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlProfile.swift; sourceTree = "<group>"; };
+		F6C4639C1F474C9400782C88 /* CrawlReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlReviews.swift; sourceTree = "<group>"; };
+		F6C4639D1F474C9400782C88 /* CrawlThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlThemes.swift; sourceTree = "<group>"; };
+		F6C463A91F474CEB00782C88 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
+		F6C463AA1F474CEB00782C88 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F6BEFBFA1F4AA58E00CA7AB4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6C463821F474BF000782C88 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				584DB4C1D7844CFD122FAD25 /* Pods_aTarantula.framework in Frameworks */,
+				F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8684FA1022BD82317EDD0E10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DFEB94D011406FB2B3197ADD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */,
+				69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F6BEFBD61F47E41000CA7AB4 /* plugin-core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "plugin-core";
+			sourceTree = "<group>";
+		};
+		F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */ = {
+			isa = PBXGroup;
+			children = (
+				F6BEFC0A1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift */,
+				F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */,
+				F6BEFC011F4AA58E00CA7AB4 /* Info.plist */,
+			);
+			path = TarantulaPluginCore;
+			sourceTree = "<group>";
+		};
+		F6BEFC271F4AA6C500CA7AB4 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
+		F6C4637C1F474BF000782C88 = {
+			isa = PBXGroup;
+			children = (
+				F6BEFC271F4AA6C500CA7AB4 /* Plugins */,
+				F6C463871F474BF000782C88 /* aTarantula */,
+				F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */,
+				F6C463861F474BF000782C88 /* Products */,
+				DFEB94D011406FB2B3197ADD /* Pods */,
+				8684FA1022BD82317EDD0E10 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F6C463861F474BF000782C88 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6C463851F474BF000782C88 /* aTarantula.app */,
+				F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6C463871F474BF000782C88 /* aTarantula */ = {
+			isa = PBXGroup;
+			children = (
+				F6BEFBD61F47E41000CA7AB4 /* plugin-core */,
+				F6C463AF1F47546900782C88 /* main */,
+				F6C463AE1F47544500782C88 /* views */,
+				F6C463A81F474CC000782C88 /* utils */,
+				F6C463971F474C8100782C88 /* crawler */,
+			);
+			path = aTarantula;
+			sourceTree = "<group>";
+		};
+		F6C463971F474C8100782C88 /* crawler */ = {
+			isa = PBXGroup;
+			children = (
+				F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */,
+				F6C463981F474C9400782C88 /* CrawlBook.swift */,
+				F6C463991F474C9400782C88 /* CrawlBooklist.swift */,
+				F6C4639A1F474C9400782C88 /* Crawler.swift */,
+				F6C4639B1F474C9400782C88 /* CrawlProfile.swift */,
+				F6C4639C1F474C9400782C88 /* CrawlReviews.swift */,
+				F6C4639D1F474C9400782C88 /* CrawlThemes.swift */,
+			);
+			path = crawler;
+			sourceTree = "<group>";
+		};
+		F6C463A81F474CC000782C88 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				F6C463A91F474CEB00782C88 /* Deque.swift */,
+				F6C463AA1F474CEB00782C88 /* Utils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		F6C463AE1F47544500782C88 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				F6C4638A1F474BF000782C88 /* ViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		F6C463AF1F47546900782C88 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				F6C4638E1F474BF000782C88 /* Main.storyboard */,
+				F6C463881F474BF000782C88 /* AppDelegate.swift */,
+				F6C4638C1F474BF000782C88 /* Assets.xcassets */,
+				F6C463911F474BF000782C88 /* Info.plist */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F6BEFBFB1F4AA58E00CA7AB4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F6BEFBFD1F4AA58E00CA7AB4 /* TarantulaPluginCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6BEFC071F4AA58E00CA7AB4 /* Build configuration list for PBXNativeTarget "TarantulaPluginCore" */;
+			buildPhases = (
+				F6BEFBF91F4AA58E00CA7AB4 /* Sources */,
+				F6BEFBFA1F4AA58E00CA7AB4 /* Frameworks */,
+				F6BEFBFB1F4AA58E00CA7AB4 /* Headers */,
+				F6BEFBFC1F4AA58E00CA7AB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TarantulaPluginCore;
+			productName = TarantulaPluginCore;
+			productReference = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F6C463841F474BF000782C88 /* aTarantula */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F6C463941F474BF000782C88 /* Build configuration list for PBXNativeTarget "aTarantula" */;
+			buildPhases = (
+				3C1D5AE0DD6FD16D408096AD /* [CP] Check Pods Manifest.lock */,
+				F6C463811F474BF000782C88 /* Sources */,
+				F6C463821F474BF000782C88 /* Frameworks */,
+				F6C463831F474BF000782C88 /* Resources */,
+				F9F7C708E7146F47D913137C /* [CP] Embed Pods Frameworks */,
+				2B5F3B388B1C0FA243205200 /* [CP] Copy Pods Resources */,
+				F6BEFBE61F4AA49800CA7AB4 /* Embed Frameworks */,
+				F6BEFC281F4AA6F100CA7AB4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6BEFC041F4AA58E00CA7AB4 /* PBXTargetDependency */,
+			);
+			name = aTarantula;
+			productName = aTarantula;
+			productReference = F6C463851F474BF000782C88 /* aTarantula.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F6C4637D1F474BF000782C88 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = morpheby;
+				TargetAttributes = {
+					F6BEFBFD1F4AA58E00CA7AB4 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					F6C463841F474BF000782C88 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F6C463801F474BF000782C88 /* Build configuration list for PBXProject "aTarantula" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F6C4637C1F474BF000782C88;
+			productRefGroup = F6C463861F474BF000782C88 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F6C463841F474BF000782C88 /* aTarantula */,
+				F6BEFBFD1F4AA58E00CA7AB4 /* TarantulaPluginCore */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F6BEFBFC1F4AA58E00CA7AB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6C463831F474BF000782C88 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6C4638D1F474BF000782C88 /* Assets.xcassets in Resources */,
+				F6C463901F474BF000782C88 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B5F3B388B1C0FA243205200 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C1D5AE0DD6FD16D408096AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F9F7C708E7146F47D913137C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F6BEFBF91F4AA58E00CA7AB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6BEFC0B1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6C463811F474BF000782C88 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6BEFBD51F47E3FA00CA7AB4 /* CrawlableObject.swift in Sources */,
+				F6C463AD1F47543500782C88 /* Crawler.swift in Sources */,
+				F6C4638B1F474BF000782C88 /* ViewController.swift in Sources */,
+				F6C463AB1F474CEB00782C88 /* Deque.swift in Sources */,
+				F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */,
+				F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6BEFC041F4AA58E00CA7AB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F6BEFBFD1F4AA58E00CA7AB4 /* TarantulaPluginCore */;
+			targetProxy = F6BEFC031F4AA58E00CA7AB4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F6C4638E1F474BF000782C88 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F6C4638F1F474BF000782C88 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F6BEFC081F4AA58E00CA7AB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = TarantulaPluginCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.TarantulaPluginCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F6BEFC091F4AA58E00CA7AB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = TarantulaPluginCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.TarantulaPluginCore;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F6C463921F474BF000782C88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F6C463931F474BF000782C88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		F6C463951F474BF000782C88 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/aTarantula/main/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.aTarantula;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F6C463961F474BF000782C88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/aTarantula/main/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.aTarantula;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F6BEFC071F4AA58E00CA7AB4 /* Build configuration list for PBXNativeTarget "TarantulaPluginCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6BEFC081F4AA58E00CA7AB4 /* Debug */,
+				F6BEFC091F4AA58E00CA7AB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F6C463801F474BF000782C88 /* Build configuration list for PBXProject "aTarantula" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6C463921F474BF000782C88 /* Debug */,
+				F6C463931F474BF000782C88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F6C463941F474BF000782C88 /* Build configuration list for PBXNativeTarget "aTarantula" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F6C463951F474BF000782C88 /* Debug */,
+				F6C463961F474BF000782C88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F6C4637D1F474BF000782C88 /* Project object */;
+}

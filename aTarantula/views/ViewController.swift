@@ -1,0 +1,57 @@
+//
+//  ViewController.swift
+//  aTarantula
+//
+//  Created by Ilya Mikhaltsou on 8/18/17.
+//  Copyright © 2017 morpheby. All rights reserved.
+//
+
+import Cocoa
+import TarantulaPluginCore
+
+class ViewController: NSViewController {
+
+    dynamic var crawler: Crawler?
+    @IBOutlet var objectController: NSObjectController!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override var representedObject: Any? {
+        didSet {
+        // Update the view, if already loaded.
+        }
+    }
+
+    @IBAction func loadPlugin(_ sender: Any?) {
+        self.crawler = Crawler()
+        let pluginsPath = Bundle.main.builtInPlugInsPath!
+//        let pluginsUrl = URL(string: pluginsPath)!
+        let plugins = try? FileManager.default.contentsOfDirectory(atPath: pluginsPath)
+        // XXX search other paths
+        let bundle = Bundle(path: plugins!.first!)
+        guard let principal = bundle?.principalClass else {
+            debugPrint("Unable to load \(plugins!)")
+            abort()
+        }
+        guard let pobjclass = principal as? NSObject.Type else {
+            debugPrint("Unable to load \(principal)")
+            abort()
+        }
+        let object = pobjclass.init()
+        guard let tarantulaPlugin = object as? CrawlingPluginProtocol else {
+            debugPrint("Unable to load \(object) as CrawlingPluginProtocol")
+            abort()
+        }
+        self.crawler?.name = tarantulaPlugin.testMe()
+    }
+
+    @IBAction func start(_ sender: Any?) {
+        self.crawler?.name = "Other"
+    }
+
+}
+
