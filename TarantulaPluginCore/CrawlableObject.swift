@@ -54,5 +54,3 @@ public extension CrawlableObject {
     }
 }
 
-public typealias CrawlableManaged = (NSManagedObject & CrawlableObject>)
-
