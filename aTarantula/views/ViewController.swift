@@ -60,7 +60,9 @@ class ViewController: NSViewController {
             let context = persistentContainer.newBackgroundContext()
             let repository = CoredataRepository(context: context)
             repository.performAndWait {
-                repository.newObject(forUrl: URL(string: "http://test.com")!, type: tarantulaPlugin.crawlableTypes[0])
+//                let obj = repository.newObject(forUrl: URL(string: "http://test.com")!, type: tarantulaPlugin.crawlableObjectTypes[0] as! NSManagedObject.Type)
+                let obj = repository.readAllObjects(tarantulaPlugin.crawlableObjectTypes[0] as! NSManagedObject.Type, withPredicate: .All)
+                debugPrint(obj)
             }
         }
 //        tarantulaPlugin.crawlableTypes

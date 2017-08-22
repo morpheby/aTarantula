@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :osx, '10.11'
 
-target 'aTarantula' do
+target 'TarantulaPluginCore' do
     pod 'CrossroadRegex', :git => 'https://github.com/crossroadlabs/Regex.git'
     pod 'Kanna', '~> 2.1.0'
 end

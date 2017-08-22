@@ -21,8 +21,12 @@ import TarantulaPluginCore
             .url(forResource: "Model", withExtension: "momd")!)!
     }
 
-    public var crawlableTypes: [CrawlableObject.Type] {
+    public var crawlableObjectTypes: [CrawlableObject.Type] {
         return [Test.self as CrawlableObject.Type]
+    }
+
+    public var allObjectTypes: [NSManagedObject.Type] {
+        return crawlableObjectTypes as! [NSManagedObject.Type]
     }
 
     public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {

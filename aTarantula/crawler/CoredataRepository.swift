@@ -48,17 +48,17 @@ extension CoredataRepository: Repository {
     }
 
     func newObject<T: NSManagedObject>(type: T.Type) -> T {
-        return T(context: self.context)
+        return type.init(context: self.context)
     }
 
-    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject {
-        let o = self.newObject(type: T.self)
-        o.setValue(url, forKey: #keyPath(CrawlableObject.id))
+    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T {
+        let o = self.newObject(type: type)
+        (o as! CrawlableObject).id = cleanedStringForUrl(url)
         return o
     }
 
     func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: RepositoryPredicate) -> [T] {
-        let request: NSFetchRequest = T.fetchRequest()
+        let request: NSFetchRequest = type.fetchRequest()
         switch (predicate) {
         case let .CrawlableObject(url):
             request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [url])
@@ -73,3 +73,6 @@ extension CoredataRepository: Repository {
     }
 }
 
+func cleanedStringForUrl(_ url: URL) -> String {
+    return url.standardized.absoluteString
+}

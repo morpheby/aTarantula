@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		584DB4C1D7844CFD122FAD25 /* Pods_aTarantula.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */; };
+		DF9FE27CF9B0098F812ECD52 /* Pods_TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; };
 		F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -61,9 +61,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.release.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.release.xcconfig"; sourceTree = "<group>"; };
+		2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aTarantula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aTarantula.debug.xcconfig"; path = "Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula.debug.xcconfig"; sourceTree = "<group>"; };
+		BE9424A7A78EACE94AB385B3 /* Pods-TarantulaPluginCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TarantulaPluginCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TarantulaPluginCore/Pods-TarantulaPluginCore.debug.xcconfig"; sourceTree = "<group>"; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -82,6 +82,7 @@
 		F6C4639A1F474C9400782C88 /* Crawler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 		F6C463A91F474CEB00782C88 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		F6C463AA1F474CEB00782C88 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F7E49EB8CC93C91EE1566034 /* Pods-TarantulaPluginCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TarantulaPluginCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-TarantulaPluginCore/Pods-TarantulaPluginCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF9FE27CF9B0098F812ECD52 /* Pods_TarantulaPluginCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584DB4C1D7844CFD122FAD25 /* Pods_aTarantula.framework in Frameworks */,
 				F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */,
+				2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,8 +117,8 @@
 		DFEB94D011406FB2B3197ADD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */,
-				69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */,
+				BE9424A7A78EACE94AB385B3 /* Pods-TarantulaPluginCore.debug.xcconfig */,
+				F7E49EB8CC93C91EE1566034 /* Pods-TarantulaPluginCore.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -229,10 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6BEFC071F4AA58E00CA7AB4 /* Build configuration list for PBXNativeTarget "TarantulaPluginCore" */;
 			buildPhases = (
+				37B432922027DEEED50D0D11 /* [CP] Check Pods Manifest.lock */,
 				F6BEFBF91F4AA58E00CA7AB4 /* Sources */,
 				F6BEFBFA1F4AA58E00CA7AB4 /* Frameworks */,
 				F6BEFBFB1F4AA58E00CA7AB4 /* Headers */,
 				F6BEFBFC1F4AA58E00CA7AB4 /* Resources */,
+				DB06C74F419511374E267373 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,12 +251,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6C463941F474BF000782C88 /* Build configuration list for PBXNativeTarget "aTarantula" */;
 			buildPhases = (
-				3C1D5AE0DD6FD16D408096AD /* [CP] Check Pods Manifest.lock */,
 				F6C463811F474BF000782C88 /* Sources */,
 				F6C463821F474BF000782C88 /* Frameworks */,
 				F6C463831F474BF000782C88 /* Resources */,
-				F9F7C708E7146F47D913137C /* [CP] Embed Pods Frameworks */,
-				2B5F3B388B1C0FA243205200 /* [CP] Copy Pods Resources */,
 				F6BEFBE61F4AA49800CA7AB4 /* Embed Frameworks */,
 				F6BEFC281F4AA6F100CA7AB4 /* CopyFiles */,
 			);
@@ -326,22 +327,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B5F3B388B1C0FA243205200 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3C1D5AE0DD6FD16D408096AD /* [CP] Check Pods Manifest.lock */ = {
+		37B432922027DEEED50D0D11 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -356,19 +342,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F9F7C708E7146F47D913137C /* [CP] Embed Pods Frameworks */ = {
+		DB06C74F419511374E267373 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-aTarantula/Pods-aTarantula-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TarantulaPluginCore/Pods-TarantulaPluginCore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -422,6 +408,7 @@
 /* Begin XCBuildConfiguration section */
 		F6BEFC081F4AA58E00CA7AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE9424A7A78EACE94AB385B3 /* Pods-TarantulaPluginCore.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -447,6 +434,7 @@
 		};
 		F6BEFC091F4AA58E00CA7AB4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7E49EB8CC93C91EE1566034 /* Pods-TarantulaPluginCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -563,7 +551,6 @@
 		};
 		F6C463951F474BF000782C88 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4388C2267E085B985570ABF /* Pods-aTarantula.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -578,7 +565,6 @@
 		};
 		F6C463961F474BF000782C88 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69F10C58A38636EBA56AB3E8 /* Pods-aTarantula.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
