@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F6BEFC201F4AA61600CA7AB4 /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC1F1F4AA61600CA7AB4 /* TarantulaPluginCore.framework */; };
 		F6BEFC231F4AA64E00CA7AB4 /* TestPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC221F4AA64E00CA7AB4 /* TestPlugin.swift */; };
+		F6BEFC331F4BEF6700CA7AB4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC311F4BEF6700CA7AB4 /* Model.xcdatamodeld */; };
+		F6BEFC361F4BF01C00CA7AB4 /* Test+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC341F4BF01C00CA7AB4 /* Test+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +19,8 @@
 		F6BEFC1F1F4AA61600CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC211F4AA64E00CA7AB4 /* ATARCsvExporterPlugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATARCsvExporterPlugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6BEFC221F4AA64E00CA7AB4 /* TestPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestPlugin.swift; sourceTree = "<group>"; };
+		F6BEFC321F4BEF6700CA7AB4 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F6BEFC341F4BF01C00CA7AB4 /* Test+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Test+CoreDataClass.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +55,11 @@
 		F6BEFC171F4AA5FD00CA7AB4 /* ATARCsvExporterPlugin */ = {
 			isa = PBXGroup;
 			children = (
+				F6BEFC341F4BF01C00CA7AB4 /* Test+CoreDataClass.swift */,
 				F6BEFC181F4AA5FD00CA7AB4 /* Info.plist */,
 				F6BEFC221F4AA64E00CA7AB4 /* TestPlugin.swift */,
 				F6BEFC211F4AA64E00CA7AB4 /* ATARCsvExporterPlugin-Bridging-Header.h */,
+				F6BEFC311F4BEF6700CA7AB4 /* Model.xcdatamodeld */,
 			);
 			path = ATARCsvExporterPlugin;
 			sourceTree = "<group>";
@@ -134,7 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6BEFC361F4BF01C00CA7AB4 /* Test+CoreDataClass.swift in Sources */,
 				F6BEFC231F4AA64E00CA7AB4 /* TestPlugin.swift in Sources */,
+				F6BEFC331F4BEF6700CA7AB4 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +294,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F6BEFC311F4BEF6700CA7AB4 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F6BEFC321F4BEF6700CA7AB4 /* Model.xcdatamodel */,
+			);
+			currentVersion = F6BEFC321F4BEF6700CA7AB4 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F6BEFC0D1F4AA5FD00CA7AB4 /* Project object */;
 }

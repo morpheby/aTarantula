@@ -19,6 +19,6 @@ class PluginLoader {
     }
 
     var exporters: [Any] = []
-    var crawlers: [CrawlingPluginProtocol] = []
+    var crawlers: [TarantulaCrawlingPlugin] = []
 
 }

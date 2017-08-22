@@ -21,6 +21,11 @@ import Foundation
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
     @objc var obj_deleted: Bool { get set }
+
+    /// Object marker of filtering for CoreData
+    /// - Important: This property needs to be defined in the CoreData Model, not
+    ///    as the computed or stored property of the object
+    @objc var disabled: Bool { get set }
 }
 
 public extension CrawlableObject {
@@ -38,4 +43,16 @@ public extension CrawlableObject {
             self.obj_deleted = !newValue
         }
     }
+
+    final var objectIsFiltered: Bool {
+        get {
+            return self.disabled
+        }
+        set {
+            self.disabled = newValue
+        }
+    }
 }
+
+public typealias CrawlableManaged = (NSManagedObject & CrawlableObject>)
+

@@ -52,7 +52,7 @@ extension CoredataRepository: Repository {
     }
 
     func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject {
-        let o = self.newObject(type:T.self)
+        let o = self.newObject(type: T.self)
         o.setValue(url, forKey: "\(#selector(getter: CrawlableObject.id))")
         return o
     }
@@ -63,7 +63,9 @@ extension CoredataRepository: Repository {
         case let .CrawlableObject(url):
             request.predicate = NSPredicate(format: "\(#selector(getter: CrawlableObject.id)) == %@", argumentArray: [url])
         case let .CrawlableObjects(alreadyCrawled):
-            request.predicate = NSPredicate(format: "obj_deleted == %@", argumentArray: [!alreadyCrawled])
+            request.predicate = NSPredicate(
+                format: "\(#selector(getter: CrawlableObject.obj_deleted)) == %@ && \(#selector(getter: CrawlableObject.disabled)) == %@",
+                argumentArray: [!alreadyCrawled, false])
         case .All:
             break
         }

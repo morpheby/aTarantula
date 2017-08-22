@@ -9,13 +9,24 @@
 import Foundation
 import TarantulaPluginCore
 
-@objc(TestPlugin) public class TestPlugin: NSObject, CrawlingPluginProtocol {
+@objc(TestPlugin) public class TestPlugin: NSObject, TarantulaCrawlingPlugin {
     public override init() {
         super.init()
     }
 
-    public func testMe() -> String {
-        return "Hi from plugin!"
+
+    /// ManagedObjectModel for the plugin data
+    public var managedObjectModel: NSManagedObjectModel {
+        return NSManagedObjectModel(contentsOf: Bundle(for: TestPlugin.self)
+            .url(forResource: "Model", withExtension: "momd")!)!
+    }
+
+    public var crawlableTypes: [CrawlableObject.Type] {
+        return [Test.self as CrawlableObject.Type]
+    }
+
+    public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {
+        return []
     }
 }
 

@@ -42,11 +42,29 @@ class ViewController: NSViewController {
             abort()
         }
         let object = pobjclass.init()
-        guard let tarantulaPlugin = object as? CrawlingPluginProtocol else {
+        guard let tarantulaPlugin = object as? TarantulaCrawlingPlugin else {
             debugPrint("Unable to load \(object) as CrawlingPluginProtocol")
             abort()
         }
-        self.crawler?.name = tarantulaPlugin.testMe()
+
+
+        let persistentContainer = NSPersistentContainer(name: "Model", managedObjectModel: tarantulaPlugin.managedObjectModel)
+        persistentContainer.persistentStoreDescriptions[0].shouldMigrateStoreAutomatically = true
+        persistentContainer.loadPersistentStores() { (description, error) in
+            if let error = error {
+                fatalError("Failed to load Core Data stack: \(error)")
+            }
+            if let s = description.url?.absoluteString {
+                print(s)
+            }
+            let context = persistentContainer.newBackgroundContext()
+            let repository = CoredataRepository(context: context)
+            repository.performAndWait {
+                repository.newObject(forUrl: URL(string: "http://test.com")!, type: tarantulaPlugin.crawlableTypes[0])
+            }
+        }
+//        tarantulaPlugin.crawlableTypes
+//        self.crawler?.name = tarantulaPlugin.testMe()
     }
 
     @IBAction func start(_ sender: Any?) {
