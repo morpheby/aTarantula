@@ -32,7 +32,7 @@ class ViewController: NSViewController {
 //        let pluginsUrl = URL(string: pluginsPath)!
         let plugins = try? FileManager.default.contentsOfDirectory(atPath: pluginsPath)
         // XXX search other paths
-        let bundle = Bundle(path: plugins!.first!)
+        let bundle = Bundle(path: pluginsPath + "/" + plugins!.first!)
         guard let principal = bundle?.principalClass else {
             debugPrint("Unable to load \(plugins!)")
             abort()

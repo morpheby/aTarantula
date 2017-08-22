@@ -8,6 +8,7 @@
 
 import Foundation
 import TarantulaPluginCore
+import Kanna
 
 @objc(TestPlugin) public class TestPlugin: NSObject, TarantulaCrawlingPlugin {
     public override init() {
@@ -26,6 +27,11 @@ import TarantulaPluginCore
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
+        let data = try! String(contentsOf: URL(string: "https://google.com")!)
+
+        guard let html = Kanna.HTML(html: data, encoding: .utf8) else {
+            fatalError("Unable to parse HTML")
+        }
         return crawlableObjectTypes as! [NSManagedObject.Type]
     }
 
