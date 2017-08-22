@@ -14,6 +14,7 @@
 		F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
 		F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463881F474BF000782C88 /* AppDelegate.swift */; };
 		F6C4638B1F474BF000782C88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4638A1F474BF000782C88 /* ViewController.swift */; };
 		F6C4638D1F474BF000782C88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6C4638C1F474BF000782C88 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		F6BEFC011F4AA58E00CA7AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6BEFC0A1F4AA5A400CA7AB4 /* CrawlingPluginProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlingPluginProtocol.swift; sourceTree = "<group>"; };
 		F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ATARCsvExporterPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginLoader.swift; sourceTree = "<group>"; };
 		F6C463851F474BF000782C88 /* aTarantula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aTarantula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C463881F474BF000782C88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6C4638A1F474BF000782C88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,13 +117,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		F6BEFBD61F47E41000CA7AB4 /* plugin-core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "plugin-core";
-			sourceTree = "<group>";
-		};
 		F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,7 +159,6 @@
 		F6C463871F474BF000782C88 /* aTarantula */ = {
 			isa = PBXGroup;
 			children = (
-				F6BEFBD61F47E41000CA7AB4 /* plugin-core */,
 				F6C463AF1F47546900782C88 /* main */,
 				F6C463AE1F47544500782C88 /* views */,
 				F6C463A81F474CC000782C88 /* utils */,
@@ -206,6 +200,7 @@
 				F6C463881F474BF000782C88 /* AppDelegate.swift */,
 				F6C4638C1F474BF000782C88 /* Assets.xcassets */,
 				F6C463911F474BF000782C88 /* Info.plist */,
+				F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -391,6 +386,7 @@
 				F6C463AB1F474CEB00782C88 /* Deque.swift in Sources */,
 				F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */,
 				F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */,
+				F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
