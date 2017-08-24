@@ -9,14 +9,18 @@
 /* Begin PBXBuildFile section */
 		DF9FE27CF9B0098F812ECD52 /* Pods_TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; };
-		F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
 		F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */; };
 		F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */; };
 		F6BEFC301F4BE25500CA7AB4 /* CoredataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */; };
+		F6BEFC381F4C333700CA7AB4 /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; };
+		F6BEFC391F4C333700CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6BEFC401F4C33CB00CA7AB4 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */; };
+		F6BEFC411F4C33CB00CA7AB4 /* Kanna.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6BEFC431F4C33CB00CA7AB4 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */; };
+		F6BEFC441F4C33CB00CA7AB4 /* Regex.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463881F474BF000782C88 /* AppDelegate.swift */; };
 		F6C4638B1F474BF000782C88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4638A1F474BF000782C88 /* ViewController.swift */; };
 		F6C4638D1F474BF000782C88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6C4638C1F474BF000782C88 /* Assets.xcassets */; };
@@ -27,7 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F6BEFC031F4AA58E00CA7AB4 /* PBXContainerItemProxy */ = {
+		F6BEFC3A1F4C333700CA7AB4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F6C4637D1F474BF000782C88 /* Project object */;
 			proxyType = 1;
@@ -37,17 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F6BEFBE61F4AA49800CA7AB4 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F6BEFC061F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F6BEFC281F4AA6F100CA7AB4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,6 +49,19 @@
 			files = (
 				F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F6BEFC3C1F4C333700CA7AB4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F6BEFC411F4C33CB00CA7AB4 /* Kanna.framework in Embed Frameworks */,
+				F6BEFC441F4C33CB00CA7AB4 /* Regex.framework in Embed Frameworks */,
+				F6BEFC391F4C333700CA7AB4 /* TarantulaPluginCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -73,6 +79,8 @@
 		F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginLoader.swift; sourceTree = "<group>"; };
 		F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoredataRepository.swift; sourceTree = "<group>"; };
+		F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C463851F474BF000782C88 /* aTarantula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aTarantula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C463881F474BF000782C88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6C4638A1F474BF000782C88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6BEFC051F4AA58E00CA7AB4 /* TarantulaPluginCore.framework in Frameworks */,
+				F6BEFC401F4C33CB00CA7AB4 /* Kanna.framework in Frameworks */,
+				F6BEFC431F4C33CB00CA7AB4 /* Regex.framework in Frameworks */,
+				F6BEFC381F4C333700CA7AB4 /* TarantulaPluginCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +156,8 @@
 		F6C4637C1F474BF000782C88 = {
 			isa = PBXGroup;
 			children = (
+				F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */,
+				F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */,
 				F6BEFC271F4AA6C500CA7AB4 /* Plugins */,
 				F6C463871F474BF000782C88 /* aTarantula */,
 				F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */,
@@ -254,13 +266,13 @@
 				F6C463811F474BF000782C88 /* Sources */,
 				F6C463821F474BF000782C88 /* Frameworks */,
 				F6C463831F474BF000782C88 /* Resources */,
-				F6BEFBE61F4AA49800CA7AB4 /* Embed Frameworks */,
 				F6BEFC281F4AA6F100CA7AB4 /* CopyFiles */,
+				F6BEFC3C1F4C333700CA7AB4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F6BEFC041F4AA58E00CA7AB4 /* PBXTargetDependency */,
+				F6BEFC3B1F4C333700CA7AB4 /* PBXTargetDependency */,
 			);
 			name = aTarantula;
 			productName = aTarantula;
@@ -387,10 +399,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F6BEFC041F4AA58E00CA7AB4 /* PBXTargetDependency */ = {
+		F6BEFC3B1F4C333700CA7AB4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F6BEFBFD1F4AA58E00CA7AB4 /* TarantulaPluginCore */;
-			targetProxy = F6BEFC031F4AA58E00CA7AB4 /* PBXContainerItemProxy */;
+			targetProxy = F6BEFC3A1F4C333700CA7AB4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -587,6 +599,7 @@
 				F6BEFC091F4AA58E00CA7AB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F6C463801F474BF000782C88 /* Build configuration list for PBXProject "aTarantula" */ = {
 			isa = XCConfigurationList;
