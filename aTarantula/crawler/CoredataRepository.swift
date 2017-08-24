@@ -51,7 +51,7 @@ extension CoredataRepository: Repository {
         return type.init(context: self.context)
     }
 
-    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T {
+    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject {
         let o = self.newObject(type: type)
         (o as! CrawlableObject).id = cleanedStringForUrl(url)
         return o

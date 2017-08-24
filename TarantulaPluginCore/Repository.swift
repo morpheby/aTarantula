@@ -31,7 +31,7 @@ public protocol Repository {
     /// 
     /// The difference from the `newObject<T: NSManagedObject>(type: T.Type) -> T` method is that
     /// this one presets the URL (which is considered read-only otherwise)
-    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T
+    func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject
 
     /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
     /// the predicate `predicate`
