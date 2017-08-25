@@ -9,10 +9,10 @@
 import Foundation
 
 @objc class Crawler: NSObject {
-    dynamic var discoveredCount: Int = 0
-    dynamic var crawledCount: Int = 0
-    dynamic var filteredCount: Int = 0
-    dynamic var name: String?
+    @objc dynamic var discoveredCount: Int = 0
+    @objc dynamic var crawledCount: Int = 0
+    @objc dynamic var filteredCount: Int = 0
+    @objc dynamic var name: String?
 
     func crawlerMain() {
 

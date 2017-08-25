@@ -29,13 +29,13 @@ import Foundation
 }
 
 public extension CrawlableObject {
-    final var objectUrl: URL {
+    var objectUrl: URL {
         get {
             return URL(string: self.id!)!.standardized
         }
     }
 
-    final var objectIsCrawled: Bool {
+    var objectIsCrawled: Bool {
         get {
             return !self.obj_deleted
         }
@@ -44,7 +44,7 @@ public extension CrawlableObject {
         }
     }
 
-    final var objectIsFiltered: Bool {
+    var objectIsFiltered: Bool {
         get {
             return self.disabled
         }
@@ -54,3 +54,4 @@ public extension CrawlableObject {
     }
 }
 
+public typealias CrawlableManagedObject = NSManagedObject & CrawlableObject

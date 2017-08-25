@@ -11,6 +11,7 @@ import TarantulaPluginCore
 import Kanna
 
 @objc(TestPlugin) public class TestPlugin: NSObject, TarantulaCrawlingPlugin {
+
     public override init() {
         super.init()
     }
@@ -22,8 +23,8 @@ import Kanna
             .url(forResource: "Model", withExtension: "momd")!)!
     }
 
-    public var crawlableObjectTypes: [CrawlableObject.Type] {
-        return [Test.self as CrawlableObject.Type]
+    public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
+        return [Test.self as CrawlableManagedObject.Type]
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
@@ -32,7 +33,7 @@ import Kanna
         guard let html = Kanna.HTML(html: data, encoding: .utf8) else {
             fatalError("Unable to parse HTML")
         }
-        return crawlableObjectTypes as! [NSManagedObject.Type]
+        return crawlableObjectTypes as [NSManagedObject.Type]
     }
 
     public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {

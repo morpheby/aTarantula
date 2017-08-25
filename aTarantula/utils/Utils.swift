@@ -34,9 +34,9 @@ public extension Array where Element: WeakType {
     }
 }
 
-public extension Collection where Indices.Iterator.Element == Index {
+public extension Collection {
     /// Returns the element at the specified index iff it is within bounds, otherwise nil.
-    public subscript (safe index: Index) -> Generator.Element? {
+    public subscript (safe index: Index) -> Iterator.Element? {
         return indices.contains(index) ? self[index] : nil
     }
 }

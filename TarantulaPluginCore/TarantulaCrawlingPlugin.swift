@@ -13,7 +13,7 @@ public protocol TarantulaCrawlingPlugin {
     /// ManagedObjectModel for the plugin data
     var managedObjectModel: NSManagedObjectModel { get }
 
-    var crawlableObjectTypes: [CrawlableObject.Type] { get }
+    var crawlableObjectTypes: [CrawlableManagedObject.Type] { get }
     var allObjectTypes: [NSManagedObject.Type] { get }
 
     func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject]
