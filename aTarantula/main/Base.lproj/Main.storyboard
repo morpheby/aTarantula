@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13189.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -343,6 +343,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="598" height="368"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="ayi-GZ-6HF"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -360,7 +363,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="633" height="356"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="we2-N9-KkD">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="we2-N9-KkD">
                                 <rect key="frame" x="18" y="319" width="89" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Now crawling:" id="v2v-Yo-CUh">
                                     <font key="font" metaFont="system"/>
@@ -368,7 +371,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8d-qd-Zzr">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8d-qd-Zzr">
                                 <rect key="frame" x="139" y="319" width="44" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(none)" id="NhU-Qu-nLb">
                                     <font key="font" metaFont="system"/>
@@ -382,13 +385,13 @@
                             <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Bsa-ko-c73">
                                 <rect key="frame" x="20" y="193" width="593" height="20"/>
                                 <connections>
-                                    <binding destination="xcY-MY-Rj5" name="maxValue" keyPath="selection.discoveredCount" id="Ug6-aX-VWk">
+                                    <binding destination="xcY-MY-Rj5" name="value" keyPath="selection.crawledCount" previousBinding="Ug6-aX-VWk" id="yUs-Ys-eHL">
                                         <dictionary key="options">
                                             <integer key="NSNoSelectionPlaceholder" value="0"/>
                                             <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="xcY-MY-Rj5" name="value" keyPath="selection.crawledCount" previousBinding="Ug6-aX-VWk" id="yUs-Ys-eHL">
+                                    <binding destination="xcY-MY-Rj5" name="maxValue" keyPath="selection.discoveredCount" id="Ug6-aX-VWk">
                                         <dictionary key="options">
                                             <integer key="NSNoSelectionPlaceholder" value="0"/>
                                             <integer key="NSNullPlaceholder" value="0"/>
@@ -396,7 +399,7 @@
                                     </binding>
                                 </connections>
                             </progressIndicator>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDP-QK-pKL">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tDP-QK-pKL">
                                 <rect key="frame" x="18" y="244" width="104" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Entities crawled:" id="Hnd-3g-6Tm">
                                     <font key="font" metaFont="system"/>
@@ -404,7 +407,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTZ-uC-E2H">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cTZ-uC-E2H">
                                 <rect key="frame" x="18" y="219" width="13" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="sus-jb-rzT">
                                     <font key="font" metaFont="system"/>
@@ -412,7 +415,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFb-wR-Ile">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YFb-wR-Ile">
                                 <rect key="frame" x="602" y="219" width="13" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="0" id="LLH-4a-OFr">
                                     <font key="font" metaFont="system"/>
@@ -420,7 +423,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-qH-Ill">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v4M-qH-Ill">
                                 <rect key="frame" x="492" y="244" width="123" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Entities discovered:" id="TH3-rd-igJ">
                                     <font key="font" metaFont="system"/>
@@ -444,6 +447,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="rfb-9x-V5E" kind="show" identifier="exporting" id="DMS-gP-3zS"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-FG-BYk">
                                 <rect key="frame" x="14" y="79" width="130" height="32"/>
@@ -509,6 +515,14 @@
                 </objectController>
             </objects>
             <point key="canvasLocation" x="134.5" y="830"/>
+        </scene>
+        <!--Editor View Controller-->
+        <scene sceneID="LBA-CG-rbx">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="rfb-9x-V5E" customClass="CDEEditorViewController" sceneMemberID="viewController"/>
+                <customObject id="wcu-0E-R05" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="1329"/>
         </scene>
     </scenes>
 </document>

@@ -32,16 +32,28 @@ public protocol Repository {
     /// The difference from the `newObject<T: NSManagedObject>(type: T.Type) -> T` method is that
     /// this one presets the URL (which is considered read-only otherwise)
     func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject
+//
+//    /// Fetches all objects of the type T (given through the parameter `type`) from the repository
+//    /// - Parameters:
+//    ///    - type: The type of the objects requested
+//    func readAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T]
+//
+//    /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
+//    /// the predicate `predicate`
+//    /// - Parameters:
+//    ///    - type: The type of the objects requested
+//    ///    - predicate: The predicate used to find objects in the repository
+//    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: NSPredicate) -> [T]
 
     /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
-    /// the predicate `predicate`
+    /// the selection `selection`
     /// - Parameters:
     ///    - type: The type of the objects requested
-    ///    - predicate: The predicate used to find objects in the repository
-    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: RepositoryPredicate) -> [T]
+    ///    - selection: The selection used to find objects in the repository
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> [T]
 }
 
-public enum RepositoryPredicate {
+public enum RepositoryCrawlableSelection {
     case CrawlableObject(url: URL)
     case CrawlableObjects(alreadyCrawled: Bool)
     case All

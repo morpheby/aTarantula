@@ -1,0 +1,25 @@
+//
+//  NSApplication+Extra.swift
+//  aTarantula
+//
+//  Created by Ilya Mikhaltsou on 9/2/17.
+//  Copyright © 2017 morpheby. All rights reserved.
+//
+
+import Foundation
+
+fileprivate class SharedApplicationExtension {
+    lazy var name: String = {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+    }()
+
+    static let shared: SharedApplicationExtension = {
+        return SharedApplicationExtension()
+    }()
+}
+
+extension NSApplication {
+    var name: String {
+        return SharedApplicationExtension.shared.name
+    }
+}

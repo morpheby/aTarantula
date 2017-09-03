@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="CDEDateAttributeViewController">
+            <connections>
+                <outlet property="attributeNameTextField" destination="33" id="56"/>
+                <outlet property="attributeNameView" destination="32" id="35"/>
+                <outlet property="valueView" destination="49" id="54"/>
+                <outlet property="view" destination="2" id="8"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="2" userLabel="Value" customClass="CDEAttributeView">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="27"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button id="38">
+                    <rect key="frame" x="231" y="5" width="19" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="EditTemplate" imagePosition="only" alignment="center" controlSize="small" state="on" imageScaling="proportionallyDown" inset="2" id="39">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" metaFont="smallSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showDatePicker:" target="-2" id="40"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" id="49">
+                    <rect key="frame" x="0.0" y="4" width="230" height="19"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="No Date Set" drawsBackground="YES" id="50">
+                        <dateFormatter key="formatter" dateStyle="short" timeStyle="short" id="52"/>
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="resultingValue" id="51"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <connections>
+                <outlet property="nextKeyView" destination="49" id="53"/>
+            </connections>
+        </customView>
+        <customView id="32" userLabel="Name">
+            <rect key="frame" x="0.0" y="0.0" width="273" height="27"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" id="33">
+                    <rect key="frame" x="17" y="4" width="254" height="14"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="34" customClass="CDEShadowTextFieldCell">
+                        <font key="font" metaFont="smallSystemBold"/>
+                        <color key="textColor" red="0.3803921938" green="0.3803921938" blue="0.3803921938" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="displayPatternValue1" keyPath="attributeDescription.nameForDisplay_cde" id="59">
+                            <dictionary key="options">
+                                <string key="NSDisplayPattern">%{value1}@</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
+            </subviews>
+        </customView>
+    </objects>
+    <resources>
+        <image name="EditTemplate" width="16" height="16"/>
+    </resources>
+</document>

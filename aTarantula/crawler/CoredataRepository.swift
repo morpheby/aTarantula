@@ -57,9 +57,22 @@ extension CoredataRepository: Repository {
         return o
     }
 
-    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: RepositoryPredicate) -> [T] {
+
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T] {
         let request: NSFetchRequest = type.fetchRequest()
-        switch (predicate) {
+        return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
+    }
+
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: NSPredicate) -> [T] {
+        let request: NSFetchRequest = type.fetchRequest()
+        request.predicate = predicate
+        return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
+    }
+
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> [T] {
+        assert(type is CrawlableObject.Type, "Type has to be CrawlableObject")
+        let request: NSFetchRequest = type.fetchRequest()
+        switch (selection) {
         case let .CrawlableObject(url):
             request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [url])
         case let .CrawlableObjects(alreadyCrawled):
