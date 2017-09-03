@@ -156,6 +156,9 @@
 		F63FD9111F5BCDCE003A5F01 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9101F5BCDCE003A5F01 /* DataController.swift */; };
 		F63FD9141F5BD8B2003A5F01 /* NSApplication+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9131F5BD8B2003A5F01 /* NSApplication+Extra.swift */; };
 		F63FD9161F5BE6EB003A5F01 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9151F5BE6EA003A5F01 /* Observation.swift */; };
+		F63FD9181F5C1F1A003A5F01 /* WindowTransitionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */; };
+		F63FD91A1F5C230F003A5F01 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */; };
+		F63FD91C1F5C24B6003A5F01 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -473,6 +476,9 @@
 		F63FD9101F5BCDCE003A5F01 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F63FD9131F5BD8B2003A5F01 /* NSApplication+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extra.swift"; sourceTree = "<group>"; };
 		F63FD9151F5BE6EA003A5F01 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
+		F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTransitionSegue.swift; sourceTree = "<group>"; };
+		F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1594,6 +1600,8 @@
 			isa = PBXGroup;
 			children = (
 				F6C4638A1F474BF000782C88 /* ViewController.swift */,
+				F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */,
+				F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1607,6 +1615,7 @@
 				F6C463911F474BF000782C88 /* Info.plist */,
 				F63FD90E1F5BC2C5003A5F01 /* aTaratula-BridgingHeader.h */,
 				F63FD9131F5BD8B2003A5F01 /* NSApplication+Extra.swift */,
+				F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */,
 			);
 			path = main;
 			sourceTree = "<group>";
@@ -1855,6 +1864,7 @@
 				F63FD8601F591345003A5F01 /* CDEManagedObjectsTableViewController.m in Sources */,
 				F63FD8671F591345003A5F01 /* CDEMenuWindowItem.m in Sources */,
 				F63FD8D71F5BB112003A5F01 /* FoundationValue +CDEManagedObjectValueToStringAdditions.m in Sources */,
+				F63FD91C1F5C24B6003A5F01 /* ApplicationController.swift in Sources */,
 				F63FD8321F591345003A5F01 /* CDEManagedObjectsPickerViewController.m in Sources */,
 				F63FD8761F591345003A5F01 /* CDEAttributeEditorWindowController.m in Sources */,
 				F6C463AB1F474CEB00782C88 /* Deque.swift in Sources */,
@@ -1902,11 +1912,13 @@
 				F63FD8641F591345003A5F01 /* CDEMenuViewController.m in Sources */,
 				F63FD8721F591345003A5F01 /* CDETwoColumnSplitViewDelegate.m in Sources */,
 				F63FD8631F591345003A5F01 /* CDEMenuView.m in Sources */,
+				F63FD91A1F5C230F003A5F01 /* LoadingViewController.swift in Sources */,
 				F63FD8521F591345003A5F01 /* CDEToOneRelationshipTableCellView.m in Sources */,
 				F63FD8431F591345003A5F01 /* CDEBoolValueTableCellView.m in Sources */,
 				F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */,
 				F63FD8731F591345003A5F01 /* CDEAttributeEditor.m in Sources */,
 				F63FD8711F591345003A5F01 /* CDETwoColumnSplitViewController.m in Sources */,
+				F63FD9181F5C1F1A003A5F01 /* WindowTransitionSegue.swift in Sources */,
 				F63FD8BE1F5BAE0D003A5F01 /* NSSortDescriptor+CDEAdditions.m in Sources */,
 				F63FD82D1F591345003A5F01 /* CDEFirstResponderWindow.m in Sources */,
 				F63FD8271F591345003A5F01 /* CDEStringAttributeViewController.m in Sources */,

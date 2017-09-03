@@ -21,14 +21,8 @@ class ViewController: NSViewController {
 
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
     @IBAction func loadPlugin(_ sender: Any?) {
-        let c = PluginController()
+        let c = try? PluginController()
 //        tarantulaPlugin.crawlableTypes
 //        self.crawler?.name = tarantulaPlugin.testMe()
     }

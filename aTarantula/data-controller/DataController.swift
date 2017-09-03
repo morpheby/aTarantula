@@ -23,7 +23,7 @@ class DataController {
     private let _managedObjectModel: NSManagedObjectModel
     private let _persistentContainer: NSPersistentContainer
 
-    init(modelName: String, managedObjectModel: NSManagedObjectModel) {
+    init(modelName: String, managedObjectModel: NSManagedObjectModel) throws {
         self._managedObjectModel = managedObjectModel
 
         let persistentContainer = NSPersistentContainer(name: modelName, managedObjectModel: managedObjectModel)

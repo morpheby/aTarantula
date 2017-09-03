@@ -50,7 +50,7 @@ public class Observable<T: AnyObject> {
     }
 }
 
-public func observe<A: AnyObject, B: AnyObject> (observable: Observable<B>, observer: A, fire: @escaping (A, B) -> ()) {
+public func observe<A: AnyObject, B> (observable: Observable<B>, observer: A, fire: @escaping (A, B) -> ()) {
     let info = ObservationInfo(observer: observer, observable: observable)
     let caller: ObservationCaller = {
         if let observer = info.observer {
@@ -75,7 +75,7 @@ public func >><A: AnyObject, B: AnyObject> (observer: A, fire: @escaping (A, B) 
     return _TmpObservationOperatorStruct(observer: observer, fire: fire)
 }
 
-public func ∆=<A: AnyObject, B: AnyObject> (observable: Observable<B>, info: _TmpObservationOperatorStruct<A, B>) {
+public func ∆=<A, B> (observable: Observable<B>, info: _TmpObservationOperatorStruct<A, B>) {
     observe(observable: observable, observer: info.observer, fire: info.fire)
 }
 

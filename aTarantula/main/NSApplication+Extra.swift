@@ -13,6 +13,8 @@ fileprivate class SharedApplicationExtension {
         return Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     }()
 
+    lazy var controller: ApplicationController = ApplicationController()
+
     static let shared: SharedApplicationExtension = {
         return SharedApplicationExtension()
     }()
@@ -21,5 +23,9 @@ fileprivate class SharedApplicationExtension {
 extension NSApplication {
     var name: String {
         return SharedApplicationExtension.shared.name
+    }
+
+    var controller: ApplicationController {
+        return SharedApplicationExtension.shared.controller
     }
 }

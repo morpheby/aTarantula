@@ -11,46 +11,69 @@ import TarantulaPluginCore
 
 class PluginController {
 
+    var exporters: [Any] = []
+    var crawlers: [TarantulaCrawlingPlugin] = []
+    var state: LoadingState = .waiting
+
     init() throws {
         debugPrint(defaultPluginUrls)
 
-        ensureDefaultLocationExists()
+        try ensureDefaultLocationExists()
     }
 
-    var pluginLoadingObservable = Observable(PluginController)
+    lazy var pluginLoadingObservable = Observable(self)
 
     private static let pluginsDirectoryName = "Plugins"
 
-    private func loadPlugins() throws {
+    func loadPlugins() throws {
         for url in self.defaultPluginUrls {
+            state = .enumerating(directory: url)
+            pluginLoadingObservable.fire()
+
             let plugins: [URL]
             do {
-                var isDirectory = false
-                if FileManager.default.fileExists(atPath: url.path, isDirectory: &isDirectory) {
+                if FileManager.default.fileExists(atPath: url.path) {
                     plugins = try FileManager.default.contentsOfDirectory(at: url,
                                                                            includingPropertiesForKeys: [.pathKey],
                                                                            options: [.skipsHiddenFiles])
+                } else {
+                    state = .skipping(directory: url)
+                    pluginLoadingObservable.fire()
+                    continue
                 }
             }
             catch let error {
-                throw LoadingError.directoryNotEnumerated(directoryUrl: url, internalError: error)
+                let outerError = LoadingError.directoryNotEnumerated(directoryUrl: url, internalError: error)
+                state = .error(outerError)
+                throw outerError
             }
 
             for plugin in plugins {
+                state = .loading(path: plugin)
+                pluginLoadingObservable.fire()
+
                 let bundle = Bundle(url: plugin)
                 guard let principal = bundle?.principalClass else {
-                    throw LoadingError.bundleNotLoaded(bundleUrl: plugin)
+                    let outerError = LoadingError.bundleNotLoaded(bundleUrl: plugin)
+                    state = .error(outerError)
+                    throw outerError
                 }
                 guard let pobjclass = principal as? NSObject.Type else {
-                    throw LoadingError.principalClassNotObjC(principal: principal)
+                    let outerError = LoadingError.principalClassNotObjC(principal: principal)
+                    state = .error(outerError)
+                    throw outerError
                 }
                 let object = pobjclass.init()
                 guard let tarantulaPlugin = object as? TarantulaCrawlingPlugin else {
-                    debugPrint("Unable to load \(object) as CrawlingPluginProtocol")
-                    abort()
+                    let outerError = LoadingError.incompatiblePlugin(plugin: object)
+                    state = .error(outerError)
+                    throw outerError
                 }
             }
         }
+
+        state = .success
+        pluginLoadingObservable.fire()
     }
 
     private func ensureDefaultLocationExists() throws {
@@ -61,7 +84,7 @@ class PluginController {
         let rootPath = list.first!
         let path = rootPath.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginController.pluginsDirectoryName, isDirectory: true)
 
-        try fileManager.createDirectory(at: path, withIntermediateDirectories: true, attributes: [])
+        try fileManager.createDirectory(at: path, withIntermediateDirectories: true, attributes: [:])
     }
 
     private lazy var defaultPluginUrls: [URL] = {
@@ -96,18 +119,20 @@ class PluginController {
 
     }
 
-    var exporters: [Any] = []
-    var crawlers: [TarantulaCrawlingPlugin] = []
-
     enum LoadingState {
         case waiting
-        case loading(directory: URL, path: URL)
+        case enumerating(directory: URL)
+        case skipping(directory: URL)
+        case loading(path: URL)
+        case error(Error)
+        case success
     }
 
     enum LoadingError: Error {
         case directoryNotEnumerated(directoryUrl: URL, internalError: Error)
         case bundleNotLoaded(bundleUrl: URL)
         case principalClassNotObjC(principal: AnyClass)
+        case incompatiblePlugin(plugin: NSObject)
 
         var localizedDescription: String {
             switch (self) {
@@ -117,6 +142,8 @@ class PluginController {
                 return "Unable to load plugin bundle at \(url.path)"
             case let .principalClassNotObjC(principal: p):
                 return "Principal class \(p) in plugin \(Bundle(for: p)) is not NSObject-compatible"
+            case let .incompatiblePlugin(plugin: p):
+                return "Plugin \"\(p.description)\" is incompatible"
             }
         }
     }
