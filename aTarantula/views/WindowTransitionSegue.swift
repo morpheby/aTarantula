@@ -41,5 +41,5 @@ class WindowTransitionSegue: NSStoryboardSegue {
 
         sourceWindowController.close()
     }
-    
+
 }

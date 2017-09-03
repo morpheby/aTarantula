@@ -22,7 +22,7 @@ class ApplicationController {
             pluginController = try PluginController()
 //            dataController = try DataController()
         }
-        catch let error {
+        catch let error  {
             application.presentError(error)
             fatalError("ApplicationController failed to initialize")
         }
@@ -33,11 +33,14 @@ class ApplicationController {
             do {
                 try self.pluginController.loadPlugins()
             }
-            catch let error {
+            catch let error as PluginController.LoadingError {
                 OperationQueue.main.addOperation {
-                    self.application.presentError(error)
+                    self.application.presentError(NSError(domain: self.application.name, code: -1, userInfo: [kCFErrorDescriptionKey as String: error.localizedDescription]))
                     fatalError("Error while loading plugins")
                 }
+            }
+            catch let error {
+                fatalError(error.localizedDescription)
             }
 
             OperationQueue.main.addOperation(finished)

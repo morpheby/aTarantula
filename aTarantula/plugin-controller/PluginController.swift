@@ -16,8 +16,6 @@ class PluginController {
     var state: LoadingState = .waiting
 
     init() throws {
-        debugPrint(defaultPluginUrls)
-
         try ensureDefaultLocationExists()
     }
 
@@ -84,7 +82,7 @@ class PluginController {
         let rootPath = list.first!
         let path = rootPath.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginController.pluginsDirectoryName, isDirectory: true)
 
-        try fileManager.createDirectory(at: path, withIntermediateDirectories: true, attributes: [:])
+        try fileManager.createDirectory(at: path, withIntermediateDirectories: true)
     }
 
     private lazy var defaultPluginUrls: [URL] = {
