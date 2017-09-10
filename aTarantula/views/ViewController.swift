@@ -22,7 +22,9 @@ class ViewController: NSViewController {
     }
 
     @IBAction func loadPlugin(_ sender: Any?) {
-//        NSApplication.shared.controller.tmpLoadDataController()
+        // test
+//        let appController = NSApplication.shared.controller
+        self.performSegue(withIdentifier: .restartSegue, sender: self)
     }
 
     @IBAction func start(_ sender: Any?) {
@@ -33,16 +35,20 @@ class ViewController: NSViewController {
         super.prepare(for: segue, sender: sender)
 
         switch segue.identifier {
-        case .some(.ExportingSegue):
+        case .some(.exportingSegue):
             guard let editorViewController = segue.destinationController as? CDEEditorViewController else {
                 fatalError("Invalid segue: \(segue)")
             }
             let configuration = CDEConfiguration()
-//            configuration
             let appController = NSApplication.shared.controller
             let testPlugin = appController.pluginLoader.crawlers[0]
             let testStore = appController.dataLoader.stores[testPlugin.name]!
             try! editorViewController.configure(with: configuration, model: testPlugin.managedObjectModel, objectContext: testStore.persistentContainer.viewContext)
+        case .some(.restartSegue):
+            guard let loadingViewController = segue.destinationController as? LoadingViewController else {
+                fatalError("Invalid segue: \(segue)")
+            }
+            loadingViewController.task = .migrate(source: "TestPlugin", to: URL(string: "file:///Users/morpheby/Downloads/test.aqlite")!)
         default:
             break
         }
@@ -59,6 +65,7 @@ class ViewController: NSViewController {
 }
 
 extension NSStoryboardSegue.Identifier {
-    static let ExportingSegue = NSStoryboardSegue.Identifier("exporting")
+    static let exportingSegue = NSStoryboardSegue.Identifier("exporting")
+    static let restartSegue = NSStoryboardSegue.Identifier("restart")
 }
 

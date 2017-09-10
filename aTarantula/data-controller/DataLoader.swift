@@ -66,7 +66,7 @@ class DataLoader {
         }
     }
 
-    func exportStore(named name: String, to targetURL: URL) throws {
+    func exportStore(named name: String, to targetURL: URL, success: (() -> ())? = nil) throws {
         defer {
             migrationState = .na
         }
@@ -83,13 +83,20 @@ class DataLoader {
             throw ExportingError.coordinatorNotInitialized
         }
 
+        // Remove old store
+        let options: [AnyHashable: Any] = [
+            NSSQLitePragmasOption: [
+                "journal_mode": "OFF",
+                "synchronous": "NORMAL",
+            ],
+            NSSQLiteAnalyzeOption: true
+        ]
+
+        try coordinator.destroyPersistentStore(at: targetURL, ofType: NSSQLiteStoreType, options: options)
+
         let newStore = try coordinator.migratePersistentStore(persistentStore,
                                            to: targetURL,
-                                           options: [NSSQLitePragmasOption: [
-                                            "journal_mode": "OFF",
-                                            "synchronous": "NORMAL",
-                                            ],
-                                                     NSSQLiteAnalyzeOption: true],
+                                           options: options,
                                            withType: NSSQLiteStoreType)
 
         // Restore original persistent store
@@ -103,6 +110,9 @@ class DataLoader {
                 self.migrationState = .asyncError(error)
             } else {
                 self.migrationState = .migratedStore(named: name)
+                if let s = success {
+                    s()
+                }
             }
             self.migrationState = .na
         })

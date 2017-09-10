@@ -24,80 +24,111 @@ class ApplicationController {
             dataLoader = DataLoader()
         }
         catch let error  {
-            application.presentError(error)
+            ApplicationController.showDescribedErrorUnbound(error: error)
             fatalError("ApplicationController failed to initialize")
         }
     }
 
-    func loadPluginsInBackground(finished: @escaping () -> Void) {
-        let startupOperation = BlockOperation {
-            do {
-                try self.pluginLoader.loadPlugins()
+    class func showDescribedErrorUnbound(error: Error) -> Bool {
+        let firstResponder: NSResponder = NSApplication.shared.keyWindow?.firstResponder ?? NSApplication.shared
+        let result = firstResponder.presentError(error)
+        return result
+    }
+
+    class func showDescribedErrorAsyncUnbound(error: Error, failure: @escaping () -> ()) {
+        OperationQueue.main.addOperation {
+            let result = showDescribedErrorUnbound(error: error)
+            if !result {
+                failure()
             }
-            catch let error as PluginLoader.LoadingError {
-                OperationQueue.main.addOperation {
-                    self.application.presentError(NSError(domain: self.application.name, code: -1, userInfo: [kCFErrorDescriptionKey as String: error.localizedDescription]))
-                    fatalError("Error while loading plugins")
+        }
+    }
+
+    func showDescribedErrorAsync(error: Error, failure: @escaping () -> ()) {
+        ApplicationController.showDescribedErrorAsyncUnbound(error: error, failure: failure)
+    }
+
+    func withDefaultError(_ closure: @escaping () throws -> ()) {
+        withDefaultError(closure, failure: nil)
+    }
+
+    func withDefaultError(_ closure: @escaping () throws -> (), failure: (() -> ())?) {
+        do {
+            try closure()
+        }
+        catch let error {
+            showDescribedErrorAsync(error: error) {
+                if let f = failure {
+                    f()
                 }
             }
-            catch let error {
-                fatalError(error.localizedDescription)
-            }
-
-            OperationQueue.main.addOperation(finished)
         }
+    }
 
+    func backgroundQueue() -> OperationQueue {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
-        queue.addOperation(startupOperation)
+        return queue
+    }
+
+    var mainQueue: OperationQueue {
+        return OperationQueue.main
+    }
+
+    func delay(_ time: TimeInterval, _ closure: @escaping () -> ()) {
+        guard let queue = OperationQueue.current else {
+            // No queue, but don't despair, just report and do
+            debugPrint("ApplicationController.delay called, but no queue present")
+            debugPrint("Set a breakpoint at ApplicationController.delay to investigate")
+            closure()
+            return
+        }
+
+        let bkgQueue = DispatchQueue(label: "delay_queue", qos: .userInitiated, attributes: [], autoreleaseFrequency: .inherit, target: nil)
+        
+        let timeInt = Int((time * 1e9).rounded())
+        bkgQueue.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.nanoseconds(timeInt), execute: {
+            queue.addOperation {
+                closure()
+            }
+        })
+    }
+
+    func loadPlugins() throws {
+        try self.pluginLoader.loadPlugins()
     }
 
     func loadDataSingle(plugin: TarantulaCrawlingPlugin, finished: @escaping () -> ()) throws {
-        do {
-            try self.dataLoader.loadStore(named: plugin.name, managedObjectModel: plugin.managedObjectModel) { controller in
-                plugin.repository = controller.repository
-                OperationQueue.main.addOperation(finished)
-            }
-        }
-        catch let error {
-            OperationQueue.main.addOperation {
-                self.application.presentError(NSError(domain: self.application.name, code: -1, userInfo: [kCFErrorDescriptionKey as String: error.localizedDescription]))
-            }
-            throw error
+        try self.dataLoader.loadStore(named: plugin.name, managedObjectModel: plugin.managedObjectModel) { controller in
+            plugin.repository = controller.repository
+            finished()
         }
     }
 
-    func loadDataInBackground(finished: @escaping () -> Void) {
-        let errorOperation = { (error: Error) -> () in
-            OperationQueue.main.addOperation {
-                fatalError("Error while loading data: \(error)")
-            }
-        }
+    func loadAllDataInBackground(finished: @escaping () -> ()) {
+        var tail: (([TarantulaCrawlingPlugin]) -> ())! = nil
+        let queue = backgroundQueue()
 
-        let startupOperation = BlockOperation {
-            var tail: (([TarantulaCrawlingPlugin]) -> ())! = nil
-
-            tail = { (rest: [TarantulaCrawlingPlugin]) -> () in
-                let recursion: () -> () = {
+        tail = { (rest: [TarantulaCrawlingPlugin]) -> () in
+            let recursion: () -> () = {
+                queue.addOperation {
                     tail(Array(rest.dropFirst()))
                 }
-                if let plugin = rest.first {
-                    do {
-                        try self.loadDataSingle(plugin: plugin, finished: recursion)
-                    }
-                    catch let error {
-                        errorOperation(error)
-                    }
-                } else {
-                    OperationQueue.main.addOperation(finished)
-                }
             }
+            if let plugin = rest.first {
+                do {
+                    try self.loadDataSingle(plugin: plugin, finished: recursion)
+                }
+                catch let error {
+                    self.showDescribedErrorAsync(error: error) { }
+                }
+            } else {
+                OperationQueue.main.addOperation(finished)
+            }
+        }
+        queue.addOperation {
             tail(self.pluginLoader.crawlers)
         }
-
-        let queue = OperationQueue()
-        queue.qualityOfService = .userInitiated
-        queue.addOperation(startupOperation)
     }
 
 }

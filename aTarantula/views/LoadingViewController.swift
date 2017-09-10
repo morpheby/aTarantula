@@ -39,8 +39,8 @@ class LoadingViewController: NSViewController {
         switch (task) {
         case .initialLoad:
             beginStartup()
-        default:
-            break
+        case let .migrate(source: source, to: url):
+            beginMigration(source: source, to: url)
         }
     }
 
@@ -49,7 +49,7 @@ class LoadingViewController: NSViewController {
 
         appController.pluginLoader.pluginLoadingObservable ∆= self >> { (self: LoadingViewController, pc: PluginLoader) in
             let state = pc.state
-            OperationQueue.main.addOperation {
+            appController.mainQueue.addOperation {
                 switch (state) {
                 case .waiting:
                     break
@@ -74,7 +74,7 @@ class LoadingViewController: NSViewController {
 
         appController.dataLoader.dataLoadingObservable ∆= self >> { (self: LoadingViewController, dl: DataLoader) in
             let state = dl.loadingState
-            OperationQueue.main.addOperation {
+            appController.mainQueue.addOperation {
                 switch (state) {
                 case .na:
                     break
@@ -90,16 +90,64 @@ class LoadingViewController: NSViewController {
                 }
             }
         }
+
+        appController.dataLoader.dataMigrationObservable ∆= self >> { (self: LoadingViewController, dl: DataLoader) in
+            let state = dl.migrationState
+            appController.mainQueue.addOperation {
+                switch (state) {
+                case .na:
+                    break
+                case let .migratingStore(name):
+                    self.status = "Migrating store for \(name)"
+                    self.log.append(self.status)
+                case let .disconnectingStore(name):
+                    self.status = "Disconnecting store \(name) after migration"
+                    self.log.append(self.status)
+                case let .reconnectingStore(name):
+                    self.status = "Reconnecting original store \(name) after migration"
+                    self.log.append(self.status)
+                case let .migratedStore(name):
+                    self.status = "Store \(name) succesfully migrated"
+                    self.log.append(self.status)
+                case let .asyncError(error):
+                    self.status = "Unable to migrate: \(error.localizedDescription)"
+                    self.log.append(self.status)
+                }
+            }
+        }
+    }
+
+    func beginMigration(source: String, to: URL) {
+        let appController = NSApplication.shared.controller
+
+        appController.backgroundQueue().addOperation {
+            appController.withDefaultError {
+                try appController.dataLoader.exportStore(named: source, to: to) {
+                    appController.mainQueue.addOperation {
+                        appController.delay(2.0) {
+                            self.dismiss(self)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     func beginStartup() {
         let appController = NSApplication.shared.controller
 
-        appController.loadPluginsInBackground {
-            appController.loadDataInBackground {
-                self.status = "All data loaded"
-                self.log.append(self.status)
-                self.performSegue(withIdentifier: .StartupSegue, sender: self)
+        appController.backgroundQueue().addOperation {
+            appController.withDefaultError {
+                try appController.loadPlugins()
+                appController.loadAllDataInBackground {
+                    appController.mainQueue.addOperation {
+                        self.status = "All data loaded"
+                        self.log.append(self.status)
+                        appController.delay(2.0) {
+                            self.performSegue(withIdentifier: .StartupSegue, sender: self)
+                        }
+                    }
+                }
             }
         }
     }
@@ -119,7 +167,7 @@ class LoadingViewController: NSViewController {
 
     enum Task {
         case initialLoad
-        case migrate
+        case migrate(source: String, to: URL)
     }
 }
 

@@ -660,7 +660,7 @@
                     </view>
                     <connections>
                         <outlet property="objectController" destination="xcY-MY-Rj5" id="6a3-jj-dnG"/>
-                        <segue destination="zin-nj-RIy" kind="custom" identifier="restart" customClass="WindowTransitionSegue" customModule="aTarantula" customModuleProvider="target" id="KcT-mJ-aC3"/>
+                        <segue destination="qRf-IR-TK4" kind="sheet" identifier="restart" id="cBb-Ie-wGK"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -681,4 +681,7 @@
             <point key="canvasLocation" x="134" y="1382"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="cBb-Ie-wGK"/>
+    </inferredMetricsTieBreakers>
 </document>

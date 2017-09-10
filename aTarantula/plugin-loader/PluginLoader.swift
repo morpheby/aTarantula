@@ -123,18 +123,22 @@ class PluginLoader {
         case bundleNotLoaded(bundleUrl: URL)
         case principalClassNotObjC(principal: AnyClass)
         case incompatiblePlugin(plugin: NSObject)
+    }
+}
 
-        var localizedDescription: String {
-            switch (self) {
-            case let .directoryNotEnumerated(directoryUrl: url, internalError: error):
-                return "Unable to enumerate directory contents at \(url.path): \(error.localizedDescription)"
-            case let .bundleNotLoaded(bundleUrl: url):
-                return "Unable to load plugin bundle at \(url.path)"
-            case let .principalClassNotObjC(principal: p):
-                return "Principal class \(p) in plugin \(Bundle(for: p)) is not NSObject-compatible"
-            case let .incompatiblePlugin(plugin: p):
-                return "Plugin \"\(p.description)\" is incompatible"
-            }
+
+extension PluginLoader.LoadingError: LocalizedError {
+    var errorDescription: String? {
+        switch (self) {
+        case let .directoryNotEnumerated(directoryUrl: url, internalError: error):
+            return "Unable to enumerate directory contents at \(url.path): \(error.localizedDescription)"
+        case let .bundleNotLoaded(bundleUrl: url):
+            return "Unable to load plugin bundle at \(url.path)"
+        case let .principalClassNotObjC(principal: p):
+            return "Principal class \(p) in plugin \(Bundle(for: p)) is not NSObject-compatible"
+        case let .incompatiblePlugin(plugin: p):
+            return "Plugin \"\(p.description)\" is incompatible"
         }
     }
 }
+
