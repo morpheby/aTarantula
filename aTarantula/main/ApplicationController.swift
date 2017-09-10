@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TarantulaPluginCore
 
 class ApplicationController {
     weak var application: NSApplication! = NSApplication.shared
@@ -15,11 +16,12 @@ class ApplicationController {
     var mainWindow: NSWindowController? = NSApplication.shared.keyWindow?.windowController
 
     var pluginLoader: PluginLoader
-    var dataController: DataController?
+    var dataLoader: DataLoader
 
     init() {
         do {
             pluginLoader = try PluginLoader()
+            dataLoader = DataLoader()
         }
         catch let error  {
             application.presentError(error)
@@ -50,10 +52,52 @@ class ApplicationController {
         queue.addOperation(startupOperation)
     }
 
-    func tmpLoadDataController() {
-        let allMomd = pluginLoader.crawlers.map { plugin in plugin.managedObjectModel}
-        let momd = NSManagedObjectModel(byMerging: allMomd)!
-        dataController = try! DataController(modelName: "TmpModel", managedObjectModel: momd)
+    func loadDataSingle(plugin: TarantulaCrawlingPlugin, finished: @escaping () -> ()) throws {
+        do {
+            try self.dataLoader.loadStore(named: plugin.name, managedObjectModel: plugin.managedObjectModel) { controller in
+                plugin.repository = controller.repository
+                OperationQueue.main.addOperation(finished)
+            }
+        }
+        catch let error {
+            OperationQueue.main.addOperation {
+                self.application.presentError(NSError(domain: self.application.name, code: -1, userInfo: [kCFErrorDescriptionKey as String: error.localizedDescription]))
+            }
+            throw error
+        }
+    }
+
+    func loadDataInBackground(finished: @escaping () -> Void) {
+        let errorOperation = { (error: Error) -> () in
+            OperationQueue.main.addOperation {
+                fatalError("Error while loading data: \(error)")
+            }
+        }
+
+        let startupOperation = BlockOperation {
+            var tail: (([TarantulaCrawlingPlugin]) -> ())! = nil
+
+            tail = { (rest: [TarantulaCrawlingPlugin]) -> () in
+                let recursion: () -> () = {
+                    tail(Array(rest.dropFirst()))
+                }
+                if let plugin = rest.first {
+                    do {
+                        try self.loadDataSingle(plugin: plugin, finished: recursion)
+                    }
+                    catch let error {
+                        errorOperation(error)
+                    }
+                } else {
+                    OperationQueue.main.addOperation(finished)
+                }
+            }
+            tail(self.pluginLoader.crawlers)
+        }
+
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInitiated
+        queue.addOperation(startupOperation)
     }
 
 }

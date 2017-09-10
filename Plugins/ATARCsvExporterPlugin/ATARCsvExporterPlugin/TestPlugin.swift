@@ -39,5 +39,9 @@ import Kanna
     public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {
         return []
     }
+
+    public let name = "TestPlugin"
+
+    public var repository: Repository? = nil
 }
 

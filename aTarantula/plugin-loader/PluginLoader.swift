@@ -43,6 +43,7 @@ class PluginLoader {
             catch let error {
                 let outerError = LoadingError.directoryNotEnumerated(directoryUrl: url, internalError: error)
                 state = .error(outerError)
+                // FIXME: fire()
                 throw outerError
             }
 
@@ -75,6 +76,8 @@ class PluginLoader {
 
         state = .success
         pluginLoadingObservable.fire()
+
+        // FIXME: reset state
     }
 
     lazy var defaultLocation: URL = {
@@ -105,10 +108,12 @@ class PluginLoader {
     }()
 
     enum LoadingState {
+        // FIXME: rename to 'na'
         case waiting
         case enumerating(directory: URL)
         case skipping(directory: URL)
         case loading(path: URL)
+        // FIXME: no Error required. Remove here
         case error(Error)
         case success
     }

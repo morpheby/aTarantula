@@ -8,13 +8,17 @@
 
 import Foundation
 
-public protocol TarantulaCrawlingPlugin {
+public protocol TarantulaCrawlingPlugin: AnyObject {
 
     /// ManagedObjectModel for the plugin data
     var managedObjectModel: NSManagedObjectModel { get }
 
     var crawlableObjectTypes: [CrawlableManagedObject.Type] { get }
     var allObjectTypes: [NSManagedObject.Type] { get }
+
+    var name: String { get }
+
+    var repository: Repository? { get set }
 
     func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject]
 }

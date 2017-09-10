@@ -22,7 +22,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func loadPlugin(_ sender: Any?) {
-        NSApplication.shared.controller.tmpLoadDataController()
+//        NSApplication.shared.controller.tmpLoadDataController()
     }
 
     @IBAction func start(_ sender: Any?) {
@@ -40,11 +40,20 @@ class ViewController: NSViewController {
             let configuration = CDEConfiguration()
 //            configuration
             let appController = NSApplication.shared.controller
-            try! editorViewController.configure(with: configuration, model: appController.dataController!.managedObjectModel, objectContext: appController.dataController!.persistentContainer.viewContext)
+            let testPlugin = appController.pluginLoader.crawlers[0]
+            let testStore = appController.dataLoader.stores[testPlugin.name]!
+            try! editorViewController.configure(with: configuration, model: testPlugin.managedObjectModel, objectContext: testStore.persistentContainer.viewContext)
         default:
             break
         }
+    }
 
+    override func dismissViewController(_ viewController: NSViewController) {
+        super.dismissViewController(viewController)
+        for (_, store) in NSApplication.shared.controller.dataLoader.stores {
+            try? store.persistentContainer.viewContext.save()
+            store.repository.perform { }
+        }
     }
 
 }

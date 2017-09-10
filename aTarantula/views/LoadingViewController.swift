@@ -25,6 +25,8 @@ class LoadingViewController: NSViewController {
         }
     }()
 
+    var task: Task = .initialLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,10 +34,17 @@ class LoadingViewController: NSViewController {
             constraint.isActive = triggerState
         }
 
-        beginStartup()
+        initializeObservations()
+
+        switch (task) {
+        case .initialLoad:
+            beginStartup()
+        default:
+            break
+        }
     }
 
-    func beginStartup() {
+    func initializeObservations() {
         let appController = NSApplication.shared.controller
 
         appController.pluginLoader.pluginLoadingObservable ∆= self >> { (self: LoadingViewController, pc: PluginLoader) in
@@ -57,14 +66,41 @@ class LoadingViewController: NSViewController {
                     self.status = "Error"
                     self.log.append(error.localizedDescription)
                 case .success:
-                    self.status = "Done"
+                    self.status = "All plugins loaded"
                     self.log.append(self.status)
                 }
             }
         }
 
+        appController.dataLoader.dataLoadingObservable ∆= self >> { (self: LoadingViewController, dl: DataLoader) in
+            let state = dl.loadingState
+            OperationQueue.main.addOperation {
+                switch (state) {
+                case .na:
+                    break
+                case let .loadingStore(name):
+                    self.status = "Loading data for \(name)"
+                    self.log.append(self.status)
+                case let .loadedStore(name):
+                    self.status = "Loaded data for \(name)"
+                    self.log.append(self.status)
+                case let .asyncError(error):
+                    self.status = "Unable to load: \(error.localizedDescription)"
+                    self.log.append(self.status)
+                }
+            }
+        }
+    }
+
+    func beginStartup() {
+        let appController = NSApplication.shared.controller
+
         appController.loadPluginsInBackground {
-            self.performSegue(withIdentifier: .StartupSegue, sender: self)
+            appController.loadDataInBackground {
+                self.status = "All data loaded"
+                self.log.append(self.status)
+                self.performSegue(withIdentifier: .StartupSegue, sender: self)
+            }
         }
     }
 
@@ -80,6 +116,11 @@ class LoadingViewController: NSViewController {
         }
     }
     var rowHeights: [Int: Float] = [:]
+
+    enum Task {
+        case initialLoad
+        case migrate
+    }
 }
 
 extension LoadingViewController: NSTableViewDelegate {
@@ -90,13 +131,6 @@ extension LoadingViewController: NSTableViewDelegate {
     }
 
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-//        if let rowView = tableView.rowView(atRow: row, makeIfNecessary: false) {
-//            debugPrint("Updating")
-//            return rowView.fittingSize.height
-//        } else {
-//            debugPrint("No row yet")
-//            return tableView.rowHeight
-//        }
         return CGFloat(rowHeights[row] ?? Float(tableView.rowHeight))
     }
 }

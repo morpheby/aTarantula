@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DF9FE27CF9B0098F812ECD52 /* Pods_TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */; };
+		F613BBB11F650EBB005BBE68 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F613BBB01F650EBA005BBE68 /* DataLoader.swift */; };
 		F63FD8171F591345003A5F01 /* CDEEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63FD72C1F591344003A5F01 /* CDEEditorViewController.m */; };
 		F63FD8181F591345003A5F01 /* CDEEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F63FD72D1F591344003A5F01 /* CDEEditorViewController.xib */; };
 		F63FD8191F591345003A5F01 /* CDEEntitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F63FD7301F591344003A5F01 /* CDEEntitiesViewController.m */; };
@@ -221,6 +222,7 @@
 		2808C4595867AD61FCA12047 /* Pods_TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		753B9FE4FF25C3F30D577181 /* Pods_aTarantula.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aTarantula.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9424A7A78EACE94AB385B3 /* Pods-TarantulaPluginCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TarantulaPluginCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TarantulaPluginCore/Pods-TarantulaPluginCore.debug.xcconfig"; sourceTree = "<group>"; };
+		F613BBB01F650EBA005BBE68 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		F63FD72B1F591344003A5F01 /* CDEEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEEditorViewController.h; sourceTree = "<group>"; };
 		F63FD72C1F591344003A5F01 /* CDEEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = CDEEditorViewController.m; sourceTree = "<group>"; tabWidth = 2; };
 		F63FD72D1F591344003A5F01 /* CDEEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CDEEditorViewController.xib; sourceTree = "<group>"; };
@@ -1508,6 +1510,7 @@
 			isa = PBXGroup;
 			children = (
 				F63FD9101F5BCDCE003A5F01 /* DataController.swift */,
+				F613BBB01F650EBA005BBE68 /* DataLoader.swift */,
 			);
 			path = "data-controller";
 			sourceTree = "<group>";
@@ -1915,6 +1918,7 @@
 				F63FD91A1F5C230F003A5F01 /* LoadingViewController.swift in Sources */,
 				F63FD8521F591345003A5F01 /* CDEToOneRelationshipTableCellView.m in Sources */,
 				F63FD8431F591345003A5F01 /* CDEBoolValueTableCellView.m in Sources */,
+				F613BBB11F650EBB005BBE68 /* DataLoader.swift in Sources */,
 				F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */,
 				F63FD8731F591345003A5F01 /* CDEAttributeEditor.m in Sources */,
 				F63FD8711F591345003A5F01 /* CDETwoColumnSplitViewController.m in Sources */,
