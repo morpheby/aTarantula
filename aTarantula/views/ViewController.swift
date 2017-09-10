@@ -22,9 +22,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func loadPlugin(_ sender: Any?) {
-        let c = try? PluginController()
-//        tarantulaPlugin.crawlableTypes
-//        self.crawler?.name = tarantulaPlugin.testMe()
+        NSApplication.shared.controller.tmpLoadDataController()
     }
 
     @IBAction func start(_ sender: Any?) {
@@ -40,7 +38,9 @@ class ViewController: NSViewController {
                 fatalError("Invalid segue: \(segue)")
             }
             let configuration = CDEConfiguration()
-
+//            configuration
+            let appController = NSApplication.shared.controller
+            try! editorViewController.configure(with: configuration, model: appController.dataController!.managedObjectModel, objectContext: appController.dataController!.persistentContainer.viewContext)
         default:
             break
         }

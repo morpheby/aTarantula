@@ -9,7 +9,12 @@
              modelURL:(nonnull NSURL *)modelURL
              storeURL:(nonnull NSURL *)storeURL
           needsReload:(BOOL)needsReload
-                error:( NSError * _Nullable * _Nullable)error;
+                error:( NSError *__autoreleasing _Nullable * _Nullable)error;
+
+- (BOOL)configureWith:(nonnull CDEConfiguration *)configuration
+                model:(nonnull NSManagedObjectModel *)model
+        objectContext:(nonnull NSManagedObjectContext *)context
+                error:(NSError *__autoreleasing  _Nullable * _Nullable)error;
 
 #pragma mark - Saving
 - (BOOL)save:(NSError * _Nullable * _Nullable)error;

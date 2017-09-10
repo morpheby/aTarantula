@@ -162,7 +162,7 @@
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginController.swift */; };
+		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
 		F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */; };
 		F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */; };
 		F6BEFC301F4BE25500CA7AB4 /* CoredataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */; };
@@ -485,7 +485,7 @@
 		F6BEFC011F4AA58E00CA7AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TarantulaCrawlingPlugin.swift; sourceTree = "<group>"; };
 		F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ATARCsvExporterPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6BEFC2A1F4ABBFC00CA7AB4 /* PluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginController.swift; sourceTree = "<group>"; };
+		F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginLoader.swift; sourceTree = "<group>"; };
 		F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoredataRepository.swift; sourceTree = "<group>"; };
 		F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1512,12 +1512,12 @@
 			path = "data-controller";
 			sourceTree = "<group>";
 		};
-		F63FD9121F5BD2F1003A5F01 /* plugin-controller */ = {
+		F63FD9121F5BD2F1003A5F01 /* plugin-loader */ = {
 			isa = PBXGroup;
 			children = (
-				F6BEFC2A1F4ABBFC00CA7AB4 /* PluginController.swift */,
+				F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */,
 			);
-			path = "plugin-controller";
+			path = "plugin-loader";
 			sourceTree = "<group>";
 		};
 		F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */ = {
@@ -1566,7 +1566,7 @@
 		F6C463871F474BF000782C88 /* aTarantula */ = {
 			isa = PBXGroup;
 			children = (
-				F63FD9121F5BD2F1003A5F01 /* plugin-controller */,
+				F63FD9121F5BD2F1003A5F01 /* plugin-loader */,
 				F63FD90F1F5BCDB7003A5F01 /* data-controller */,
 				F63FD5B91F5903BB003A5F01 /* object-browser */,
 				F6C463AF1F47546900782C88 /* main */,
@@ -1937,7 +1937,7 @@
 				F63FD89C1F5918A6003A5F01 /* CDEEntityAutosaveInformation.m in Sources */,
 				F63FD8591F591345003A5F01 /* CDEOrderIndexTableCellView.m in Sources */,
 				F63FD8571F591345003A5F01 /* NSTableColumn+CDERequestDataCoordinator.m in Sources */,
-				F6BEFC2B1F4ABBFC00CA7AB4 /* PluginController.swift in Sources */,
+				F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */,
 				F63FD8231F591345003A5F01 /* CDEDateAttributeViewController.m in Sources */,
 				F63FD8CB1F5BB03E003A5F01 /* NSError+CDEValidation.m in Sources */,
 			);

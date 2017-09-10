@@ -38,7 +38,7 @@ class LoadingViewController: NSViewController {
     func beginStartup() {
         let appController = NSApplication.shared.controller
 
-        appController.pluginController.pluginLoadingObservable ∆= self >> { (self: LoadingViewController, pc: PluginController) in
+        appController.pluginLoader.pluginLoadingObservable ∆= self >> { (self: LoadingViewController, pc: PluginLoader) in
             let state = pc.state
             OperationQueue.main.addOperation {
                 switch (state) {

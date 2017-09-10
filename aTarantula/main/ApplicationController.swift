@@ -14,13 +14,12 @@ class ApplicationController {
     // Since we have no way to retain window after segue natively, we have to retain it somewhere...
     var mainWindow: NSWindowController? = NSApplication.shared.keyWindow?.windowController
 
-    let pluginController: PluginController
-//    let dataController: DataController
+    var pluginLoader: PluginLoader
+    var dataController: DataController?
 
     init() {
         do {
-            pluginController = try PluginController()
-//            dataController = try DataController()
+            pluginLoader = try PluginLoader()
         }
         catch let error  {
             application.presentError(error)
@@ -31,9 +30,9 @@ class ApplicationController {
     func loadPluginsInBackground(finished: @escaping () -> Void) {
         let startupOperation = BlockOperation {
             do {
-                try self.pluginController.loadPlugins()
+                try self.pluginLoader.loadPlugins()
             }
-            catch let error as PluginController.LoadingError {
+            catch let error as PluginLoader.LoadingError {
                 OperationQueue.main.addOperation {
                     self.application.presentError(NSError(domain: self.application.name, code: -1, userInfo: [kCFErrorDescriptionKey as String: error.localizedDescription]))
                     fatalError("Error while loading plugins")
@@ -49,6 +48,12 @@ class ApplicationController {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
         queue.addOperation(startupOperation)
+    }
+
+    func tmpLoadDataController() {
+        let allMomd = pluginLoader.crawlers.map { plugin in plugin.managedObjectModel}
+        let momd = NSManagedObjectModel(byMerging: allMomd)!
+        dataController = try! DataController(modelName: "TmpModel", managedObjectModel: momd)
     }
 
 }

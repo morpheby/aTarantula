@@ -9,7 +9,7 @@
 import Foundation
 import TarantulaPluginCore
 
-class PluginController {
+class PluginLoader {
 
     var exporters: [Any] = []
     var crawlers: [TarantulaCrawlingPlugin] = []
@@ -62,7 +62,10 @@ class PluginController {
                     throw outerError
                 }
                 let object = pobjclass.init()
-                guard let tarantulaPlugin = object as? TarantulaCrawlingPlugin else {
+                switch (object) {
+                case let tarantulaPlugin as TarantulaCrawlingPlugin:
+                    crawlers.append(tarantulaPlugin)
+                default:
                     let outerError = LoadingError.incompatiblePlugin(plugin: object)
                     state = .error(outerError)
                     throw outerError
@@ -74,13 +77,19 @@ class PluginController {
         pluginLoadingObservable.fire()
     }
 
-    private func ensureDefaultLocationExists() throws {
+    lazy var defaultLocation: URL = {
         let fileManager = FileManager.default
         let list = fileManager.urls(for: .applicationSupportDirectory,
                                     in: .userDomainMask)
         assert(list.count == 1, "Wrong number of items for single-directory search")
         let rootPath = list.first!
-        let path = rootPath.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginController.pluginsDirectoryName, isDirectory: true)
+        let path = rootPath.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginLoader.pluginsDirectoryName, isDirectory: true)
+        return path
+    }()
+
+    private func ensureDefaultLocationExists() throws {
+        let fileManager = FileManager.default
+        let path = defaultLocation
 
         try fileManager.createDirectory(at: path, withIntermediateDirectories: true)
     }
@@ -91,31 +100,9 @@ class PluginController {
                                     in: FileManager.SearchPathDomainMask([.allDomainsMask]).subtracting([.systemDomainMask, .networkDomainMask]))
 
         return list.map { u in
-            u.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginController.pluginsDirectoryName, isDirectory: true)
+            u.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginLoader.pluginsDirectoryName, isDirectory: true)
         } + [Bundle.main.builtInPlugInsURL!]
     }()
-//        NSString *appSupportSubpath = @"Application Support/KillerApp/PlugIns";
-//        NSArray *librarySearchPaths;
-//        NSEnumerator *searchPathEnum;
-//        NSString *currPath;
-//        NSMutableArray *bundleSearchPaths = [NSMutableArray array];
-//
-//        // Find Library directories in all domains except /System
-//        librarySearchPaths = NSSearchPathForDirectoriesInDomains(
-//            NSLibraryDirectory, NSAllDomainsMask - NSSystemDomainMask, YES);
-//
-//        // Copy each discovered path into an array after adding
-//        // the Application Support/KillerApp/PlugIns subpath
-//        searchPathEnum = [librarySearchPaths objectEnumerator];
-//        while(currPath = [searchPathEnum nextObject])
-//        {
-//            [bundleSearchPaths addObject:
-//                [currPath stringByAppendingPathComponent:appSupportSubpath]];
-//        }
-
-    func loadPlugin(fromPath path: String) {
-
-    }
 
     enum LoadingState {
         case waiting
