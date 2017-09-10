@@ -160,6 +160,7 @@
 		F63FD9181F5C1F1A003A5F01 /* WindowTransitionSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */; };
 		F63FD91A1F5C230F003A5F01 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */; };
 		F63FD91C1F5C24B6003A5F01 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */; };
+		F64083B51F65981700008FEB /* ATARCrawlExampleWebsite.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -183,13 +184,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F64083AF1F65975900008FEB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F64083AB1F65975900008FEB /* ATARCrawlExampleWebsite.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F613BBBD1F65936D005BBE68;
-			remoteInfo = ATARCrawlExampleWebsite;
-		};
 		F6BEFC3A1F4C333700CA7AB4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F6C4637D1F474BF000782C88 /* Project object */;
@@ -207,6 +201,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */,
+				F64083B51F65981700008FEB /* ATARCrawlExampleWebsite.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +483,7 @@
 		F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowTransitionSegue.swift; sourceTree = "<group>"; };
 		F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
-		F64083AB1F65975900008FEB /* ATARCrawlExampleWebsite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ATARCrawlExampleWebsite.xcodeproj; path = /Users/morpheby/workspace/aTarantula/ATARCrawlExampleWebsite.xcodeproj; sourceTree = "<absolute>"; };
+		F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATARCrawlExampleWebsite.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1531,14 +1526,6 @@
 			path = "plugin-loader";
 			sourceTree = "<group>";
 		};
-		F64083AC1F65975900008FEB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F64083B01F65975900008FEB /* ATARCrawlExampleWebsite.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F6BEFBFF1F4AA58E00CA7AB4 /* TarantulaPluginCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,6 +1541,7 @@
 		F6BEFC271F4AA6C500CA7AB4 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */,
 				F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */,
 			);
 			name = Plugins;
@@ -1562,7 +1550,6 @@
 		F6C4637C1F474BF000782C88 = {
 			isa = PBXGroup;
 			children = (
-				F64083AB1F65975900008FEB /* ATARCrawlExampleWebsite.xcodeproj */,
 				F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */,
 				F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */,
 				F6BEFC271F4AA6C500CA7AB4 /* Plugins */,
@@ -1727,12 +1714,6 @@
 			mainGroup = F6C4637C1F474BF000782C88;
 			productRefGroup = F6C463861F474BF000782C88 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F64083AC1F65975900008FEB /* Products */;
-					ProjectRef = F64083AB1F65975900008FEB /* ATARCrawlExampleWebsite.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				F6C463841F474BF000782C88 /* aTarantula */,
@@ -1740,16 +1721,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F64083B01F65975900008FEB /* ATARCrawlExampleWebsite.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ATARCrawlExampleWebsite.bundle;
-			remoteRef = F64083AF1F65975900008FEB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		F6BEFBFC1F4AA58E00CA7AB4 /* Resources */ = {

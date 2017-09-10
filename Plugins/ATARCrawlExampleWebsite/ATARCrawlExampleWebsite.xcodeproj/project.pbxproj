@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */; };
 		F64083AA1F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */; };
+		F64083B71F65985A00008FEB /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +18,7 @@
 		F64083A51F65945F00008FEB /* ATARCrawlExampleWebsite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ATARCrawlExampleWebsite-Bridging-Header.h"; sourceTree = "<group>"; };
 		F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATARCrawlExampleWebsiteCrawlerPlugin.swift; sourceTree = "<group>"; };
 		F64083A91F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodel; sourceTree = "<group>"; };
+		F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +26,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64083B71F65985A00008FEB /* TarantulaPluginCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,6 +38,7 @@
 			children = (
 				F613BBBF1F65936D005BBE68 /* ATARCrawlExampleWebsite */,
 				F613BBBE1F65936D005BBE68 /* Products */,
+				F64083B61F65985A00008FEB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +59,14 @@
 				F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */,
 			);
 			path = ATARCrawlExampleWebsite;
+			sourceTree = "<group>";
+		};
+		F64083B61F65985A00008FEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
