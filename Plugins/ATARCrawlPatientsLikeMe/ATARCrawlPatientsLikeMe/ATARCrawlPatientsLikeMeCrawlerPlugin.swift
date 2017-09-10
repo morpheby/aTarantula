@@ -24,7 +24,7 @@ import Kanna
     }
 
     public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
-        return [Test.self as CrawlableManagedObject.Type]
+        return []
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
