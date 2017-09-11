@@ -12,6 +12,12 @@
 		F64083B71F65985A00008FEB /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */; };
 		F64083C51F67253100008FEB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F64083C41F67253100008FEB /* Settings.storyboard */; };
 		F64083C71F6729E800008FEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083C61F6729E800008FEB /* SettingsViewController.swift */; };
+		F64083C91F6730F700008FEB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083C81F6730F700008FEB /* Resources.swift */; };
+		F64083CB1F67351F00008FEB /* InitialObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083CA1F67351F00008FEB /* InitialObjectViewController.swift */; };
+		F64083D01F6737AB00008FEB /* Treatment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */; };
+		F64083D21F6737AB00008FEB /* Crawlable+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083CE1F6737AB00008FEB /* Crawlable+CoreDataClass.swift */; };
+		F64083D91F67441800008FEB /* crawlTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083D81F67441800008FEB /* crawlTreatment.swift */; };
+		F64083DB1F6748E000008FEB /* crawl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083DA1F6748E000008FEB /* crawl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +29,12 @@
 		F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64083C41F67253100008FEB /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		F64083C61F6729E800008FEB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F64083C81F6730F700008FEB /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		F64083CA1F67351F00008FEB /* InitialObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialObjectViewController.swift; sourceTree = "<group>"; };
+		F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Treatment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F64083CE1F6737AB00008FEB /* Crawlable+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Crawlable+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F64083D81F67441800008FEB /* crawlTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatment.swift; sourceTree = "<group>"; };
+		F64083DA1F6748E000008FEB /* crawl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +69,10 @@
 		F613BBBF1F65936D005BBE68 /* ATARCrawlExampleWebsite */ = {
 			isa = PBXGroup;
 			children = (
-				F613BBC01F65936D005BBE68 /* Info.plist */,
-				F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */,
-				F64083A51F65945F00008FEB /* ATARCrawlExampleWebsite-Bridging-Header.h */,
-				F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */,
-				F64083C41F67253100008FEB /* Settings.storyboard */,
-				F64083C61F6729E800008FEB /* SettingsViewController.swift */,
+				F64083D71F6743FF00008FEB /* crawling */,
+				F64083D61F6743E200008FEB /* main */,
+				F64083D51F6743CC00008FEB /* support */,
+				F64083D41F6743BB00008FEB /* core-data */,
 			);
 			path = ATARCrawlExampleWebsite;
 			sourceTree = "<group>";
@@ -73,6 +83,46 @@
 				F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F64083D41F6743BB00008FEB /* core-data */ = {
+			isa = PBXGroup;
+			children = (
+				F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */,
+				F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */,
+				F64083CE1F6737AB00008FEB /* Crawlable+CoreDataClass.swift */,
+			);
+			path = "core-data";
+			sourceTree = "<group>";
+		};
+		F64083D51F6743CC00008FEB /* support */ = {
+			isa = PBXGroup;
+			children = (
+				F64083A51F65945F00008FEB /* ATARCrawlExampleWebsite-Bridging-Header.h */,
+				F613BBC01F65936D005BBE68 /* Info.plist */,
+			);
+			path = support;
+			sourceTree = "<group>";
+		};
+		F64083D61F6743E200008FEB /* main */ = {
+			isa = PBXGroup;
+			children = (
+				F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */,
+				F64083C41F67253100008FEB /* Settings.storyboard */,
+				F64083C61F6729E800008FEB /* SettingsViewController.swift */,
+				F64083CA1F67351F00008FEB /* InitialObjectViewController.swift */,
+				F64083C81F6730F700008FEB /* Resources.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		F64083D71F6743FF00008FEB /* crawling */ = {
+			isa = PBXGroup;
+			children = (
+				F64083D81F67441800008FEB /* crawlTreatment.swift */,
+				F64083DA1F6748E000008FEB /* crawl.swift */,
+			);
+			path = crawling;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +194,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64083D91F67441800008FEB /* crawlTreatment.swift in Sources */,
+				F64083DB1F6748E000008FEB /* crawl.swift in Sources */,
+				F64083CB1F67351F00008FEB /* InitialObjectViewController.swift in Sources */,
+				F64083D21F6737AB00008FEB /* Crawlable+CoreDataClass.swift in Sources */,
 				F64083AA1F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld in Sources */,
+				F64083C91F6730F700008FEB /* Resources.swift in Sources */,
 				F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */,
+				F64083D01F6737AB00008FEB /* Treatment+CoreDataClass.swift in Sources */,
 				F64083C71F6729E800008FEB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +262,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -255,6 +312,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_VERSION = "";
 			};
 			name = Release;
 		};
@@ -264,15 +322,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ATARCrawlExampleWebsite/Info.plist;
+				INFOPLIST_FILE = ATARCrawlExampleWebsite/support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.ATARCrawlExampleWebsite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ATARCrawlExampleWebsite/ATARCrawlExampleWebsite-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ATARCrawlExampleWebsite/support/ATARCrawlExampleWebsite-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -283,14 +341,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ATARCrawlExampleWebsite/Info.plist;
+				INFOPLIST_FILE = ATARCrawlExampleWebsite/support/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = by.morphe.ATARCrawlExampleWebsite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "ATARCrawlExampleWebsite/ATARCrawlExampleWebsite-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "ATARCrawlExampleWebsite/support/ATARCrawlExampleWebsite-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;

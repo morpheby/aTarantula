@@ -8,7 +8,6 @@
 
 import Foundation
 import TarantulaPluginCore
-import Kanna
 
 @objc(ATARCrawlExampleWebsiteCrawlerPlugin) public class ATARCrawlExampleWebsiteCrawlerPlugin: NSObject, TarantulaCrawlingPlugin {
 
@@ -24,21 +23,25 @@ import Kanna
     }
 
     public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
-        return []
+        return [Treatment.self]
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
         return crawlableObjectTypes as [NSManagedObject.Type] + []
     }
 
-    public func crawlObject(object: CrawlableObject) {
+    public func crawlObject(object: CrawlableObject) throws  {
+        guard let repository = repository else {
+            fatalError("Repository uninitialized")
+        }
+        try crawl(object: object, usingRepository: repository, withPlugin: self)
     }
 
     public let name = "ATARCrawlExampleWebsiteCrawlerPlugin"
 
     public var repository: Repository? = nil
 
-    let storyboard = NSStoryboard(name: "Settings", bundle: Bundle(for: ATARCrawlExampleWebsiteCrawlerPlugin.self))
+    let storyboard = NSStoryboard(name: .settings, bundle: Bundle(for: ATARCrawlExampleWebsiteCrawlerPlugin.self))
 
     public lazy var settingsViewController: NSViewController? = {
         guard let rootObject = self.storyboard.instantiateInitialController() else {
