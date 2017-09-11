@@ -41,10 +41,10 @@ public extension Collection {
     }
 }
 
-public func synchronized<T>(_ lockObj: AnyObject!, do closure: () -> T) -> T {
+public func synchronized<T>(_ lockObj: AnyObject!, do closure: () throws -> T) rethrows -> T {
     let result: T
     objc_sync_enter(lockObj)
-    result = closure()
+    result = try closure()
     objc_sync_exit(lockObj)
     return result
 }
@@ -88,5 +88,35 @@ public class FileTextOutputStream: TextOutputStream {
 
 public extension Dictionary {
 
+}
+
+public struct SynchronizedBox<T> {
+    private var box: T
+    private let synchroObject = NSObject()
+
+    public init(_ object: T) {
+        box = object
+    }
+
+    public func map<U>(_ transform: (T) throws -> U) rethrows -> SynchronizedBox<U> {
+        let newValue = try transform(box)
+        return SynchronizedBox<U>(newValue)
+    }
+
+    public func flatMap<U>(_ transform: (T) throws -> SynchronizedBox<U>) rethrows -> SynchronizedBox<U> {
+        return try transform(box)
+    }
+
+    public func read<U>(_ closure: (T) throws -> U) rethrows -> U {
+        return try synchronized(synchroObject) {
+            return try closure(box)
+        }
+    }
+
+    public mutating func modify<U>(_ closure: (inout T) throws -> U) rethrows -> U {
+        return try synchronized(synchroObject) {
+            return try closure(&box)
+        }
+    }
 }
 

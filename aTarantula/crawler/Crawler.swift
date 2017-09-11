@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TarantulaPluginCore
 
 @objc class Crawler: NSObject {
     @objc dynamic var discoveredCount: Int = 0
@@ -14,8 +15,61 @@ import Foundation
     @objc dynamic var filteredCount: Int = 0
     @objc dynamic var name: String?
 
-    func crawlerMain() {
 
+    private var crawllist: SynchronizedBox<Deque<CrawlableObject>> = SynchronizedBox(Deque())
+
+    func resolvePlugin(for object: CrawlableObject) -> TarantulaCrawlingPlugin {
+        let appController = NSApplication.shared.controller
+        let result = appController.pluginLoader.crawlers.filter { plugin in plugin.crawlableObjectTypes.contains { o in o == type(of: object as Any) } } .first
+        assert(result != nil, "Object not present in plugins")
+        return result!
+    }
+
+    func crawlerSingleTask() {
+        guard let crawlingObject = (crawllist.modify { c in c.popFirst() }) else {
+            return
+        }
+
+        let plugin = resolvePlugin(for: crawlingObject)
+
+        try plugin.crawlObject(object: crawlingObject)
+
+
+        switch (crawlingObject) {
+//        case let s as Book:
+//            // Books
+//            if let result = try? crawlBook(book: s, repository: repo) {
+//                if bookFilter(s) {
+//                    synchronized(obj) { crawllist += result }
+//                }
+//            } else {
+//                synchronized(obj) { failedlist.append(s) }
+//            }
+//        case let s as ReviewPage:
+//            // Reviews
+//            if let result = try? crawlReviews(reviewPage: s, repository: repo) {
+//                if reviewFilter(s) {
+//                    synchronized(obj) { crawllist += result }
+//                }
+//            } else {
+//                synchronized(obj) { failedlist.append(s) }
+//            }
+//        case let s as Profile:
+//            // Profiles
+//            if let result = try? crawlProfile(profile: s, repository: repo) {
+//                if authorFilter(s) {
+//                    synchronized(obj) { crawllist += result }
+//                }
+//            } else {
+//                synchronized(obj) { failedlist.append(s) }
+//            }
+        default:
+            break
+        }
+//        synchronized(obj) {
+//            processed += 1
+//            continueFlag = statusCallback(crawllist.count, processed, failedlist.count)
+//        }
     }
 }
 

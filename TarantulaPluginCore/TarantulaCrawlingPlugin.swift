@@ -20,5 +20,5 @@ public protocol TarantulaCrawlingPlugin: AnyObject {
 
     var repository: Repository? { get set }
 
-    func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject]
+    func crawlObject(object: CrawlableObject) throws
 }
