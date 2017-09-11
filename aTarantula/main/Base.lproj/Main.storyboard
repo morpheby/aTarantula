@@ -4,6 +4,7 @@
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13189.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -587,31 +588,15 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZG-lx-lna">
-                                <rect key="frame" x="14" y="13" width="130" height="32"/>
-                                <buttonCell key="cell" type="push" title="Load plugin" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJi-gV-qUz">
+                                <rect key="frame" x="14" y="13" width="85" height="32"/>
+                                <buttonCell key="cell" type="push" title="Plugins" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJi-gV-qUz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="loadPlugin:" target="rPt-NT-nkU" id="kGn-tm-2ar"/>
+                                    <segue destination="vSQ-Xp-d2p" kind="sheet" identifier="pluginsDrawer" id="0HH-Yt-JgJ"/>
                                 </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SxN-Pp-kzB">
-                                <rect key="frame" x="14" y="46" width="130" height="32"/>
-                                <buttonCell key="cell" type="push" title="Exporting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pu0-og-LFm">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="rfb-9x-V5E" kind="modal" identifier="exporting" id="DMS-gP-3zS"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-FG-BYk">
-                                <rect key="frame" x="14" y="79" width="130" height="32"/>
-                                <buttonCell key="cell" type="push" title="Load database" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mp6-q1-rQC">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7ez-r2-G4k">
                                 <rect key="frame" x="549" y="13" width="70" height="32"/>
@@ -628,7 +613,6 @@
                             <constraint firstAttribute="trailing" secondItem="Bsa-ko-c73" secondAttribute="trailing" constant="20" id="2Qu-S6-2d2"/>
                             <constraint firstItem="tDP-QK-pKL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="9iv-eq-riz"/>
                             <constraint firstAttribute="bottom" secondItem="7ez-r2-G4k" secondAttribute="bottom" constant="20" id="AA1-pS-P6x"/>
-                            <constraint firstItem="SxN-Pp-kzB" firstAttribute="trailing" secondItem="kvM-FG-BYk" secondAttribute="trailing" id="AQD-nZ-WLu"/>
                             <constraint firstItem="7ez-r2-G4k" firstAttribute="baseline" secondItem="2ZG-lx-lna" secondAttribute="baseline" id="KAf-va-YWJ"/>
                             <constraint firstItem="Bsa-ko-c73" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="MBQ-4y-dXX"/>
                             <constraint firstAttribute="trailing" secondItem="YFb-wR-Ile" secondAttribute="trailing" constant="20" id="RkQ-Qr-2CN"/>
@@ -637,30 +621,24 @@
                             <constraint firstItem="we2-N9-KkD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="SYn-G4-jYJ"/>
                             <constraint firstItem="2ZG-lx-lna" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="UaI-Ok-qRm"/>
                             <constraint firstItem="v4M-qH-Ill" firstAttribute="baseline" secondItem="tDP-QK-pKL" secondAttribute="baseline" id="YDh-02-PMf"/>
-                            <constraint firstItem="2ZG-lx-lna" firstAttribute="top" secondItem="SxN-Pp-kzB" secondAttribute="bottom" constant="12" id="axW-6m-eTu"/>
                             <constraint firstAttribute="trailing" secondItem="7ez-r2-G4k" secondAttribute="trailing" constant="20" id="b49-t3-jex"/>
                             <constraint firstItem="p8d-qd-Zzr" firstAttribute="leading" secondItem="we2-N9-KkD" secondAttribute="trailing" constant="36" id="bBG-C9-5Zf"/>
                             <constraint firstAttribute="bottom" secondItem="2ZG-lx-lna" secondAttribute="bottom" constant="20" id="be3-xy-BfV"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="p8d-qd-Zzr" secondAttribute="trailing" constant="20" id="cxL-p3-mCA"/>
                             <constraint firstItem="tDP-QK-pKL" firstAttribute="top" secondItem="we2-N9-KkD" secondAttribute="bottom" constant="58" id="fGF-QD-EtS"/>
-                            <constraint firstItem="kvM-FG-BYk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bsa-ko-c73" secondAttribute="bottom" constant="30" id="gSi-GF-ss7"/>
+                            <constraint firstItem="2ZG-lx-lna" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Bsa-ko-c73" secondAttribute="bottom" constant="50" id="gSi-GF-ss7"/>
                             <constraint firstItem="YFb-wR-Ile" firstAttribute="top" secondItem="v4M-qH-Ill" secondAttribute="bottom" constant="8" id="hpc-XP-gRC"/>
                             <constraint firstAttribute="trailing" secondItem="v4M-qH-Ill" secondAttribute="trailing" constant="20" id="iut-ka-1rL"/>
                             <constraint firstItem="7ez-r2-G4k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2ZG-lx-lna" secondAttribute="trailing" constant="20" id="kN8-Ie-vay"/>
                             <constraint firstItem="p8d-qd-Zzr" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="pJI-s6-fZG"/>
-                            <constraint firstItem="kvM-FG-BYk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="pJX-9d-Q4p"/>
-                            <constraint firstItem="SxN-Pp-kzB" firstAttribute="top" secondItem="kvM-FG-BYk" secondAttribute="bottom" constant="12" id="rPi-73-HdC"/>
-                            <constraint firstItem="2ZG-lx-lna" firstAttribute="trailing" secondItem="kvM-FG-BYk" secondAttribute="trailing" id="tK1-CZ-UZP"/>
                             <constraint firstItem="Bsa-ko-c73" firstAttribute="top" secondItem="YFb-wR-Ile" secondAttribute="bottom" constant="7" id="ude-Zu-86x"/>
                             <constraint firstItem="we2-N9-KkD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="wLd-v6-Hte"/>
                             <constraint firstItem="v4M-qH-Ill" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tDP-QK-pKL" secondAttribute="trailing" constant="20" id="y55-h9-Nli"/>
                             <constraint firstItem="cTZ-uC-E2H" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="yAk-LU-Rgg"/>
-                            <constraint firstItem="SxN-Pp-kzB" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="yHf-lH-0Kk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="objectController" destination="xcY-MY-Rj5" id="6a3-jj-dnG"/>
-                        <segue destination="qRf-IR-TK4" kind="sheet" identifier="restart" id="cBb-Ie-wGK"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -672,16 +650,190 @@
             </objects>
             <point key="canvasLocation" x="134.5" y="830"/>
         </scene>
+        <!--Plugin Drawer View Controller-->
+        <scene sceneID="RLf-Dr-g0l">
+            <objects>
+                <viewController id="vSQ-Xp-d2p" customClass="PluginDrawerViewController" customModule="aTarantula" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8RJ-fW-IoF">
+                        <rect key="frame" x="0.0" y="0.0" width="607" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="59" horizontalPageScroll="10" verticalLineScroll="59" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2II-iz-9wv">
+                                <rect key="frame" x="0.0" y="35" width="607" height="265"/>
+                                <clipView key="contentView" id="5B8-1z-K8l">
+                                    <rect key="frame" x="1" y="1" width="605" height="263"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="57" rowSizeStyle="automatic" viewBased="YES" id="M5K-ys-ueV">
+                                            <rect key="frame" x="0.0" y="0.0" width="605" height="263"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="602" minWidth="40" maxWidth="1000" id="Pgy-Dd-rS0">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="C2i-1b-Vfv">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="3ov-73-L4W">
+                                                            <rect key="frame" x="1" y="1" width="602" height="57"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9bp-FC-pmi">
+                                                                    <rect key="frame" x="0.0" y="38" width="89" height="19"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Plugin Title" id="R8M-pl-cFU">
+                                                                        <font key="font" metaFont="systemSemibold" size="16"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="3ov-73-L4W" name="value" keyPath="objectValue" id="ySV-vz-lf6"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J7a-hf-Eo8">
+                                                                    <rect key="frame" x="7" y="2" width="153" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Export Plugin Data" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="unc-oV-Cmc">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="3ov-73-L4W" name="argument" keyPath="objectValue" id="3FP-0I-fZF">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">exportData:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                        <binding destination="vSQ-Xp-d2p" name="target" keyPath="self" id="GZu-SM-rPE">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">exportData:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
+                                                                </button>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2bR-dH-6pY">
+                                                                    <rect key="frame" x="160" y="2" width="153" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Import Plugin Data" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="VKY-fI-NUd">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="3ov-73-L4W" name="argument" keyPath="objectValue" id="XCc-Py-KUJ">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">importData:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                        <binding destination="vSQ-Xp-d2p" name="target" keyPath="self" id="wk7-IS-Rep">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">importData:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
+                                                                </button>
+                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MdH-mR-H1Y">
+                                                                    <rect key="frame" x="313" y="2" width="153" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Open Editor" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="x3a-cT-DaQ">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="3ov-73-L4W" name="argument" keyPath="objectValue" id="JdJ-5U-Uqi">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">openEditor:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                        <binding destination="vSQ-Xp-d2p" name="target" keyPath="self" id="DxP-ak-oSs">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSSelectorName">openEditor:</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="J7a-hf-Eo8" firstAttribute="top" secondItem="9bp-FC-pmi" secondAttribute="bottom" constant="8" id="2oq-nG-Eyc"/>
+                                                                <constraint firstItem="J7a-hf-Eo8" firstAttribute="leading" secondItem="3ov-73-L4W" secondAttribute="leading" constant="13" id="7DM-xw-NbV"/>
+                                                                <constraint firstItem="2bR-dH-6pY" firstAttribute="top" secondItem="J7a-hf-Eo8" secondAttribute="top" id="Abx-ak-y5G"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MdH-mR-H1Y" secondAttribute="trailing" constant="14" id="SZM-P9-n9M"/>
+                                                                <constraint firstItem="MdH-mR-H1Y" firstAttribute="leading" secondItem="2bR-dH-6pY" secondAttribute="trailing" constant="12" id="UVQ-Wc-j6g"/>
+                                                                <constraint firstItem="MdH-mR-H1Y" firstAttribute="width" secondItem="J7a-hf-Eo8" secondAttribute="width" id="Utt-Rt-4Hp"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9bp-FC-pmi" secondAttribute="trailing" id="e1F-t0-1KT"/>
+                                                                <constraint firstAttribute="bottom" secondItem="J7a-hf-Eo8" secondAttribute="bottom" constant="9" id="j37-yM-jzm"/>
+                                                                <constraint firstItem="9bp-FC-pmi" firstAttribute="top" secondItem="3ov-73-L4W" secondAttribute="top" id="lCO-De-0wH"/>
+                                                                <constraint firstItem="MdH-mR-H1Y" firstAttribute="top" secondItem="J7a-hf-Eo8" secondAttribute="top" id="mc9-Kk-HBE"/>
+                                                                <constraint firstItem="2bR-dH-6pY" firstAttribute="width" secondItem="J7a-hf-Eo8" secondAttribute="width" id="v6r-kK-gQI"/>
+                                                                <constraint firstItem="2bR-dH-6pY" firstAttribute="leading" secondItem="J7a-hf-Eo8" secondAttribute="trailing" constant="12" id="ykW-ev-RQY"/>
+                                                                <constraint firstItem="9bp-FC-pmi" firstAttribute="leading" secondItem="3ov-73-L4W" secondAttribute="leading" constant="2" id="z8R-j5-N0n"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="textField" destination="9bp-FC-pmi" id="yb7-53-HJn"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <binding destination="vSQ-Xp-d2p" name="content" keyPath="self.representedObject" id="UGI-VJ-Xh1"/>
+                                                <outlet property="delegate" destination="vSQ-Xp-d2p" id="iq0-Em-ZAJ"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Yat-no-uvL">
+                                    <rect key="frame" x="1" y="283" width="448" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="rPh-C1-fdp">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PaQ-pD-wm9">
+                                <rect key="frame" x="534" y="0.0" width="72" height="32"/>
+                                <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="w5a-A2-kBA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="vSQ-Xp-d2p" id="FZn-ZX-rbu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2II-iz-9wv" secondAttribute="trailing" id="3oW-EK-25A"/>
+                            <constraint firstAttribute="bottom" secondItem="PaQ-pD-wm9" secondAttribute="bottom" constant="7" id="FK2-EU-k63"/>
+                            <constraint firstAttribute="trailing" secondItem="PaQ-pD-wm9" secondAttribute="trailing" constant="7" id="e9M-YU-WTL"/>
+                            <constraint firstItem="2II-iz-9wv" firstAttribute="top" secondItem="8RJ-fW-IoF" secondAttribute="top" id="nJr-3C-4kT"/>
+                            <constraint firstItem="PaQ-pD-wm9" firstAttribute="top" secondItem="2II-iz-9wv" secondAttribute="bottom" constant="7" id="oAx-Dj-SNV"/>
+                            <constraint firstItem="2II-iz-9wv" firstAttribute="leading" secondItem="8RJ-fW-IoF" secondAttribute="leading" id="yO0-f1-ByV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="rfb-9x-V5E" kind="modal" identifier="editor" id="TaV-Gy-WfS"/>
+                        <segue destination="qRf-IR-TK4" kind="sheet" identifier="migrate" id="gqI-qz-qoE"/>
+                    </connections>
+                </viewController>
+                <customObject id="egR-mz-6iW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29.5" y="1304"/>
+        </scene>
         <!--Editor View Controller-->
         <scene sceneID="LBA-CG-rbx">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="rfb-9x-V5E" customClass="CDEEditorViewController" sceneMemberID="viewController"/>
                 <customObject id="wcu-0E-R05" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134" y="1382"/>
+            <point key="canvasLocation" x="649" y="1476"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cBb-Ie-wGK"/>
+        <segue reference="gqI-qz-qoE"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13189.4"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PluginDrawerViewController" customModule="aTarantula" customModuleProvider="target"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="root" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="138" height="14"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="swe-M4-5j1">
+                    <rect key="frame" x="-2" y="-2" width="142" height="18"/>
+                    <buttonCell key="cell" type="check" title="Erase database  ⚠️" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sS5-gU-add">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="self.overwriteDatabaseFlag" id="FhX-c3-lAp"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="swe-M4-5j1" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="BRc-Lt-QHU"/>
+                <constraint firstAttribute="bottom" secondItem="swe-M4-5j1" secondAttribute="bottom" id="L1K-B8-Het"/>
+                <constraint firstAttribute="trailing" secondItem="swe-M4-5j1" secondAttribute="trailing" id="Lfq-NO-FW4"/>
+                <constraint firstItem="swe-M4-5j1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="rxQ-nc-9sd"/>
+            </constraints>
+            <point key="canvasLocation" x="-73" y="39"/>
+        </customView>
+    </objects>
+</document>
