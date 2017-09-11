@@ -24,3 +24,19 @@ public protocol TarantulaCrawlingPlugin: AnyObject {
 
     var settingsViewController: NSViewController? { get }
 }
+
+public struct CrawlError: Error {
+    public init(url: URL, info: String) {
+        self.url = url
+        self.info = info
+    }
+    public var url: URL
+    public var info: String
+}
+
+extension CrawlError: LocalizedError {
+    public var errorDescription: String? {
+        return "Couldn't crawl \(url.path): \(info)"
+    }
+}
+

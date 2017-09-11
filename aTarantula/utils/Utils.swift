@@ -49,11 +49,6 @@ public func synchronized<T>(_ lockObj: AnyObject!, do closure: () throws -> T) r
     return try closure()
 }
 
-public struct CrawlError: Error {
-    public let url: URL
-    public let info: String
-}
-
 public struct IOError: Error {
     public let path: String
 }
