@@ -54,9 +54,11 @@ public protocol Repository {
 }
 
 public enum RepositoryCrawlableSelection {
-    case CrawlableObject(url: URL)
-    case CrawlableObjects(alreadyCrawled: Bool)
-    case All
+    case object(url: URL)
+    case crawledObjects
+    case objectsToCrawl
+    case filteredObjects
+    case all
 }
 
 
