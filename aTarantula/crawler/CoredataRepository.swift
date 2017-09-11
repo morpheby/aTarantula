@@ -73,13 +73,21 @@ extension CoredataRepository: Repository {
         assert(type is CrawlableObject.Type, "Type has to be CrawlableObject")
         let request: NSFetchRequest = type.fetchRequest()
         switch (selection) {
-        case let .CrawlableObject(url):
+        case let .object(url):
             request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [url])
-        case let .CrawlableObjects(alreadyCrawled):
+        case .crawledObjects:
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
-                argumentArray: [!alreadyCrawled, false])
-        case .All:
+                argumentArray: [false, false])
+        case .objectsToCrawl:
+            request.predicate = NSPredicate(
+                format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
+                argumentArray: [true, false])
+        case .filteredObjects:
+            request.predicate = NSPredicate(
+                format: "\(#keyPath(CrawlableObject.disabled)) == %@",
+                argumentArray: [true])
+        case .all:
             break
         }
         return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
