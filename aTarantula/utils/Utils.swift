@@ -42,11 +42,11 @@ public extension Collection {
 }
 
 public func synchronized<T>(_ lockObj: AnyObject!, do closure: () throws -> T) rethrows -> T {
-    let result: T
     objc_sync_enter(lockObj)
-    result = try closure()
-    objc_sync_exit(lockObj)
-    return result
+    defer {
+        objc_sync_exit(lockObj)
+    }
+    return try closure()
 }
 
 public struct CrawlError: Error {
@@ -90,33 +90,9 @@ public extension Dictionary {
 
 }
 
-public struct SynchronizedBox<T> {
-    private var box: T
-    private let synchroObject = NSObject()
-
-    public init(_ object: T) {
-        box = object
-    }
-
-    public func map<U>(_ transform: (T) throws -> U) rethrows -> SynchronizedBox<U> {
-        let newValue = try transform(box)
-        return SynchronizedBox<U>(newValue)
-    }
-
-    public func flatMap<U>(_ transform: (T) throws -> SynchronizedBox<U>) rethrows -> SynchronizedBox<U> {
-        return try transform(box)
-    }
-
-    public func read<U>(_ closure: (T) throws -> U) rethrows -> U {
-        return try synchronized(synchroObject) {
-            return try closure(box)
-        }
-    }
-
-    public mutating func modify<U>(_ closure: (inout T) throws -> U) rethrows -> U {
-        return try synchronized(synchroObject) {
-            return try closure(&box)
-        }
-    }
+@inline(__always)
+public func logDebug(file: String = #file, line: Int = #line, function: String = #function, _ log: @autoclosure () -> Any) {
+    #if DEBUG
+    debugPrint("\(Date().description) \(file):\(line):\(function)", log())
+    #endif
 }
-

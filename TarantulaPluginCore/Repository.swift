@@ -50,7 +50,27 @@ public protocol Repository {
     /// - Parameters:
     ///    - type: The type of the objects requested
     ///    - selection: The selection used to find objects in the repository
-    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> [T]
+    ///    - max: maximum number of objects to fetch (0 equals all)
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection, max: Int) -> [T]
+
+    /// Returns count of all objects of the type T (given through the parameter `type`) from the repository by using
+    /// the selection `selection` (count of objects to be returned by readAllObjects)
+    /// - Parameters:
+    ///    - type: The type of the objects requested
+    ///    - selection: The selection used to find objects in the repository
+    func countAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> Int
+}
+
+public extension Repository {
+
+    /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
+    /// the selection `selection`
+    /// - Parameters:
+    ///    - type: The type of the objects requested
+    ///    - selection: The selection used to find objects in the repository
+    func readAllObjects<T>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> [T] where T : NSManagedObject {
+        return readAllObjects(type, withSelection: selection, max: 0)
+    }
 }
 
 public enum RepositoryCrawlableSelection {

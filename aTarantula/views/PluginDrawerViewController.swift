@@ -88,6 +88,23 @@ class PluginDrawerViewController: NSViewController {
         })
     }
 
+    @IBAction func openSettings(_ object: AnyObject) {
+        guard let selectedName = object as? String else {
+            fatalError("Invalid object supplied")
+        }
+
+        let appController = NSApplication.shared.controller
+        guard let plugin = (appController.pluginLoader.crawlers.filter { plugin in plugin.name == selectedName } .first) else {
+            fatalError("Plugin was reported, but doesn't exist")
+        }
+
+        guard let viewController = plugin.settingsViewController else {
+            presentError(PluginError.noSettings)
+            return
+        }
+        presentViewControllerAsModalWindow(viewController)
+    }
+
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
@@ -133,7 +150,18 @@ class PluginDrawerViewController: NSViewController {
         super.dismissViewController(viewController)
         activeObject = nil
     }
-    
+
+    enum PluginError: LocalizedError {
+        case noSettings
+
+        var errorDescription: String? {
+            switch (self) {
+            case .noSettings:
+                return "Plugin doesn't have settings"
+            }
+        }
+    }
+
 }
 
 extension PluginDrawerViewController: NSTableViewDelegate {
