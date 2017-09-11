@@ -13,6 +13,7 @@ class ViewController: NSViewController {
 
     @objc dynamic var crawler: Crawler?
     @IBOutlet var objectController: NSObjectController!
+    @IBOutlet var secondProgressIndicator: NSProgressIndicator!
 
     @objc dynamic var pluginNames: [String]  {
         return NSApplication.shared.controller.pluginLoader.crawlers.map { plugin in plugin.name }
@@ -22,7 +23,15 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         self.crawler = Crawler()
+    }
 
+    override func viewDidLayout() {
+        super.viewDidLayout()
+
+        if let layer = secondProgressIndicator.layer {
+            layer.anchorPoint = CGPoint(x: 1, y: 0)
+            layer.transform = CATransform3DMakeScale(-1.0, 1.0, 1.0)
+        }
     }
 
     @IBAction func start(_ sender: Any?) {

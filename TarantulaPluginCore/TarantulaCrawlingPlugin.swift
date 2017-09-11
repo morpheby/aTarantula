@@ -21,4 +21,6 @@ public protocol TarantulaCrawlingPlugin: AnyObject {
     var repository: Repository? { get set }
 
     func crawlObject(object: CrawlableObject) throws
+
+    var settingsViewController: NSViewController? { get }
 }

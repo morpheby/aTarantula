@@ -69,8 +69,7 @@ extension CoredataRepository: Repository {
         return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
     }
 
-    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> [T] {
-        assert(type is CrawlableObject.Type, "Type has to be CrawlableObject")
+    func makeFetchRequest(type: NSManagedObject.Type, withSelection selection: RepositoryCrawlableSelection) -> NSFetchRequest<NSFetchRequestResult> {
         let request: NSFetchRequest = type.fetchRequest()
         switch (selection) {
         case let .object(url):
@@ -90,7 +89,22 @@ extension CoredataRepository: Repository {
         case .all:
             break
         }
+        return request
+    }
+
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection, max: Int) -> [T] {
+        assert(type is CrawlableObject.Type, "Type has to be CrawlableObject")
+        let request = makeFetchRequest(type: type, withSelection: selection)
+        if max != 0 {
+            request.fetchLimit = max
+        }
         return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
+    }
+
+    func countAllObjects<T: NSManagedObject>(_ type: T.Type, withSelection selection: RepositoryCrawlableSelection) -> Int {
+        assert(type is CrawlableObject.Type, "Type has to be CrawlableObject")
+        let request = makeFetchRequest(type: type, withSelection: selection)
+        return (try? self.context.count(for: request)) ?? 0
     }
 }
 

@@ -36,12 +36,13 @@ import Kanna
         return crawlableObjectTypes as [NSManagedObject.Type]
     }
 
-    public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {
-        return []
+    public func crawlObject(object: CrawlableObject) {
     }
 
     public let name = "TestPlugin"
 
     public var repository: Repository? = nil
+
+    public var settingsViewController: NSViewController? = nil
 }
 

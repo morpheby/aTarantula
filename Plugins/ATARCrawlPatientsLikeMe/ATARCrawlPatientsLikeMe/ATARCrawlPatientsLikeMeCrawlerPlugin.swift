@@ -31,11 +31,23 @@ import Kanna
         return crawlableObjectTypes as [NSManagedObject.Type] + []
     }
 
-    public func crawlObject(object: CrawlableObject, inRepository repository: Repository) -> [CrawlableObject] {
-        return []
+    public func crawlObject(object: CrawlableObject) {
     }
 
     public let name = "ATARCrawlExampleWebsiteCrawlerPlugin"
 
     public var repository: Repository? = nil
+
+    let storyboard = NSStoryboard(name: "Settings", bundle: Bundle(for: ATARCrawlExampleWebsiteCrawlerPlugin.self))
+
+    public lazy var settingsViewController: NSViewController? = {
+        guard let rootObject = self.storyboard.instantiateInitialController() else {
+            fatalError("Invalid root object")
+        }
+        guard let viewController = rootObject as? SettingsViewController else {
+            fatalError("Storyboard provides wrong controller: should be SettingsViewController or subclass, given \(type(of:rootObject)): \(rootObject)")
+        }
+        viewController.plugin = self
+        return viewController
+    }()
 }

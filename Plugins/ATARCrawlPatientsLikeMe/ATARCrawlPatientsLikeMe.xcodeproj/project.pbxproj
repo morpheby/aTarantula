@@ -10,6 +10,8 @@
 		F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */; };
 		F64083AA1F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */; };
 		F64083B71F65985A00008FEB /* TarantulaPluginCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */; };
+		F64083C51F67253100008FEB /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F64083C41F67253100008FEB /* Settings.storyboard */; };
+		F64083C71F6729E800008FEB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083C61F6729E800008FEB /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATARCrawlExampleWebsiteCrawlerPlugin.swift; sourceTree = "<group>"; };
 		F64083A91F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodel; sourceTree = "<group>"; };
 		F64083B81F65985A00008FEB /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64083C41F67253100008FEB /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		F64083C61F6729E800008FEB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				F64083A61F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift */,
 				F64083A51F65945F00008FEB /* ATARCrawlExampleWebsite-Bridging-Header.h */,
 				F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */,
+				F64083C41F67253100008FEB /* Settings.storyboard */,
+				F64083C61F6729E800008FEB /* SettingsViewController.swift */,
 			);
 			path = ATARCrawlExampleWebsite;
 			sourceTree = "<group>";
@@ -127,6 +133,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F64083C51F67253100008FEB /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +146,7 @@
 			files = (
 				F64083AA1F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld in Sources */,
 				F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */,
+				F64083C71F6729E800008FEB /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
