@@ -66,12 +66,52 @@ class DataLoader {
         }
     }
 
-    func exportStore(named name: String, to targetURL: URL, success: (() -> ())? = nil) throws {
+    let foreignOptions: [AnyHashable: Any] = [
+        NSSQLitePragmasOption: [
+            "journal_mode": "OFF",
+            "synchronous": "NORMAL",
+        ],
+        NSSQLiteAnalyzeOption: true
+    ]
+
+    let nativeOptions: [AnyHashable: Any] = [
+        NSSQLitePragmasOption: [
+            "synchronous": "NORMAL",
+        ],
+    ]
+
+    func migrateStore(_ persistentStore: NSPersistentStore, named name: String, to targetURL: URL,
+                      targetOptions: [AnyHashable: Any], destroy: Bool) throws {
         defer {
             migrationState = .na
         }
 
-        migrationState = .migratingStore(named: name)
+        migrationState = .migratingStore(named: name, to: targetURL)
+
+        guard let store = stores[name] else {
+            throw ExportingError.noSuchStore
+        }
+        let coordinator = store.persistentContainer.persistentStoreCoordinator
+
+        // Remove old store
+        if destroy {
+            try coordinator.destroyPersistentStore(at: targetURL, ofType: NSSQLiteStoreType, options: targetOptions)
+        }
+
+        let newStore = try coordinator.migratePersistentStore(persistentStore,
+                                                              to: targetURL,
+                                                              options: targetOptions,
+                                                              withType: NSSQLiteStoreType)
+
+        // Disconnect migrated persistent store
+        migrationState = .disconnectingStore(named: name)
+        try coordinator.remove(newStore)
+    }
+
+    func exportStore(named name: String, to targetURL: URL, success: (() -> ())? = nil) throws {
+        defer {
+            migrationState = .na
+        }
 
         guard let store = stores[name] else {
             throw ExportingError.noSuchStore
@@ -83,25 +123,7 @@ class DataLoader {
             throw ExportingError.coordinatorNotInitialized
         }
 
-        // Remove old store
-        let options: [AnyHashable: Any] = [
-            NSSQLitePragmasOption: [
-                "journal_mode": "OFF",
-                "synchronous": "NORMAL",
-            ],
-            NSSQLiteAnalyzeOption: true
-        ]
-
-        try coordinator.destroyPersistentStore(at: targetURL, ofType: NSSQLiteStoreType, options: options)
-
-        let newStore = try coordinator.migratePersistentStore(persistentStore,
-                                           to: targetURL,
-                                           options: options,
-                                           withType: NSSQLiteStoreType)
-
-        // Restore original persistent store
-        migrationState = .disconnectingStore(named: name)
-        try coordinator.remove(newStore)
+        try migrateStore(persistentStore, named: name, to: targetURL, targetOptions: foreignOptions, destroy: true)
 
         migrationState = .reconnectingStore(named: name)
         coordinator.addPersistentStore(with: store.persistentContainer.persistentStoreDescriptions[0],
@@ -118,6 +140,47 @@ class DataLoader {
         })
     }
 
+    func importStore(named name: String, from targetURL: URL, destroy: Bool = false, success: (() -> ())? = nil) throws {
+        defer {
+            migrationState = .na
+        }
+
+        guard let store = stores[name] else {
+            throw ExportingError.noSuchStore
+        }
+
+        let coordinator = store.persistentContainer.persistentStoreCoordinator
+
+        guard let originalStore = coordinator.persistentStores.first else {
+            throw ExportingError.coordinatorNotInitialized
+        }
+
+        // Disconnect original persistent store
+        migrationState = .disconnectingStore(named: name)
+        try coordinator.remove(originalStore)
+
+        migrationState = .openingStore(named: name, url: targetURL)
+
+        let importingStore = try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: targetURL, options: foreignOptions)
+
+        try migrateStore(importingStore, named: name, to: store.persistentContainer.persistentStoreDescriptions[0].url!,
+                         targetOptions: nativeOptions, destroy: destroy)
+
+        migrationState = .reconnectingStore(named: name)
+        coordinator.addPersistentStore(with: store.persistentContainer.persistentStoreDescriptions[0],
+                                       completionHandler: { (description, error) in
+                                        if let error = error {
+                                            self.migrationState = .asyncError(error)
+                                        } else {
+                                            self.migrationState = .migratedStore(named: name)
+                                            if let s = success {
+                                                s()
+                                            }
+                                        }
+                                        self.migrationState = .na
+        })
+    }
+
     enum LoadingState {
         case na
         case loadingStore(named: String)
@@ -127,9 +190,10 @@ class DataLoader {
 
     enum MigrationState {
         case na
-        case migratingStore(named: String)
+        case migratingStore(named: String, to: URL)
         case disconnectingStore(named: String)
         case reconnectingStore(named: String)
+        case openingStore(named: String, url: URL)
         case migratedStore(named: String)
         case asyncError(Error)
     }

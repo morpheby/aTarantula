@@ -39,8 +39,10 @@ class LoadingViewController: NSViewController {
         switch (task) {
         case .initialLoad:
             beginStartup()
-        case let .migrate(source: source, to: url):
-            beginMigration(source: source, to: url)
+        case let .exportStore(name: source, to: url):
+            beginMigration(name: source, url: url, mode: .exportStore)
+        case let .importStore(name: source, from: url, destroy: destroy):
+            beginMigration(name: source, url: url, mode: .importStore(destroy: destroy))
         }
     }
 
@@ -97,8 +99,8 @@ class LoadingViewController: NSViewController {
                 switch (state) {
                 case .na:
                     break
-                case let .migratingStore(name):
-                    self.status = "Migrating store for \(name)"
+                case let .migratingStore(name, url):
+                    self.status = "Migrating store for \(name) to \(url.path)"
                     self.log.append(self.status)
                 case let .disconnectingStore(name):
                     self.status = "Disconnecting store \(name) after migration"
@@ -109,6 +111,9 @@ class LoadingViewController: NSViewController {
                 case let .migratedStore(name):
                     self.status = "Store \(name) succesfully migrated"
                     self.log.append(self.status)
+                case let .openingStore(name, url):
+                    self.status = "Opening store \(name) from \(url.path)"
+                    self.log.append(self.status)
                 case let .asyncError(error):
                     self.status = "Unable to migrate: \(error.localizedDescription)"
                     self.log.append(self.status)
@@ -117,23 +122,29 @@ class LoadingViewController: NSViewController {
         }
     }
 
-    func beginMigration(source: String, to: URL) {
+    private func beginMigration(name: String, url: URL, mode: MigrationMode) {
         let appController = NSApplication.shared.controller
 
         appController.backgroundQueue().addOperation {
             appController.withDefaultError {
-                try appController.dataLoader.exportStore(named: source, to: to) {
+                let success =  {
                     appController.mainQueue.addOperation {
                         appController.delay(2.0) {
                             self.dismiss(self)
                         }
                     }
                 }
+                switch (mode) {
+                case .exportStore:
+                    try appController.dataLoader.exportStore(named: name, to: url, success: success)
+                case let .importStore(destroy: destroy):
+                    try appController.dataLoader.importStore(named: name, from: url, destroy: destroy, success: success)
+                }
             }
         }
     }
 
-    func beginStartup() {
+    private func beginStartup() {
         let appController = NSApplication.shared.controller
 
         appController.backgroundQueue().addOperation {
@@ -165,9 +176,15 @@ class LoadingViewController: NSViewController {
     }
     var rowHeights: [Int: Float] = [:]
 
+    private enum MigrationMode {
+        case exportStore
+        case importStore(destroy: Bool)
+    }
+
     enum Task {
         case initialLoad
-        case migrate(source: String, to: URL)
+        case exportStore(name: String, to: URL)
+        case importStore(name: String, from: URL, destroy: Bool)
     }
 }
 

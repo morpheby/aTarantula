@@ -35,6 +35,9 @@ public extension CrawlableObject {
         }
     }
 
+    /// Is `true` when the object has been successfuly crawled and is present in the database
+    /// in a manner more than just its URL (i.e. all the fields are set and all the relationships
+    /// have been added do the database)
     var objectIsCrawled: Bool {
         get {
             return !self.obj_deleted
@@ -44,6 +47,9 @@ public extension CrawlableObject {
         }
     }
 
+    /// Shows that the object has been marked as *not satisfying filtering criteria*.
+    /// Such object is supposed to be *not* crawled, and so is not intented to be, and
+    /// hence will be omitted in the request for all uncrawled objects.
     var objectIsFiltered: Bool {
         get {
             return self.disabled

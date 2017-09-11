@@ -14,17 +14,15 @@ class ViewController: NSViewController {
     @objc dynamic var crawler: Crawler?
     @IBOutlet var objectController: NSObjectController!
 
+    @objc dynamic var pluginNames: [String]  {
+        return NSApplication.shared.controller.pluginLoader.crawlers.map { plugin in plugin.name }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.crawler = Crawler()
 
-    }
-
-    @IBAction func loadPlugin(_ sender: Any?) {
-        // test
-//        let appController = NSApplication.shared.controller
-        self.performSegue(withIdentifier: .restartSegue, sender: self)
     }
 
     @IBAction func start(_ sender: Any?) {
@@ -35,20 +33,11 @@ class ViewController: NSViewController {
         super.prepare(for: segue, sender: sender)
 
         switch segue.identifier {
-        case .some(.exportingSegue):
-            guard let editorViewController = segue.destinationController as? CDEEditorViewController else {
+        case .some(.pluginDrawerSegue):
+            guard let destinationViewController = segue.destinationController as? NSViewController else {
                 fatalError("Invalid segue: \(segue)")
             }
-            let configuration = CDEConfiguration()
-            let appController = NSApplication.shared.controller
-            let testPlugin = appController.pluginLoader.crawlers[0]
-            let testStore = appController.dataLoader.stores[testPlugin.name]!
-            try! editorViewController.configure(with: configuration, model: testPlugin.managedObjectModel, objectContext: testStore.persistentContainer.viewContext)
-        case .some(.restartSegue):
-            guard let loadingViewController = segue.destinationController as? LoadingViewController else {
-                fatalError("Invalid segue: \(segue)")
-            }
-            loadingViewController.task = .migrate(source: "TestPlugin", to: URL(string: "file:///Users/morpheby/Downloads/test.aqlite")!)
+            destinationViewController.representedObject = pluginNames
         default:
             break
         }
@@ -63,9 +52,3 @@ class ViewController: NSViewController {
     }
 
 }
-
-extension NSStoryboardSegue.Identifier {
-    static let exportingSegue = NSStoryboardSegue.Identifier("exporting")
-    static let restartSegue = NSStoryboardSegue.Identifier("restart")
-}
-

@@ -161,6 +161,9 @@
 		F63FD91A1F5C230F003A5F01 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */; };
 		F63FD91C1F5C24B6003A5F01 /* ApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */; };
 		F64083B51F65981700008FEB /* ATARCrawlExampleWebsite.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F64083BA1F65A2E200008FEB /* PluginDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083B91F65A2E200008FEB /* PluginDrawerViewController.swift */; };
+		F64083BD1F65A4FB00008FEB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083BC1F65A4FB00008FEB /* Resources.swift */; };
+		F64083BF1F65B31800008FEB /* OpenPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -484,6 +487,9 @@
 		F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		F63FD91B1F5C24B6003A5F01 /* ApplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationController.swift; sourceTree = "<group>"; };
 		F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ATARCrawlExampleWebsite.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64083B91F65A2E200008FEB /* PluginDrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PluginDrawerViewController.swift; sourceTree = "<group>"; };
+		F64083BC1F65A4FB00008FEB /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenPanelAccessory.xib; sourceTree = "<group>"; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1609,6 +1615,9 @@
 				F6C4638A1F474BF000782C88 /* ViewController.swift */,
 				F63FD9171F5C1F1A003A5F01 /* WindowTransitionSegue.swift */,
 				F63FD9191F5C230F003A5F01 /* LoadingViewController.swift */,
+				F64083B91F65A2E200008FEB /* PluginDrawerViewController.swift */,
+				F64083BC1F65A4FB00008FEB /* Resources.swift */,
+				F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -1754,6 +1763,7 @@
 				F63FD8F61F5BBFA6003A5F01 /* code-icon@2x.png in Resources */,
 				F63FD8681F591345003A5F01 /* CDEMenuWindowItem.xib in Resources */,
 				F63FD84C1F591345003A5F01 /* CDEObjectIDValueTableCellView.xib in Resources */,
+				F64083BF1F65B31800008FEB /* OpenPanelAccessory.xib in Resources */,
 				F63FD8651F591345003A5F01 /* CDEMenuViewController.xib in Resources */,
 				F63FD85A1F591345003A5F01 /* CDEOrderIndexTableCellView.xib in Resources */,
 				F63FD8261F591345003A5F01 /* CDEStringAttributeView.xib in Resources */,
@@ -1902,6 +1912,7 @@
 				F63FD8561F591345003A5F01 /* FilteringArray.m in Sources */,
 				F63FD8391F591345003A5F01 /* NSTableCellView+JKNibLoading.m in Sources */,
 				F63FD89D1F5918A6003A5F01 /* CDEEntityAutosaveInformationItem.m in Sources */,
+				F64083BD1F65A4FB00008FEB /* Resources.swift in Sources */,
 				F63FD8831F59161C003A5F01 /* NSString+CDEAdditions.m in Sources */,
 				F63FD83A1F591345003A5F01 /* NSTableView+CDEAdditions.m in Sources */,
 				F63FD8C61F5BB005003A5F01 /* NSError-CDEAdditions.m in Sources */,
@@ -1913,6 +1924,7 @@
 				F63FD9111F5BCDCE003A5F01 /* DataController.swift in Sources */,
 				F63FD8371F591345003A5F01 /* CDEGenerateThumbnailOperation.m in Sources */,
 				F63FD8D61F5BB112003A5F01 /* NSManagedObject+CDEAdditions.m in Sources */,
+				F64083BA1F65A2E200008FEB /* PluginDrawerViewController.swift in Sources */,
 				F63FD82E1F591345003A5F01 /* CDEManagedObjectView.m in Sources */,
 				F63FD8781F591345003A5F01 /* CDEValidationErrorsViewController.m in Sources */,
 				F63FD86F1F591345003A5F01 /* CDERelationshipsViewControllerItem.m in Sources */,
