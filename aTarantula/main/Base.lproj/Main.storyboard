@@ -360,7 +360,7 @@
         <scene sceneID="eVz-ej-swu">
             <objects>
                 <windowController id="zin-nj-RIy" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="alertPanel" frameAutosaveName="" tabbingMode="disallowed" id="oJz-PZ-meS">
+                    <window key="window" title="Loading aTarantula…" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" showsToolbarButton="NO" animationBehavior="alertPanel" frameAutosaveName="" tabbingMode="disallowed" id="oJz-PZ-meS">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" stationary="YES" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -378,10 +378,10 @@
             </objects>
             <point key="canvasLocation" x="885" y="251"/>
         </scene>
-        <!--Loading View Controller-->
+        <!--Loading…-->
         <scene sceneID="6yy-xH-zxR">
             <objects>
-                <viewController id="qRf-IR-TK4" customClass="LoadingViewController" customModule="aTarantula" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Loading…" id="qRf-IR-TK4" customClass="LoadingViewController" customModule="aTarantula" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="Z3k-ca-Bdd">
                         <rect key="frame" x="0.0" y="0.0" width="483" height="277"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -992,16 +992,16 @@
             </objects>
             <point key="canvasLocation" x="-29.5" y="1304"/>
         </scene>
-        <!--Editor View Controller-->
+        <!--CoreData Editor-->
         <scene sceneID="LBA-CG-rbx">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="rfb-9x-V5E" customClass="CDEEditorViewController" sceneMemberID="viewController"/>
+                <viewController title="CoreData Editor" showSeguePresentationStyle="single" id="rfb-9x-V5E" customClass="CDEEditorViewController" sceneMemberID="viewController"/>
                 <customObject id="wcu-0E-R05" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="649" y="1476"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="gqI-qz-qoE"/>
+        <segue reference="jQM-YI-MzB"/>
     </inferredMetricsTieBreakers>
 </document>
