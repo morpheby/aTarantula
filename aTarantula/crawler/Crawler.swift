@@ -24,7 +24,7 @@ import TarantulaPluginCore
     @objc dynamic var updateFrequency: TimeInterval = 2.0
     @objc dynamic var running: Bool = false {
         didSet {
-            if running {
+            if running && running != oldValue {
                 startCrawling()
             }
         }
@@ -32,19 +32,26 @@ import TarantulaPluginCore
     @objc dynamic var runningCrawlersCount: Int = 0
     @objc dynamic var log: [String] = []
     @objc dynamic var unfinished: Bool {
-        return runningCrawlersCount != 0
+        return runningCrawlersCount != 0 || updateStatusRunning
+    }
+    @objc dynamic var updateStatusRunning: Bool = false
+
+    @objc static func keyPathsForValuesAffectingCrawledActiveCount() -> Set<String> {
+        return Set(["\(#keyPath(Crawler.currentSessionCrawled))", "\(#keyPath(Crawler.crawledCount))"])
     }
 
-    @objc func keyPathsForValuesAffectingCrawledActiveCount() -> Set<String> {
-        return Set(["currentSessionCrawled", "crawledCount"])
-    }
-
-    @objc func keyPathsForValuesAffectingUnfinished() -> Set<String> {
-        return Set(["runningCrawlersCount"])
+    @objc static func keyPathsForValuesAffectingUnfinished() -> Set<String> {
+        return Set(["\(#keyPath(Crawler.runningCrawlersCount))", "\(#keyPath(Crawler.updateStatusRunning))"])
     }
 
     private var crawllist: SynchronizedBox<Deque<CrawlableObject>> = SynchronizedBox(Deque())
     private var crawllistNeedsUpdating: SynchronizedBox<Bool> = SynchronizedBox(true)
+
+    override required init() {
+        super.init()
+        // Required to initialize statistics
+        self.updateCrawllist()
+    }
 
     func resolvePlugin(for object: CrawlableObject) -> TarantulaCrawlingPlugin {
         let appController = NSApplication.shared.controller
@@ -122,7 +129,7 @@ import TarantulaPluginCore
             for plugin in appController.pluginLoader.crawlers {
                 plugin.repository?.performAndWait {
                     for type in plugin.crawlableObjectTypes {
-                        if let objectsTmp = plugin.repository?.readAllObjects(type, withSelection: .all, max: addCount),
+                        if let objectsTmp = plugin.repository?.readAllObjects(type, withSelection: .objectsToCrawl, max: addCount),
                         let objects = objectsTmp as? [CrawlableObject] {
                             collectedObjects.append(contentsOf: objects)
                         }
@@ -135,6 +142,8 @@ import TarantulaPluginCore
 
             c.append(contentsOf: collectedObjects)
 
+            let requiresStop = (c.count == 0)
+
             logDebug("queued info update")
 
             NSApplication.shared.controller.mainQueue.addOperation {
@@ -142,6 +151,9 @@ import TarantulaPluginCore
                 self.crawledCount = crawledCount
                 self.discoveredCount = discoveredCount
                 self.filteredCount = filteredCount
+                if requiresStop {
+                    self.running = false
+                }
                 logDebug("info updated")
             }
         }
@@ -159,6 +171,8 @@ import TarantulaPluginCore
             return
         }
         let appController = NSApplication.shared.controller
+
+        crawllistNeedsUpdating.modify { u in u = true }
 
         let crawlingQueue = OperationQueue()
         crawlingQueue.qualityOfService = .background
@@ -188,16 +202,18 @@ import TarantulaPluginCore
 
         var updateOperation: (() -> ())! = nil
         updateOperation = {
+            appController.mainQueue.addOperation {
+                self.updateStatusRunning = true
+            }
             if (self.crawllistNeedsUpdating.read { c in c }) {
-                appController.mainQueue.addOperation {
-                    self.updateCrawllist()
-                }
+                self.updateCrawllist()
             }
             appController.delay(self.updateFrequency) {
                 appController.mainQueue.addOperation {
                     if self.running {
                         updateQueue.addOperation(updateOperation)
                     } else {
+                        self.updateStatusRunning = false
                         logDebug("finished update queue")
                     }
                 }

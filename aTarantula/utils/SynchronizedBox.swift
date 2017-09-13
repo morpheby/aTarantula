@@ -8,6 +8,18 @@
 
 import Foundation
 
+fileprivate class ActualBox<T> {
+    var boxed: T
+
+    init(_ value: T) {
+        boxed = value
+    }
+
+    func exec(_ e: (inout T) -> ()) {
+
+    }
+}
+
 public protocol GenericSynchronizedBox {
     associatedtype Box
 
@@ -28,7 +40,8 @@ public extension GenericSynchronizedBox {
         defer {
             unlock()
         }
-        return try closure(unsafeBoxed)
+        let result = try closure(unsafeBoxed)
+        return result
     }
 
     public mutating func modify<U>(_ closure: (inout Box) throws -> U) rethrows -> U {
@@ -36,18 +49,27 @@ public extension GenericSynchronizedBox {
         defer {
             unlock()
         }
-        return try closure(&unsafeBoxed)
+        let result = try closure(&unsafeBoxed)
+        return result
     }
 }
 
 public struct SynchronizedBox<T>: GenericSynchronizedBox {
     public typealias Box = T
 
-    public var unsafeBoxed: Box
+    private var actualBox: ActualBox<Box>
+    public var unsafeBoxed: Box {
+        get {
+            return actualBox.boxed
+        }
+        set {
+            actualBox.boxed = newValue
+        }
+    }
     private let synchroLock = NSRecursiveLock()
 
     public init(_ object: Box) {
-        unsafeBoxed = object
+        actualBox = ActualBox(object)
     }
 
     public func lock() {
@@ -64,12 +86,14 @@ public struct SynchronizedBox<T>: GenericSynchronizedBox {
 
     public func map<U>(_ transform: (Box) throws -> U) rethrows -> SynchronizedBox<U> {
         // XXX unimplemented
+        fatalError("Uimplemented")
         let newValue = try transform(unsafeBoxed)
         return SynchronizedBox<U>(newValue)
     }
 
     public func flatMap<U>(_ transform: (Box) throws -> SynchronizedBox<U>) rethrows -> SynchronizedBox<U> {
         // XXX unimplemented
+        fatalError("Uimplemented")
         return try transform(unsafeBoxed)
     }
 }
@@ -126,7 +150,7 @@ public struct SynchronizedBox<T>: GenericSynchronizedBox {
 
 // Instead, we will have this for now
 
-public func zipModify<Box1, Box2, U>(_ box1: inout Box1, _ box2: inout Box2, _ closure: (inout Box1.Box, inout  Box2.Box) throws -> U) rethrows -> U where Box1 : GenericSynchronizedBox, Box2 : GenericSynchronizedBox {
+public func zipModify<Box1, Box2, U>(_ box1: inout Box1, _ box2: inout Box2, _ closure: (inout Box1.Box, inout Box2.Box) throws -> U) rethrows -> U where Box1 : GenericSynchronizedBox, Box2 : GenericSynchronizedBox {
     while true {
         box1.lock()
         if box2.tryLock() { break }
@@ -144,7 +168,7 @@ public func zipModify<Box1, Box2, U>(_ box1: inout Box1, _ box2: inout Box2, _ c
     return try closure(&box1.unsafeBoxed, &box2.unsafeBoxed)
 }
 
-public func zipRead<Box1, Box2, U>(_ box1: Box1, _ box2: Box2, _ closure: (Box1.Box,  Box2.Box) throws -> U) rethrows -> U where Box1 : GenericSynchronizedBox, Box2 : GenericSynchronizedBox {
+public func zipRead<Box1, Box2, U>(_ box1: Box1, _ box2: Box2, _ closure: (Box1.Box, Box2.Box) throws -> U) rethrows -> U where Box1 : GenericSynchronizedBox, Box2 : GenericSynchronizedBox {
     while true {
         box1.lock()
         if box2.tryLock() { break }

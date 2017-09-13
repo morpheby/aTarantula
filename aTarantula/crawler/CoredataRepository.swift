@@ -36,11 +36,13 @@ extension CoredataRepository: Repository {
         }
     }
 
-    func performAndWait(closure: @escaping () -> ()) {
+    func performAndWait<U>(closure: @escaping () -> U) -> U {
+        var result: U! = nil
         self.context.performAndWait {
-            closure()
+            result = closure()
             self.save()
         }
+        return result
     }
 
     func delete<T: NSManagedObject>(object: T) {
