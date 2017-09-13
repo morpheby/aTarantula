@@ -68,6 +68,7 @@ class ApplicationController {
     func backgroundQueue() -> OperationQueue {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
+        queue.maxConcurrentOperationCount = 1
         return queue
     }
 

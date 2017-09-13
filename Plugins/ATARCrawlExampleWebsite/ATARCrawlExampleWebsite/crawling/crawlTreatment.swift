@@ -13,9 +13,11 @@ import TarantulaPluginCore
 
 func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withPlugin plugin: ATARCrawlExampleWebsiteCrawlerPlugin) throws {
 
-    let objectUrl = object.objectUrl
+    let objectUrl = repo.performAndWait {
+        object.objectUrl
+    }
 
-    guard !object.objectIsCrawled else {
+    guard !(repo.performAndWait { object.objectIsCrawled }) else {
         return
     }
 

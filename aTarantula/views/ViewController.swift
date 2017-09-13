@@ -11,7 +11,7 @@ import TarantulaPluginCore
 
 class ViewController: NSViewController {
 
-    @objc dynamic var crawler: Crawler?
+    @objc dynamic var crawler: Crawler = Crawler()
     @IBOutlet var objectController: NSObjectController!
     @IBOutlet var secondProgressIndicator: NSProgressIndicator!
 
@@ -21,8 +21,6 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.crawler = Crawler()
     }
 
     override func viewDidLayout() {
@@ -35,7 +33,11 @@ class ViewController: NSViewController {
     }
 
     @IBAction func start(_ sender: Any?) {
-        self.crawler?.name = "Other"
+        crawler.running = true
+    }
+
+    @IBAction func stop(_ sender: Any?) {
+        crawler.running = false
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {

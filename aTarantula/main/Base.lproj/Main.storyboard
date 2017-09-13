@@ -611,6 +611,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="stop:" target="rPt-NT-nkU" id="C5p-Ry-vXs"/>
                                     <binding destination="xcY-MY-Rj5" name="enabled" keyPath="selection.running" id="MDJ-YK-zP9"/>
                                 </connections>
                             </button>
@@ -642,7 +643,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Uwg-re-snf"/>
                                 </constraints>
-                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Fwp-3A-s5m"/>
+                                <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Fwp-3A-s5m"/>
                                 <connections>
                                     <binding destination="xcY-MY-Rj5" name="value" keyPath="selection.maxConcurrent" previousBinding="zUo-Fv-GGe" id="Y1t-qh-flV"/>
                                     <binding destination="xcY-MY-Rj5" name="maxValue" keyPath="selection.maxCrawlingCount" id="zUo-Fv-GGe"/>
