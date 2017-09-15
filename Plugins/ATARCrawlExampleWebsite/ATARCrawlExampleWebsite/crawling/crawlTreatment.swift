@@ -23,13 +23,46 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
 
     let data = try String(contentsOf: objectUrl)
 
-    var newCrawlables: [CrawlableObject] = []
+    var relatedCrawlables: [CrawlableObject] = []
 
     guard let html = Kanna.HTML(html: data, encoding: .utf8) else {
         throw CrawlError(url: objectUrl, info: "Unable to parse HTML")
     }
 
     let name = html.xpath("//li[@class='toolbar-title']//span[@itemprop='name']").first?.text
+
+    let category: DrugCategory? = {
+        html.xpath("//div[@id='overview']//header[@id='summary']/../p[strong='Category:']/a/@href").flatMap { element in
+            if let urlString = element.text,
+            let url = URL(string: urlString, relativeTo: plugin.baseUrl) {
+                let relatedObject = repo.performAndWait {
+                    repo.readAllObjects(DrugCategory.self, withSelection: .object(url: url)).first ??
+                        repo.newObject(forUrl: url, type: DrugCategory.self)
+                }
+                relatedCrawlables.append(relatedObject)
+                return relatedObject
+            } else {
+                return nil
+            }
+        }
+    }() .flatMap { x in x } .first
+
+    let types: [Treatment] = {
+        html.xpath("//div[@id='overview']//header[@id='summary']/../p[strong='Most popular types:']//a/@href").flatMap { element in
+            if let urlString = element.text,
+            let url = URL(string: urlString, relativeTo: plugin.baseUrl) {
+                let relatedObject = repo.performAndWait {
+                    repo.readAllObjects(Treatment.self, withSelection: .object(url: url)).first ??
+                        repo.newObject(forUrl: url, type: Treatment.self)
+                }
+                relatedCrawlables.append(relatedObject)
+                return relatedObject
+            } else {
+                return nil
+            }
+        }
+    }() .flatMap { x in x }
+
 //
 //    let author: Profile? = {
 //        if let urlString = html.xpath("//div[@id='profile_top']/a/@href").first?.text,
@@ -119,7 +152,11 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
 //    }
 
     repo.perform {
+        object.originalHtml = data
+
         object.name = name
+        object.category = category
+        object.types = Set(types) as NSSet
 
         object.objectIsCrawled = true
     }
