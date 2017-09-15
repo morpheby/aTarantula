@@ -4,6 +4,7 @@
         <attribute name="disabled" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="obj_deleted" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="originalHtml" optional="YES" attributeType="String" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -100,7 +101,7 @@
         <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="purposes" inverseEntity="Treatment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Crawlable" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="Crawlable" positionX="-54" positionY="-9" width="128" height="105"/>
         <element name="Treatment" positionX="-63" positionY="-18" width="128" height="330"/>
         <element name="DrugCategory" positionX="-54" positionY="9" width="128" height="75"/>
         <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
