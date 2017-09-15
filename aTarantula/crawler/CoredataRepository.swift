@@ -29,14 +29,14 @@ class CoredataRepository {
 
 extension CoredataRepository: Repository {
 
-    func perform(closure: @escaping () -> ()) {
+    func perform(_ closure: @escaping () -> ()) {
         self.context.perform {
             closure()
             self.save()
         }
     }
 
-    func performAndWait<U>(closure: @escaping () -> U) -> U {
+    func performAndWait<U>(_ closure: @escaping () -> U) -> U {
         var result: U! = nil
         self.context.performAndWait {
             result = closure()
@@ -75,7 +75,7 @@ extension CoredataRepository: Repository {
         let request: NSFetchRequest = type.fetchRequest()
         switch (selection) {
         case let .object(url):
-            request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [url])
+            request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [cleanedStringForUrl(url)])
         case .crawledObjects:
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
@@ -110,6 +110,3 @@ extension CoredataRepository: Repository {
     }
 }
 
-func cleanedStringForUrl(_ url: URL) -> String {
-    return url.standardized.absoluteString
-}

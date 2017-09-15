@@ -31,7 +31,7 @@ import Foundation
 public extension CrawlableObject {
     var objectUrl: URL {
         get {
-            return URL(string: self.id!)!.standardized
+            return cleanedUrlForString(self.id!)!
         }
     }
 
@@ -58,6 +58,14 @@ public extension CrawlableObject {
             self.disabled = newValue
         }
     }
+}
+
+public func cleanedUrlForString(_ string: String) -> URL? {
+    return URL(string: string)?.standardized
+}
+
+public func cleanedStringForUrl(_ url: URL) -> String {
+    return url.standardized.absoluteString
 }
 
 public typealias CrawlableManagedObject = NSManagedObject & CrawlableObject
