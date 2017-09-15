@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13233.4" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Crawlable" representedClassName="Crawlable" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="disabled" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
@@ -13,11 +13,106 @@
             <fetchIndexElement property="disabled" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
-    <entity name="Treatment" representedClassName="Treatment" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
+    <entity name="DrugAdherence" representedClassName="DrugAdherence" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="adherences" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugBurden" representedClassName="DrugBurden" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="burdens" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugCategory" representedClassName="DrugCategory" parentEntity="Crawlable" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="drugs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Treatment" inverseName="category" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugCost" representedClassName="DrugCost" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="costs" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugDosageCount" representedClassName="DrugDosageCount" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="dosages" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugDuration" representedClassName="DrugDuration" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="drug_current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="current_durations" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="drug_stopped" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="stopped_durations" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugPatients" representedClassName="DrugPatients" parentEntity="Crawlable" syncable="YES" codeGenerationType="class">
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="patients" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugSideEffects" representedClassName="DrugSideEffects" parentEntity="Crawlable" syncable="YES" codeGenerationType="class">
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="sideeffects" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugSideEffectSeverity" representedClassName="DrugSideEffectSeverity" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="sideeffect_severities" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugStopReason" representedClassName="DrugStopReason" syncable="YES" codeGenerationType="class">
+        <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="stop_reasons" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="DrugSwitch" representedClassName="DrugSwitch" syncable="YES" codeGenerationType="class">
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="switched_from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_to" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="switched_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_from" inverseEntity="Treatment" syncable="YES"/>
+        <fetchIndex name="bySwitchTreatment">
+            <fetchIndexElement property="switched_to" type="Binary" order="ascending"/>
+            <fetchIndexElement property="switched_from" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Treatment" representedClassName="Treatment" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
+        <attribute name="drug_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total_patients_count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="adherences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugAdherence" inverseName="drug" inverseEntity="DrugAdherence" syncable="YES"/>
+        <relationship name="burdens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugBurden" inverseName="drug" inverseEntity="DrugBurden" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugCategory" inverseName="drugs" inverseEntity="DrugCategory" syncable="YES"/>
+        <relationship name="costs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugCost" inverseName="drug" inverseEntity="DrugCost" syncable="YES"/>
+        <relationship name="current_durations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDuration" inverseName="drug_current" inverseEntity="DrugDuration" syncable="YES"/>
+        <relationship name="dosages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDosageCount" inverseName="drug" inverseEntity="DrugDosageCount" syncable="YES"/>
+        <relationship name="generic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="types" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="patients" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugPatients" inverseName="drug" inverseEntity="DrugPatients" syncable="YES"/>
+        <relationship name="purposes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TreatmentPurposes" inverseName="drug" inverseEntity="TreatmentPurposes" syncable="YES"/>
+        <relationship name="sideeffect_severities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSideEffectSeverity" inverseName="drug" inverseEntity="DrugSideEffectSeverity" syncable="YES"/>
+        <relationship name="sideeffects" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSideEffects" inverseName="drug" inverseEntity="DrugSideEffects" syncable="YES"/>
+        <relationship name="stop_reasons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugStopReason" inverseName="drug" inverseEntity="DrugStopReason" syncable="YES"/>
+        <relationship name="stopped_durations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDuration" inverseName="drug_stopped" inverseEntity="DrugDuration" syncable="YES"/>
+        <relationship name="switched_from" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_to" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="switched_to" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_from" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Treatment" inverseName="generic" inverseEntity="Treatment" syncable="YES"/>
+    </entity>
+    <entity name="TreatmentPurposes" representedClassName="TreatmentPurposes" parentEntity="Crawlable" syncable="YES" codeGenerationType="class">
+        <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="purposes" inverseEntity="Treatment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Crawlable" positionX="-54" positionY="-9" width="128" height="88"/>
+        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="330"/>
+        <element name="DrugCategory" positionX="-54" positionY="9" width="128" height="75"/>
+        <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
+        <element name="DrugPatients" positionX="-36" positionY="63" width="128" height="60"/>
+        <element name="DrugSideEffects" positionX="-18" positionY="108" width="128" height="60"/>
+        <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="105"/>
+        <element name="DrugDosageCount" positionX="27" positionY="144" width="128" height="105"/>
+        <element name="DrugStopReason" positionX="-27" positionY="90" width="128" height="105"/>
+        <element name="DrugDuration" positionX="-18" positionY="99" width="128" height="120"/>
+        <element name="DrugAdherence" positionX="-9" positionY="117" width="128" height="105"/>
+        <element name="DrugBurden" positionX="0" positionY="126" width="128" height="105"/>
+        <element name="DrugCost" positionX="18" positionY="153" width="128" height="105"/>
+        <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="90"/>
     </elements>
 </model>
