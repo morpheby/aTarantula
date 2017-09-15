@@ -13,12 +13,12 @@ public protocol Repository {
     /// Performs given operations on the repository asynchronously. The save is performed after the operation.
     /// - Important: Always use either of the perform methods for any operations, including changes in
     ///   the objects themselves
-    func perform(closure: @escaping () -> ())
+    func perform(_ closure: @escaping () -> ())
 
     /// Performs given operations on the repository. The save is performed after the operation.
     /// - Important: Always use either of the perform methods for any operations, including changes in
     ///   the objects themselves
-    func performAndWait<U>(closure: @escaping () -> U) -> U
+    func performAndWait<U>(_ closure: @escaping () -> U) -> U
 
     /// Removes given object from the repository
     func delete<T: NSManagedObject>(object: T)
