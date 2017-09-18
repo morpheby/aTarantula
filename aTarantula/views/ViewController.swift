@@ -14,6 +14,7 @@ class ViewController: NSViewController {
     @objc dynamic var crawler: Crawler = Crawler()
     @IBOutlet var objectController: NSObjectController!
     @IBOutlet var secondProgressIndicator: NSProgressIndicator!
+    @IBOutlet var tableLogView: NSTableView!
 
     @objc dynamic var pluginNames: [String]  {
         return NSApplication.shared.controller.pluginLoader.crawlers.map { plugin in plugin.name }
@@ -21,6 +22,9 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        crawler.logChangeObservable ∆= self >> { s, c in
+            s.tableLogView.noteHeightOfRows(withIndexesChanged: [c.log.count-1])
+        }
     }
 
     override func viewDidLayout() {
@@ -38,6 +42,10 @@ class ViewController: NSViewController {
 
     @IBAction func stop(_ sender: Any?) {
         crawler.running = false
+    }
+
+    @IBAction func clearLog(_ sender: Any?) {
+        crawler.log = []
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -63,4 +71,29 @@ class ViewController: NSViewController {
         }
     }
 
+    var autoscrollLastRow = 0
+
+    func autoscrollToBottom() {
+        if crawler.log.count >= 4,
+        let docRect = tableLogView.enclosingScrollView?.documentVisibleRect,
+        docRect.maxY >= tableLogView.rect(ofRow: autoscrollLastRow).minY - 20.0 {
+            autoscrollLastRow = crawler.log.count - 1
+            tableLogView.scrollRowToVisible(crawler.log.count - 1)
+        }
+    }
+
+    var rowHeights: [Int: Float] = [:]
+}
+
+extension ViewController: NSTableViewDelegate {
+
+    func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
+        rowHeights[row] = Float((rowView.view(atColumn: 0) as! NSView).fittingSize.height)
+        tableView.noteHeightOfRows(withIndexesChanged: [row])
+        autoscrollToBottom()
+    }
+
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return CGFloat(rowHeights[row] ?? Float(tableView.rowHeight))
+    }
 }

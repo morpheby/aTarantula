@@ -30,7 +30,12 @@ import TarantulaPluginCore
         }
     }
     @objc dynamic var runningCrawlersCount: Int = 0
-    @objc dynamic var log: [String] = []
+    @objc dynamic var log: [String] = [] {
+        didSet {
+            logChangeObservable.fire()
+        }
+    }
+    lazy var logChangeObservable = Observable(self)
     @objc dynamic var unfinished: Bool {
         return runningCrawlersCount != 0 || updateStatusRunning
     }
@@ -61,8 +66,13 @@ import TarantulaPluginCore
     }
 
     func crawlerSingleTask() throws {
+        // Defer crawllist update, so that we will update it even in case of error
+        defer {
+            crawllistNeedsUpdating.modify { x in x = true }
+        }
+
         guard let crawlingObject = (crawllist.modify { c in c.popFirst() }) else {
-            return
+            throw CrawlerOpsError.queueEmpty
         }
 
         let plugin = resolvePlugin(for: crawlingObject)
@@ -97,8 +107,7 @@ import TarantulaPluginCore
 
         try plugin.crawlObject(object: crawlingObject)
 
-        // Queue crawllist update
-        crawllistNeedsUpdating.modify { x in x = true }
+        // Report that we have +1 in current session
         NSApplication.shared.controller.mainQueue.addOperation {
             self.currentSessionCrawled += 1
         }
@@ -188,6 +197,9 @@ import TarantulaPluginCore
             }
             catch let error {
                 self.pushToLogAsync("Error while crawling: \(error)")
+                // Introduce small delay to sync other threads. Oterwise we will effectively deadlock
+                // all updates
+                usleep(1000000)
             }
 
             appController.mainQueue.addOperation {
@@ -221,103 +233,21 @@ import TarantulaPluginCore
         }
 
         // Populate queues
+        updateQueue.addOperation(updateOperation)
         for _ in 0..<maxConcurrent {
             crawlingQueue.addOperation(crawlingOperation)
         }
-        updateQueue.addOperation(updateOperation)
+    }
+
+    enum CrawlerOpsError: LocalizedError {
+        case queueEmpty
+
+        var errorDescription: String? {
+            switch self {
+            case .queueEmpty:
+                return "Queue empty"
+            }
+        }
     }
 }
 
-//
-//func crawler(inRepository repo: Repository, withBaseUrl baseUrl: URL,
-//             themesFilter: @escaping (Int) -> (Bool),
-//             pageLimit: Int?,
-//             bookFilter: @escaping (Book) -> (Bool),
-//             authorFilter: @escaping (Profile) -> (Bool),
-//             reviewFilter: @escaping (ReviewPage) -> (Bool),
-//             statusCallback: @escaping (_ remaining: Int, _ done: Int, _ failed: Int) -> (Bool)) {
-//    let listUrl = baseUrl.appendingPathComponent("book/")
-//
-//    guard let allThemes = try? crawlThemes(url: listUrl, repository: repo) else {
-//        print("Error crawling themes")
-//        return
-//    }
-//    let filterString = "?&srt=3&r=10"
-//
-//    let queue = OperationQueue()
-//    queue.maxConcurrentOperationCount = 20
-//
-//    var crawllist: Deque<CrawlableObject> = Deque()
-//    let obj = NSObject()
-//
-//    queue.addOperations((0..<allThemes.count).map { i in
-//        BlockOperation(block: {
-//            if synchronized(obj, do: { themesFilter(i) }),
-//               let l = try? crawlBooklist(listUrl: URL(string: allThemes[i].absoluteString + filterString)!,
-//                                          repository: repo, pageLimit: pageLimit) {
-//                synchronized(obj) {
-//                    crawllist += l as [CrawlableObject]
-//                    statusCallback(allThemes.count - i, crawllist.count, 0)
-//                }
-//            }
-//        })
-//    }, waitUntilFinished: true)
-//    
-//    crawllist = Deque()
-//    
-//    print("Initializing reviews")
-//    crawllist += Deque(Array(repo.allUncrawledReviewPages()) as [CrawlableObject])
-//    
-//    print("Initializing profiles")
-//    crawllist += Deque(Array(repo.allUncrawledProfiles()) as [CrawlableObject])
-//    
-//    print("Initializing books")
-//    crawllist += Deque(Array(repo.allUncrawledBooks()) as [CrawlableObject])
-//    
-//    var failedlist: [CrawlableObject] = []
-//
-//    var processed = 0
-//
-//    var continueFlag = true
-//    while crawllist.count != 0 && continueFlag {
-//        queue.addOperations((0..<min(100, crawllist.count)).map { i in
-//            BlockOperation(block: {
-//                switch synchronized(obj, do: { crawllist.popFirst()! }) {
-//                case let s as Book:
-//                    // Books
-//                    if let result = try? crawlBook(book: s, repository: repo) {
-//                        if bookFilter(s) {
-//                            synchronized(obj) { crawllist += result }
-//                        }
-//                    } else {
-//                        synchronized(obj) { failedlist.append(s) }
-//                    }
-//                case let s as ReviewPage:
-//                    // Reviews
-//                    if let result = try? crawlReviews(reviewPage: s, repository: repo) {
-//                        if reviewFilter(s) {
-//                            synchronized(obj) { crawllist += result }
-//                        }
-//                    } else {
-//                        synchronized(obj) { failedlist.append(s) }
-//                    }
-//                case let s as Profile:
-//                    // Profiles
-//                    if let result = try? crawlProfile(profile: s, repository: repo) {
-//                        if authorFilter(s) {
-//                            synchronized(obj) { crawllist += result }
-//                        }
-//                    } else {
-//                        synchronized(obj) { failedlist.append(s) }
-//                    }
-//                default:
-//                    break
-//                }
-//                synchronized(obj) {
-//                    processed += 1
-//                    continueFlag = statusCallback(crawllist.count, processed, failedlist.count)
-//                }
-//            })
-//        }, waitUntilFinished: true)
-//    }
-//}
