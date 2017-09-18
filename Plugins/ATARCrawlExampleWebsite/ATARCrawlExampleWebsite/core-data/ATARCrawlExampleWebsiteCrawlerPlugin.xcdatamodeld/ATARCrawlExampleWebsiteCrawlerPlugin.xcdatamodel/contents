@@ -111,10 +111,10 @@
         <element name="DrugDuration" positionX="-18" positionY="99" width="128" height="120"/>
         <element name="DrugPatients" positionX="-36" positionY="63" width="128" height="60"/>
         <element name="DrugSideEffects" positionX="-18" positionY="108" width="128" height="60"/>
-        <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="105"/>
+        <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="103"/>
         <element name="DrugStopReason" positionX="-27" positionY="90" width="128" height="105"/>
         <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="90"/>
-        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="330"/>
+        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="328"/>
         <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
     </elements>
 </model>
