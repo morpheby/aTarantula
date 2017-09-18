@@ -105,6 +105,8 @@ import TarantulaPluginCore
         // 6. Perform AND on each non-new related object for `filtered`
         //
 
+        pushToLogAsync("Crawling \(type(of: crawlingObject)) using \(type(of: plugin))")
+
         try plugin.crawlObject(object: crawlingObject)
 
         // Report that we have +1 in current session
