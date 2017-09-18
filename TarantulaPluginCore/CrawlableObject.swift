@@ -17,6 +17,11 @@ import Foundation
     ///    as the computed or stored property of the object
     @objc var id: String? { get set }
 
+    /// Object crawl URL for CoreData
+    /// - Important: This property needs to be defined in the CoreData Model, not
+    ///    as the computed or stored property of the object
+    @objc var crawl_url: String? { get set }
+
     /// Object marker of presence for CoreData
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
@@ -31,7 +36,7 @@ import Foundation
 public extension CrawlableObject {
     var objectUrl: URL {
         get {
-            return cleanedUrlForString(self.id!)!
+            return url(string: crawl_url!)!
         }
     }
 
@@ -66,11 +71,19 @@ func cleanUrl(_ url: URL) -> URL? {
     return components.url?.standardized
 }
 
-public func cleanedUrlForString(_ string: String) -> URL? {
+public func cleanedUrl(string: String) -> URL? {
     return URL(string: string) .flatMap { u in cleanUrl(u) }
 }
 
-public func cleanedStringForUrl(_ url: URL) -> String? {
+public func url(string: String) -> URL? {
+    return URL(string: string)?.standardized
+}
+
+public func string(url: URL) -> String {
+    return url.standardized.absoluteString
+}
+
+public func cleanedString(url: URL) -> String? {
     return cleanUrl(url)?.absoluteString
 }
 

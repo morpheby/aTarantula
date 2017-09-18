@@ -51,6 +51,10 @@ class PluginLoader {
                 state = .loading(path: plugin)
                 pluginLoadingObservable.fire()
 
+                guard plugin.pathExtension == "bundle" else {
+                    continue
+                }
+
                 let bundle = Bundle(url: plugin)
                 guard let principal = bundle?.principalClass else {
                     let outerError = LoadingError.bundleNotLoaded(bundleUrl: plugin)
