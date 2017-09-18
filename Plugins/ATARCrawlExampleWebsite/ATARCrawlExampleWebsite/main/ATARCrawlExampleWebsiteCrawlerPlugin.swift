@@ -23,11 +23,16 @@ import TarantulaPluginCore
     }
 
     public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
-        return [Treatment.self]
+        return [
+            Treatment.self, TreatmentPurposes.self, DrugCategory.self, DrugPatients.self, DrugSideEffects.self,
+        ]
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
-        return crawlableObjectTypes as [NSManagedObject.Type] + []
+        return crawlableObjectTypes as [NSManagedObject.Type] + [
+            DrugAdherence.self, DrugBurden.self, DrugCost.self, DrugDosageCount.self, DrugDuration.self,
+            DrugSideEffectSeverity.self, DrugStopReason.self, DrugSwitch.self,
+        ]
     }
 
     public func crawlObject(object: CrawlableObject) throws  {

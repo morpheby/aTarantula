@@ -36,6 +36,7 @@ class InitialObjectViewController: NSViewController {
         dismiss(self)
     }
 
+    @discardableResult
     override func presentError(_ error: Error) -> Bool {
         errorShow.isHidden = false
         errorShow.alphaValue = 0.0
