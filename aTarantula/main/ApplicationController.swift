@@ -29,6 +29,7 @@ class ApplicationController {
         }
     }
 
+    @discardableResult
     class func showDescribedErrorUnbound(error: Error) -> Bool {
         let firstResponder: NSResponder = NSApplication.shared.keyWindow?.firstResponder ?? NSApplication.shared
         let result = firstResponder.presentError(error)

@@ -15,6 +15,6 @@ func crawl(object: CrawlableObject, usingRepository repository: Repository, with
         try crawlTreatment(o, usingRepository: repository, withPlugin: plugin)
     default:
         let url = repository.performAndWait { object.objectUrl }
-        throw CrawlError(url: url, info: "Unsupported object type for \(type(of: plugin))")
+        throw CrawlError(url: url, info: "Unsupported object type \(type(of: object)) for \(type(of: plugin))")
     }
 }
