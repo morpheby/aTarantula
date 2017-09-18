@@ -492,6 +492,7 @@
 		F64083BC1F65A4FB00008FEB /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenPanelAccessory.xib; sourceTree = "<group>"; };
 		F64083C21F66DC4C00008FEB /* SynchronizedBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedBox.swift; sourceTree = "<group>"; };
+		F65CB8F61F6FEFB100299F7B /* CrawlingPlayround.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CrawlingPlayround.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1558,6 +1559,7 @@
 		F6C4637C1F474BF000782C88 = {
 			isa = PBXGroup;
 			children = (
+				F65CB8F61F6FEFB100299F7B /* CrawlingPlayround.playground */,
 				F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */,
 				F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */,
 				F6BEFC271F4AA6C500CA7AB4 /* Plugins */,
