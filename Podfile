@@ -5,8 +5,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :osx, '10.11'
 
 target 'TarantulaPluginCore' do
-    pod 'CrossroadRegex', :git => 'https://github.com/crossroadlabs/Regex.git'
-    pod 'Kanna', '~> 2.1.0'
+    pod 'CrossroadRegex', :git => 'https://github.com/morpheby/Regex.git'
+    pod 'Kanna', :git => 'https://github.com/morpheby/Kanna.git'
 end
 
 post_install do |installer|
