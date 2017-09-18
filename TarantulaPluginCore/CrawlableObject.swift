@@ -60,12 +60,18 @@ public extension CrawlableObject {
     }
 }
 
-public func cleanedUrlForString(_ string: String) -> URL? {
-    return URL(string: string)?.standardized
+func cleanUrl(_ url: URL) -> URL? {
+    guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
+    components.query = nil
+    return components.url?.standardized
 }
 
-public func cleanedStringForUrl(_ url: URL) -> String {
-    return url.standardized.absoluteString
+public func cleanedUrlForString(_ string: String) -> URL? {
+    return URL(string: string) .flatMap { u in cleanUrl(u) }
+}
+
+public func cleanedStringForUrl(_ url: URL) -> String? {
+    return cleanUrl(url)?.absoluteString
 }
 
 public typealias CrawlableManagedObject = NSManagedObject & CrawlableObject

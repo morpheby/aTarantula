@@ -55,7 +55,7 @@ extension CoredataRepository: Repository {
 
     func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject {
         let o = self.newObject(type: type)
-        o.id = cleanedStringForUrl(url)
+        o.id = cleanedStringForUrl(url)!
         o.obj_deleted = true
         o.disabled = false
         return o
@@ -77,7 +77,8 @@ extension CoredataRepository: Repository {
         let request: NSFetchRequest = type.fetchRequest()
         switch (selection) {
         case let .object(url):
-            request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [cleanedStringForUrl(url)])
+            guard let cleanedUrlString = cleanedStringForUrl(url) else { fatalError("Malformed URL for object search") }
+            request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [cleanedUrlString])
         case .crawledObjects:
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
