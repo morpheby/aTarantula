@@ -33,7 +33,7 @@ class SettingsViewController: NSViewController {
 
         repository.performAndWait {
             for type in self.plugin.allObjectTypes {
-                let allObjects = repository.readAllObjects(type, withSelection: .all)
+                let allObjects = repository.readAllObjects(type)
                 for object in allObjects {
                     repository.delete(object: object)
                 }

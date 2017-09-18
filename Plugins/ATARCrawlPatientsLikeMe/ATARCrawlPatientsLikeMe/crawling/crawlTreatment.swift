@@ -76,7 +76,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     let description = html.xpath("//div[@id='overview']//header[@id='summary']/../p[@itemprop='description']").first?.text
 
     let purposes: TreatmentPurposes? = {
-        html.xpath("//div[@id='overview']//div[@data-widget='treatment_report_section']//tbody/@data-url").flatMap { element in
+        html.xpath("//div[@id='overview']//div[@data-widget='treatment_report_section']/table[caption='Reported purpose & perceived effectiveness']/tbody/@data-url").flatMap { element in
             guard let urlString = element.text,
             let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
@@ -90,7 +90,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     }() .flatMap { x in x } .first
 
     let patients: DrugPatients? = {
-        html.xpath("//div[@id='overview']//div[@class='glass-panel' and a='See all ']/a/@href").flatMap { element in
+        html.xpath("//div[@id='overview']//div[@class='glass-panel']/a[contains(normalize-space(text()),'See all')]/@href").flatMap { element in
             guard let urlString = element.text,
             let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
@@ -101,17 +101,17 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
             relatedCrawlables.append(relatedObject)
             return relatedObject
         }
-        }() .flatMap { x in x } .first
+    }() .flatMap { x in x } .first
 
     let sideeffect_severities: [DrugSideEffectSeverity] = {
         html.xpath("//div[@id='overview']//div[h2='Side effects']//tr[@data-yah-key='overall_side_effects']").flatMap { element in
             guard let id_value_str = element.xpath("@data-yah-value").first?.text,
             let id_value = Int(id_value_str) else { return nil }
 
-            let tmpArray = element.xpath("td").map { e in e.text }
+            let tmpArray = element.xpath("td")
             guard tmpArray.count == 3,
-            let name = tmpArray[0],
-            let countStr = tmpArray[2],
+            let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
+            let countStr = tmpArray[2].xpath("a").first?.text,
             let count = Int(countStr) else { return nil }
 
             let relatedObject: DrugSideEffectSeverity = repo.performAndWait {
