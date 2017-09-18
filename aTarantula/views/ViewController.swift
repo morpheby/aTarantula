@@ -59,6 +59,7 @@ class ViewController: NSViewController {
         for (_, store) in NSApplication.shared.controller.dataLoader.stores {
             try? store.persistentContainer.viewContext.save()
             store.repository.perform { }
+            crawler.updateCrawllist()
         }
     }
 
