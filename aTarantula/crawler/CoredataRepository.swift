@@ -49,19 +49,26 @@ extension CoredataRepository: Repository {
         context.delete(object)
     }
 
+    func customId<T: NSManagedObject>(fromUrl url: URL, forType type: T.Type) -> String {
+        if let t = type as? CrawlableObjectCustomId.Type {
+            return t.id(fromUrl: url)
+        } else {
+            return string(url: url)
+        }
+    }
+
     func newObject<T: NSManagedObject>(type: T.Type) -> T {
         return type.init(context: self.context)
     }
 
     func newObject<T: NSManagedObject>(forUrl url: URL, type: T.Type) -> T where T: CrawlableObject {
         let o = self.newObject(type: type)
-        o.id = cleanedString(url: url)!
+        o.id = customId(fromUrl: url, forType: type)
         o.crawl_url = string(url: url)
         o.obj_deleted = true
         o.disabled = false
         return o
     }
-
 
     func readAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T] {
         let request: NSFetchRequest = type.fetchRequest()
@@ -78,7 +85,7 @@ extension CoredataRepository: Repository {
         let request: NSFetchRequest = type.fetchRequest()
         switch (selection) {
         case let .object(url):
-            guard let cleanedUrlString = cleanedString(url: url) else { fatalError("Malformed URL for object search") }
+            let cleanedUrlString = customId(fromUrl: url, forType: type)
             request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [cleanedUrlString])
         case .crawledObjects:
             request.predicate = NSPredicate(

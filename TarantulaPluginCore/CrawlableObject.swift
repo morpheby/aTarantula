@@ -33,6 +33,10 @@ import Foundation
     @objc var disabled: Bool { get set }
 }
 
+public protocol CrawlableObjectCustomId {
+    static func id(fromUrl: URL) -> String
+}
+
 public extension CrawlableObject {
     var objectUrl: URL {
         get {
@@ -65,26 +69,12 @@ public extension CrawlableObject {
     }
 }
 
-func cleanUrl(_ url: URL) -> URL? {
-    guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
-    components.query = nil
-    return components.url?.standardized
-}
-
-public func cleanedUrl(string: String) -> URL? {
-    return URL(string: string) .flatMap { u in cleanUrl(u) }
-}
-
 public func url(string: String) -> URL? {
     return URL(string: string)?.standardized
 }
 
 public func string(url: URL) -> String {
     return url.standardized.absoluteString
-}
-
-public func cleanedString(url: URL) -> String? {
-    return cleanUrl(url)?.absoluteString
 }
 
 public typealias CrawlableManagedObject = NSManagedObject & CrawlableObject

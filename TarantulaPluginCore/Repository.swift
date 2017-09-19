@@ -38,12 +38,12 @@ public protocol Repository {
     ///    - type: The type of the objects requested
     func readAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T]
 
-//    /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
-//    /// the predicate `predicate`
-//    /// - Parameters:
-//    ///    - type: The type of the objects requested
-//    ///    - predicate: The predicate used to find objects in the repository
-//    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: NSPredicate) -> [T]
+    /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
+    /// the predicate `predicate`
+    /// - Parameters:
+    ///    - type: The type of the objects requested
+    ///    - predicate: The predicate used to find objects in the repository
+    func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: NSPredicate) -> [T]
 
     /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
     /// the selection `selection`
