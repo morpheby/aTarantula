@@ -66,4 +66,8 @@ let dosages: [(String, Int)?] = html.xpath("//div[@id='overview']//div[h2='Dosag
     return (name, count)
 }
 
+let switches = html.xpath("//div[@id='overview']//div[h2='What people switch to and from']//div[@data-widget='treatment_report_section']/table/tbody/@data-url").flatMap { element in
+    element.text
+}
+
 
