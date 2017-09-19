@@ -26,16 +26,15 @@ extension Treatment: CrawlableObjectCustomId {
         guard let last = tokens.last else {
             fatalError("Malformed URL for Treatment — No path")
         }
-        guard let idRange = last.index(where: { (c: Character) -> Bool in
+        if let idRange = last.index(where: { (c: Character) -> Bool in
             CharacterSet.decimalDigits.isDisjoint(with: CharacterSet(charactersIn: String(c)))
-        }) else {
-            fatalError("Malformed URL for Treatment — ID not present at start")
+        }) {
+            // Clean everything past numerical ID
+            guard let removalIndex = idRange.samePosition(in: components.path) else {
+                fatalError("Malformed URL for Treatment — ID not present at start")
+            }
+            components.path.removeSubrange(removalIndex...)
         }
-
-        guard let removalIndex = idRange.samePosition(in: components.path) else {
-            fatalError("Malformed URL for Treatment — ID not present at start")
-        }
-        components.path.removeSubrange(removalIndex...)
 
         guard let result = components.url?.standardized.absoluteString else {
             fatalError("Malformed URL for Treatment — unable to rebuild URL")

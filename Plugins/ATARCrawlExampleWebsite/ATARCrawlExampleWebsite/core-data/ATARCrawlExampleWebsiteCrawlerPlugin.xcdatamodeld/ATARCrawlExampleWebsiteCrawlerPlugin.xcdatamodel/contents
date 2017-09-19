@@ -70,12 +70,18 @@
     </entity>
     <entity name="DrugSwitch" representedClassName="DrugSwitch" syncable="YES" codeGenerationType="category">
         <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="switched_from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_to" inverseEntity="Treatment" syncable="YES"/>
-        <relationship name="switched_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_from" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="drug_switches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitches" inverseName="drug_switch" inverseEntity="DrugSwitches" syncable="YES"/>
+        <relationship name="switched_from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_from" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="switched_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switched_to" inverseEntity="Treatment" syncable="YES"/>
         <fetchIndex name="bySwitchTreatment">
             <fetchIndexElement property="switched_to" type="Binary" order="ascending"/>
             <fetchIndexElement property="switched_from" type="Binary" order="ascending"/>
         </fetchIndex>
+    </entity>
+    <entity name="DrugSwitches" representedClassName="DrugSwitches" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
+        <relationship name="drug_from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switches_to_self" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="drug_switch" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="drug_switches" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="drug_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switches_from_self" inverseEntity="Treatment" syncable="YES"/>
     </entity>
     <entity name="Treatment" representedClassName="Treatment" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <attribute name="drug_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -94,8 +100,10 @@
         <relationship name="sideeffects" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSideEffects" inverseName="drug" inverseEntity="DrugSideEffects" syncable="YES"/>
         <relationship name="stop_reasons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugStopReason" inverseName="drug" inverseEntity="DrugStopReason" syncable="YES"/>
         <relationship name="stopped_durations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDuration" inverseName="drug_stopped" inverseEntity="DrugDuration" syncable="YES"/>
-        <relationship name="switched_from" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_to" inverseEntity="DrugSwitch" syncable="YES"/>
-        <relationship name="switched_to" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_from" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="switched_from" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_from" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="switched_to" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="switched_to" inverseEntity="DrugSwitch" syncable="YES"/>
+        <relationship name="switches_from_self" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSwitches" inverseName="drug_to" inverseEntity="DrugSwitches" syncable="YES"/>
+        <relationship name="switches_to_self" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSwitches" inverseName="drug_from" inverseEntity="DrugSwitches" syncable="YES"/>
         <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Treatment" inverseName="generic" inverseEntity="Treatment" syncable="YES"/>
     </entity>
     <entity name="TreatmentPurposes" representedClassName="TreatmentPurposes" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
@@ -113,8 +121,9 @@
         <element name="DrugSideEffects" positionX="-18" positionY="108" width="128" height="60"/>
         <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="103"/>
         <element name="DrugStopReason" positionX="-27" positionY="90" width="128" height="105"/>
-        <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="90"/>
-        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="328"/>
+        <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="103"/>
+        <element name="Treatment" positionX="-63" positionY="-18" width="128" height="358"/>
         <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
+        <element name="DrugSwitches" positionX="-18" positionY="135" width="128" height="90"/>
     </elements>
 </model>

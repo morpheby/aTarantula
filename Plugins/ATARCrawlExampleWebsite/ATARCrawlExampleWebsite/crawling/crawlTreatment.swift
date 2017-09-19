@@ -46,7 +46,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     }() .flatMap { x in x } .first
 
     let types: [Treatment] = {
-        html.xpath("//div[@id='overview']//header[@id='summary']/../p[strong='Most popular types:']//a/@href").flatMap { element in
+        html.xpath("//div[@id='overview']//header[@id='summary']/../p[strong='Most popular types:']/span/a/@href").flatMap { element in
             guard let urlString = element.text,
             let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
@@ -227,7 +227,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     }() .flatMap { x in x }
 
     let adherences: [DrugAdherence] = {
-        html.xpath("//div[@id='overview']//div[contains(caption,'Adherence')]//tr[@data-yah-key='adherence']").flatMap { element in
+        html.xpath("//div[@id='overview']//table[contains(caption,'Adherence')]//tr[@data-yah-key='adherence']").flatMap { element in
             guard let id_value_str = element.xpath("@data-yah-value").first?.text,
                 let id_value = Int(id_value_str) else { return nil }
 
@@ -249,7 +249,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     }() .flatMap { x in x }
 
     let burdens: [DrugBurden] = {
-        html.xpath("//div[@id='overview']//div[contains(caption,'Burden')]//tr[@data-yah-key='burden']").flatMap { element in
+        html.xpath("//div[@id='overview']//table[contains(caption,'Burden')]//tr[@data-yah-key='burden']").flatMap { element in
             guard let id_value_str = element.xpath("@data-yah-value").first?.text,
                 let id_value = Int(id_value_str) else { return nil }
 
@@ -271,7 +271,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
     }() .flatMap { x in x }
 
     let costs: [DrugCost] = {
-        html.xpath("//div[@id='overview']//div[contains(caption,'Cost per month')]//tr[@data-yah-key='cost']").flatMap { element in
+        html.xpath("//div[@id='overview']//table[contains(caption,'Cost per month')]//tr[@data-yah-key='cost']").flatMap { element in
             guard let id_value_str = element.xpath("@data-yah-value").first?.text,
                 let id_value = Int(id_value_str) else { return nil }
 
@@ -292,82 +292,19 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
         }
     }() .flatMap { x in x }
 
-    let switched_from: [DrugSwitch] = {
-        html.xpath("//div[@id='overview']//div[h2='What people switch to and from']//tr[@data-yah-key='switched_from_treatment']").flatMap { element in
-            guard let id_value_str = element.xpath("@data-yah-value").first?.text,
-                let id_value = Int(id_value_str) else { return nil }
-
-            let tmpArray = element.xpath("td | th")
-            guard tmpArray.count == 3,
-                let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
-                let countStr = tmpArray[1].xpath("a").first?.text,
-                let count = Int(countStr) else { return nil }
-
-            guard let assembledUrl = URL(string: "https://examplewebsite/treatments/show/\(id_value)") else { return nil }
+    let switches: [DrugSwitches?] = {
+        html.xpath("//div[@id='overview']//div[h2='What people switch to and from']//div[@data-widget='treatment_report_section']/table/tbody/@data-url").flatMap { element in
+            guard let urlString = element.text,
+                let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
             let relatedObject = repo.performAndWait {
-                repo.readAllObjects(Treatment.self, withSelection: .object(url: assembledUrl)).first ??
-                    repo.newObject(forUrl: assembledUrl, type: Treatment.self)
+                repo.readAllObjects(DrugSwitches.self, withSelection: .object(url: url)).first ??
+                    repo.newObject(forUrl: url, type: DrugSwitches.self)
             }
-            assert(relatedObject.name == nil || relatedObject.name == name, "Invalid DrugSwitch parameters: Treatment names mismatch")
             relatedCrawlables.append(relatedObject)
-
-            let otherObject: DrugSwitch = repo.performAndWait {
-                if let o = repo.readAllObjects(DrugSwitch.self,
-                                               withPredicate: NSPredicate(format: "\(#keyPath(DrugSwitch.switched_from)) == %@ && \(#keyPath(DrugSwitch.switched_to)) == %@", argumentArray: [relatedObject, object])).first {
-                    assert(o.patients_count == Int64(count), "Invalid DrugSwitch parameters: patient_count mismatch")
-                    assert(o.switched_from == relatedObject, "Invalid DrugSwitch parameters: switch values mismatch")
-                    assert(o.switched_to == object, "Invalid DrugSwitch parameters: switch values mismatch")
-                    return o
-                } else {
-                    let o = repo.newObject(type: DrugSwitch.self)
-                    o.patients_count = Int64(count)
-                    o.switched_from = relatedObject
-                    o.switched_to = object
-                    return o
-                }
-            }
-            return otherObject
+            return relatedObject
         }
-    }() .flatMap { x in x }
-
-    let switched_to: [DrugSwitch] = {
-        html.xpath("//div[@id='overview']//div[h2='What people switch to and from']//tr[@data-yah-key='switched_to_treatment']").flatMap { element in
-            guard let id_value_str = element.xpath("@data-yah-value").first?.text,
-                let id_value = Int(id_value_str) else { return nil }
-
-            let tmpArray = element.xpath("td | th")
-            guard tmpArray.count == 3,
-                let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
-                let countStr = tmpArray[1].xpath("a").first?.text,
-                let count = Int(countStr) else { return nil }
-
-            guard let assembledUrl = URL(string: "https://examplewebsite/treatments/show/\(id_value)") else { return nil }
-
-            let relatedObject = repo.performAndWait {
-                repo.readAllObjects(Treatment.self, withSelection: .object(url: assembledUrl)).first ??
-                    repo.newObject(forUrl: assembledUrl, type: Treatment.self)
-            }
-            assert(relatedObject.name == nil || relatedObject.name == name, "Invalid DrugSwitch parameters: Treatment names mismatch")
-            relatedCrawlables.append(relatedObject)
-
-            let otherObject: DrugSwitch = repo.performAndWait {
-                if let o = repo.readAllObjects(DrugSwitch.self, withPredicate: NSPredicate(format: "\(#keyPath(DrugSwitch.switched_from)) == %@ && \(#keyPath(DrugSwitch.switched_to)) == %@", argumentArray: [object, relatedObject])).first {
-                    assert(o.patients_count == Int64(count), "Invalid DrugSwitch parameters: patient_count mismatch")
-                    assert(o.switched_from == object, "Invalid DrugSwitch parameters: switch values mismatch")
-                    assert(o.switched_to == relatedObject, "Invalid DrugSwitch parameters: switch values mismatch")
-                    return o
-                } else {
-                    let o = repo.newObject(type: DrugSwitch.self)
-                    o.patients_count = Int64(count)
-                    o.switched_from = object
-                    o.switched_to = relatedObject
-                return o
-                }
-            }
-            return otherObject
-        }
-    }() .flatMap { x in x }
+    }()
 
     // Store object
     repo.perform {
@@ -395,8 +332,11 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
         object.adherences = Set(adherences) as NSSet
         object.burdens = Set(burdens) as NSSet
         object.costs = Set(costs) as NSSet
-        object.switched_from = Set(switched_from) as NSSet
-        object.switched_to = Set(switched_to) as NSSet
+
+        if switches.count == 2 {
+            object.switches_to_self = switches[0]
+            object.switches_from_self = switches[1]
+        }
 
         object.objectIsCrawled = true
     }

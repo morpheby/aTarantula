@@ -55,6 +55,7 @@ class DataLoader {
             if let error = error {
                 self.loadingState = .asyncError(error)
             } else {
+                persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
                 let controller = DataController(persistentContainer: persistentContainer)
                 self.stores[name] = controller
                 self.loadingState = .loadedStore(named: name)

@@ -25,6 +25,7 @@ import TarantulaPluginCore
     public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
         return [
             Treatment.self, TreatmentPurposes.self, DrugCategory.self, DrugPatients.self, DrugSideEffects.self,
+            DrugSwitches.self,
         ]
     }
 
