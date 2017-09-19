@@ -53,4 +53,17 @@ let sideeffect_severities: [(String, Int)?] = html.xpath("//div[@id='overview']/
     return (name, count)
 }
 
+let dosages: [(String, Int)?] = html.xpath("//div[@id='overview']//div[h2='Dosages']//tr[@data-yah-key='dosage']").flatMap { element in
+    guard let id_value = element.xpath("@data-yah-value").first?.text else { return nil }
+
+    let tmpArray = element.xpath("td | th")
+
+    guard tmpArray.count == 3,
+        let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
+        let countStr = tmpArray[1].xpath("a").first?.text,
+        let count = Int(countStr) else { return nil }
+
+    return (name, count)
+}
+
 

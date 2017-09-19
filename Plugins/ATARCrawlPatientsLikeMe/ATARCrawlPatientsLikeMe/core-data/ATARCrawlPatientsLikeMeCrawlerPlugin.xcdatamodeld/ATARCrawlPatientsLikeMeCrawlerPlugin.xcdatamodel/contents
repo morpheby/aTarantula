@@ -46,7 +46,7 @@
     <entity name="DrugDuration" representedClassName="DrugDuration" syncable="YES" codeGenerationType="category">
         <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="patients_count" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="drug_current" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="current_durations" inverseEntity="Treatment" syncable="YES"/>
         <relationship name="drug_stopped" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="stopped_durations" inverseEntity="Treatment" syncable="YES"/>
     </entity>
@@ -84,7 +84,7 @@
         <relationship name="adherences" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugAdherence" inverseName="drug" inverseEntity="DrugAdherence" syncable="YES"/>
         <relationship name="burdens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugBurden" inverseName="drug" inverseEntity="DrugBurden" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugCategory" inverseName="drugs" inverseEntity="DrugCategory" syncable="YES"/>
-        <relationship name="costs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugCost" inverseName="drug" inverseEntity="DrugCost" syncable="YES"/>
+        <relationship name="costs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugCost" inverseName="drug" inverseEntity="DrugCost" syncable="YES"/>
         <relationship name="current_durations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDuration" inverseName="drug_current" inverseEntity="DrugDuration" syncable="YES"/>
         <relationship name="dosages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugDosageCount" inverseName="drug" inverseEntity="DrugDosageCount" syncable="YES"/>
         <relationship name="generic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="types" inverseEntity="Treatment" syncable="YES"/>
@@ -108,7 +108,7 @@
         <element name="DrugCategory" positionX="-54" positionY="9" width="128" height="75"/>
         <element name="DrugCost" positionX="18" positionY="153" width="128" height="105"/>
         <element name="DrugDosageCount" positionX="27" positionY="144" width="128" height="105"/>
-        <element name="DrugDuration" positionX="-18" positionY="99" width="128" height="120"/>
+        <element name="DrugDuration" positionX="-18" positionY="99" width="128" height="118"/>
         <element name="DrugPatients" positionX="-36" positionY="63" width="128" height="60"/>
         <element name="DrugSideEffects" positionX="-18" positionY="108" width="128" height="60"/>
         <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="103"/>

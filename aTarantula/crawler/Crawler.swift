@@ -50,6 +50,7 @@ import TarantulaPluginCore
     }
 
     private var crawllist: SynchronizedBox<Deque<CrawlableObject>> = SynchronizedBox(Deque())
+    private var crawlActive: SynchronizedBox<Set<AnyHashable>> = SynchronizedBox(Set())
     private var crawllistNeedsUpdating: SynchronizedBox<Bool> = SynchronizedBox(true)
 
     override required init() {
@@ -71,10 +72,19 @@ import TarantulaPluginCore
             crawllistNeedsUpdating.modify { x in x = true }
         }
 
-        guard let crawlingObject = (crawllist.modify { c in c.popFirst() }) else {
+        guard let crawlingObject = (zipModify(&crawllist, &crawlActive) { c, a -> CrawlableObject? in
+            guard let o = c.popFirst() else { return nil }
+            a.insert(o as! AnyHashable)
+            return o
+        }) else {
             throw CrawlerOpsError.queueEmpty
         }
 
+        defer {
+            crawlActive.modify { c in
+                c.remove(crawlingObject as! AnyHashable)
+            }
+        }
         let plugin = resolvePlugin(for: crawlingObject)
 
         // After we have plugin, we need to crawl the object. The filtering is responsibility
@@ -115,10 +125,19 @@ import TarantulaPluginCore
         }
     }
 
+    func resetLists() {
+        zipModify(&crawllist, &crawllistNeedsUpdating, &crawlActive) { c, u, a in
+            guard !running && !unfinished else { fatalError("Attempt to reset while running") }
+            c = Deque()
+            u = true
+            a = Set()
+        }
+    }
+
     func updateCrawllist() {
         logDebug("attempting update lock")
 
-        zipModify(&crawllist, &crawllistNeedsUpdating) { c, u in
+        zipModify(&crawllist, &crawllistNeedsUpdating, &crawlActive) { c, u, a in
             logDebug("update lock acquired")
 
             defer {
@@ -151,6 +170,12 @@ import TarantulaPluginCore
                 }
             }
 
+            collectedObjects = collectedObjects.filter { collectedObj in
+                !c.contains { existingObj in
+                    collectedObj === existingObj
+                } &&
+                !a.contains(collectedObj as! AnyHashable)
+            }
             c.append(contentsOf: collectedObjects)
 
             let requiresStop = (c.count == 0)

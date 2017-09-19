@@ -53,6 +53,7 @@ class ViewController: NSViewController {
 
         switch segue.identifier {
         case .some(.pluginDrawerSegue):
+            crawler.running = false
             guard let destinationViewController = segue.destinationController as? NSViewController else {
                 fatalError("Invalid segue: \(segue)")
             }
@@ -67,6 +68,7 @@ class ViewController: NSViewController {
         for (_, store) in NSApplication.shared.controller.dataLoader.stores {
             try? store.persistentContainer.viewContext.save()
             store.repository.perform { }
+            crawler.resetLists()
             crawler.updateCrawllist()
         }
     }
