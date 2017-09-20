@@ -41,7 +41,11 @@ func crawlDrugSwitches(_ object: DrugSwitches, usingRepository repo: Repository,
         object.drug_from != nil ? Selection.from :
         object.drug_to != nil ? Selection.to : Selection.error
     }
-    guard selected != .error else { fatalError("Invalid DrugSwitch data") }
+    guard selected != .error else {
+        // Discard the object — some drugs don't have one of those
+        repo.perform { repo.delete(object: object) }
+        return
+    }
 
     let switched: [DrugSwitch] = {
         html.xpath("//tr[@data-yah-key='\(switch_selector[selected.rawValue])']").flatMap { element in
