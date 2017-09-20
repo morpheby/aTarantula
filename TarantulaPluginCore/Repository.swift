@@ -38,6 +38,12 @@ public protocol Repository {
     ///    - type: The type of the objects requested
     func readAllObjects<T: NSManagedObject>(_ type: T.Type) -> [T]
 
+    /// Returns count of all objects of the type T (given through the parameter `type`) from the repository
+    /// (count of objects to be returned by readAllObjects)
+    /// - Parameters:
+    ///    - type: The type of the objects requested
+    func countAllObjects<T: NSManagedObject>(_ type: T.Type) -> Int
+
     /// Fetches all objects of the type T (given through the parameter `type`) from the repository by using
     /// the predicate `predicate`
     /// - Parameters:

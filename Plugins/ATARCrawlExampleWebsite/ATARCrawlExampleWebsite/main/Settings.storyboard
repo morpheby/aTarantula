@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hcI-8S-4Tz">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hcI-8S-4Tz">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13189.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
             <objects>
                 <viewController title="ExampleWebsite Crawler Settings" id="hcI-8S-4Tz" customClass="SettingsViewController" customModule="ATARCrawlExampleWebsite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="eA0-Hj-tHZ">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="208"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvl-TM-8Ka">
@@ -36,24 +36,98 @@
                                 </connections>
                             </button>
                             <box title="Filtering" translatesAutoresizingMaskIntoConstraints="NO" id="78V-sP-4Fg">
-                                <rect key="frame" x="17" y="90" width="416" height="98"/>
+                                <rect key="frame" x="17" y="90" width="416" height="150"/>
                                 <view key="contentView" id="YgQ-H5-FcL">
-                                    <rect key="frame" x="2" y="2" width="412" height="81"/>
+                                    <rect key="frame" x="2" y="2" width="412" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f6I-Ue-gpx">
-                                            <rect key="frame" x="14" y="33" width="182" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Clear and update filters" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7G-NE-Kn6">
+                                            <rect key="frame" x="14" y="85" width="172" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Reset filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7G-NE-Kn6">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="unfilterAll:" target="hcI-8S-4Tz" id="o8P-1L-bbf"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-PS-Gdi">
+                                            <rect key="frame" x="14" y="49" width="172" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Assign filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="APi-4c-4NM">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="assignFilter:" target="hcI-8S-4Tz" id="w6V-qb-A8m"/>
+                                            </connections>
+                                        </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="RGp-nT-nJJ">
+                                            <rect key="frame" x="211" y="96" width="140" height="18"/>
+                                            <buttonCell key="cell" type="radio" title="No filter" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Nxd-Il-66H">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="selectFilter:" target="hcI-8S-4Tz" id="lyw-6J-XVg"/>
+                                            </connections>
+                                        </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="5Mu-4w-gA1">
+                                            <rect key="frame" x="211" y="70" width="140" height="18"/>
+                                            <buttonCell key="cell" type="radio" title="Filter by drug name" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kL6-Rv-xJk">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="selectFilter:" target="hcI-8S-4Tz" id="Xuy-sp-3oF"/>
+                                            </connections>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-1g-UoB">
+                                            <rect key="frame" x="212" y="39" width="137" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Drug name" drawsBackground="YES" id="Ao5-Px-iln">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="hcI-8S-4Tz" name="value" keyPath="self.filterDrugName" id="Twi-0U-k74">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <string key="NSNullPlaceholder">Drug name</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lHj-RC-ch4">
+                                            <rect key="frame" x="14" y="13" width="172" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Reassign filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Prc-Qd-Bv0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="invokeFilter:" target="hcI-8S-4Tz" id="BdS-0X-SE6"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="trailing" secondItem="f6I-Ue-gpx" secondAttribute="trailing" id="4C5-bU-IIV"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="leading" secondItem="cAW-PS-Gdi" secondAttribute="leading" id="533-0q-OdQ"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="top" secondItem="5Mu-4w-gA1" secondAttribute="bottom" constant="10" id="AjO-Ex-7t6"/>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="top" secondItem="f6I-Ue-gpx" secondAttribute="bottom" constant="15" id="BUd-Np-6Lv"/>
                                         <constraint firstItem="f6I-Ue-gpx" firstAttribute="top" secondItem="YgQ-H5-FcL" secondAttribute="top" constant="20" id="Fay-Du-g07"/>
+                                        <constraint firstItem="RGp-nT-nJJ" firstAttribute="top" secondItem="YgQ-H5-FcL" secondAttribute="top" constant="20" id="GwK-Wb-j5U"/>
                                         <constraint firstItem="f6I-Ue-gpx" firstAttribute="leading" secondItem="YgQ-H5-FcL" secondAttribute="leading" constant="20" id="PKc-Tb-Z7f"/>
-                                        <constraint firstAttribute="bottom" secondItem="f6I-Ue-gpx" secondAttribute="bottom" constant="40" id="haY-me-mPv"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="f6I-Ue-gpx" secondAttribute="trailing" constant="20" id="nnG-ab-g7W"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="trailing" secondItem="5Mu-4w-gA1" secondAttribute="trailing" id="Po2-YL-7bz"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lHj-RC-ch4" secondAttribute="bottom" constant="20" id="RXm-Ad-fei"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="leading" secondItem="RGp-nT-nJJ" secondAttribute="leading" id="TI5-5p-n1d"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="leading" secondItem="5Mu-4w-gA1" secondAttribute="leading" id="YQK-uE-1js"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="trailing" secondItem="cAW-PS-Gdi" secondAttribute="trailing" id="aLz-a4-yr4"/>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="leading" secondItem="YgQ-H5-FcL" secondAttribute="leading" constant="20" id="gKw-km-mi0"/>
+                                        <constraint firstItem="RGp-nT-nJJ" firstAttribute="leading" secondItem="f6I-Ue-gpx" secondAttribute="trailing" constant="32" id="jbI-Nj-bji"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="top" secondItem="RGp-nT-nJJ" secondAttribute="bottom" constant="10" id="rse-wt-EZJ"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="top" secondItem="cAW-PS-Gdi" secondAttribute="bottom" constant="15" id="tg5-lk-epZ"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oyd-1g-UoB" secondAttribute="bottom" constant="20" id="xNs-ag-UaZ"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="trailing" secondItem="RGp-nT-nJJ" secondAttribute="trailing" id="xPj-ga-UNV"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGp-nT-nJJ" secondAttribute="trailing" constant="20" id="zO5-lC-b8q"/>
                                     </constraints>
                                 </view>
                             </box>
@@ -70,6 +144,10 @@
                             <constraint firstAttribute="trailing" secondItem="78V-sP-4Fg" secondAttribute="trailing" constant="20" id="qmJ-lA-y7U"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="filterByNameButton" destination="5Mu-4w-gA1" id="GYn-NH-cis"/>
+                        <outlet property="noFilterButton" destination="RGp-nT-nJJ" id="JP8-BU-mud"/>
+                    </connections>
                 </viewController>
                 <customObject id="MZ6-lj-q64" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -112,8 +190,9 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="gED-ag-WIt" name="value" keyPath="self.urlString" id="ZTs-db-Etm">
+                                    <binding destination="gED-ag-WIt" name="value" keyPath="self.urlString" id="Xz0-Kb-K29">
                                         <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             <string key="NSNullPlaceholder">https://examplewebsite/treatments</string>
                                         </dictionary>
                                     </binding>
