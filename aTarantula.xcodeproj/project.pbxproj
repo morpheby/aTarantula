@@ -167,7 +167,6 @@
 		F64083C31F66DC4D00008FEB /* SynchronizedBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083C21F66DC4C00008FEB /* SynchronizedBox.swift */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
-		F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
 		F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */; };
 		F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */; };
@@ -205,7 +204,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				F6BEFC291F4AA6F600CA7AB4 /* ATARCsvExporterPlugin.bundle in CopyFiles */,
 				F64083B51F65981700008FEB /* ATARCrawlExampleWebsite.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,7 +497,6 @@
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
 		F6BEFC011F4AA58E00CA7AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TarantulaCrawlingPlugin.swift; sourceTree = "<group>"; };
-		F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = ATARCsvExporterPlugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PluginLoader.swift; sourceTree = "<group>"; };
 		F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoredataRepository.swift; sourceTree = "<group>"; };
@@ -1554,7 +1551,6 @@
 			isa = PBXGroup;
 			children = (
 				F64083B41F65980300008FEB /* ATARCrawlExampleWebsite.bundle */,
-				F6BEFC251F4AA6BE00CA7AB4 /* ATARCsvExporterPlugin.bundle */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
