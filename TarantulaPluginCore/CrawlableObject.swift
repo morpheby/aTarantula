@@ -15,21 +15,25 @@ import Foundation
     /// Object `id` for CoreData
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
+    /// Default value: unspecified
     @objc var id: String? { get set }
 
     /// Object crawl URL for CoreData
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
+    /// Default value: unspecified
     @objc var crawl_url: String? { get set }
 
     /// Object marker of presence for CoreData
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
+    /// Default value: unspecified
     @objc var obj_deleted: Bool { get set }
 
     /// Object marker of filtering for CoreData
     /// - Important: This property needs to be defined in the CoreData Model, not
     ///    as the computed or stored property of the object
+    /// Default value: `true`
     @objc var disabled: Bool { get set }
 }
 
