@@ -7,9 +7,6 @@
       <FileRef
          location = "group:ATARCrawlExampleWebsite/ATARCrawlExampleWebsite.xcodeproj">
       </FileRef>
-      <FileRef
-         location = "group:ATARCsvExporterPlugin/ATARCsvExporterPlugin.xcodeproj">
-      </FileRef>
    </Group>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
