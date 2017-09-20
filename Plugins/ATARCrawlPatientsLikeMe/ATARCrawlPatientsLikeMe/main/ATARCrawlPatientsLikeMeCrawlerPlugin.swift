@@ -61,4 +61,6 @@ import TarantulaPluginCore
         viewController.plugin = self
         return viewController
     }()
+
+    var filterMethod: FilterMethod = .none
 }

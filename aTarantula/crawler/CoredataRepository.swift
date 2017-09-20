@@ -75,6 +75,11 @@ extension CoredataRepository: Repository {
         return (try? self.context.fetch(request).flatMap { x in x as? T }) ?? []
     }
 
+    func countAllObjects<T: NSManagedObject>(_ type: T.Type) -> Int {
+        let request: NSFetchRequest = type.fetchRequest()
+        return (try? self.context.count(for: request)) ?? 0
+    }
+
     func readAllObjects<T: NSManagedObject>(_ type: T.Type, withPredicate predicate: NSPredicate) -> [T] {
         let request: NSFetchRequest = type.fetchRequest()
         request.predicate = predicate
