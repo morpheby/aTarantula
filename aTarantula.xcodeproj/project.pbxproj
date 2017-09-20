@@ -185,6 +185,7 @@
 		F6C463AB1F474CEB00782C88 /* Deque.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463A91F474CEB00782C88 /* Deque.swift */; };
 		F6C463AC1F474CEB00782C88 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463AA1F474CEB00782C88 /* Utils.swift */; };
 		F6C463AD1F47543500782C88 /* Crawler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4639A1F474C9400782C88 /* Crawler.swift */; };
+		F6E94E161F721A6D00EDEB87 /* FilterSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E151F721A6D00EDEB87 /* FilterSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -513,6 +514,7 @@
 		F6C4639A1F474C9400782C88 /* Crawler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crawler.swift; sourceTree = "<group>"; };
 		F6C463A91F474CEB00782C88 /* Deque.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deque.swift; sourceTree = "<group>"; };
 		F6C463AA1F474CEB00782C88 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		F6E94E151F721A6D00EDEB87 /* FilterSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSupport.swift; sourceTree = "<group>"; };
 		F7E49EB8CC93C91EE1566034 /* Pods-TarantulaPluginCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TarantulaPluginCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-TarantulaPluginCore/Pods-TarantulaPluginCore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1543,6 +1545,7 @@
 				F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */,
 				F6BEFC011F4AA58E00CA7AB4 /* Info.plist */,
 				F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */,
+				F6E94E151F721A6D00EDEB87 /* FilterSupport.swift */,
 			);
 			path = TarantulaPluginCore;
 			sourceTree = "<group>";
@@ -1846,6 +1849,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */,
+				F6E94E161F721A6D00EDEB87 /* FilterSupport.swift in Sources */,
 				F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */,
 				F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */,
 			);
