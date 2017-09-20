@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Crawlable" representedClassName="Crawlable" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="crawl_url" attributeType="String" syncable="YES"/>
-        <attribute name="disabled" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="disabled" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="obj_deleted" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="originalHtml" optional="YES" attributeType="String" syncable="YES"/>
@@ -122,8 +122,8 @@
         <element name="DrugSideEffectSeverity" positionX="18" positionY="135" width="128" height="103"/>
         <element name="DrugStopReason" positionX="-27" positionY="90" width="128" height="105"/>
         <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="103"/>
+        <element name="DrugSwitches" positionX="-18" positionY="135" width="128" height="90"/>
         <element name="Treatment" positionX="-63" positionY="-18" width="128" height="358"/>
         <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
-        <element name="DrugSwitches" positionX="-18" positionY="135" width="128" height="90"/>
     </elements>
 </model>
