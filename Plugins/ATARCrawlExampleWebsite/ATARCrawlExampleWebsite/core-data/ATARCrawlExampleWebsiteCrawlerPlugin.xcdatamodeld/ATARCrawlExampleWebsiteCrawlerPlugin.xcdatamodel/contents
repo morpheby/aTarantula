@@ -83,6 +83,18 @@
         <relationship name="drug_switch" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSwitch" inverseName="drug_switches" inverseEntity="DrugSwitch" syncable="YES"/>
         <relationship name="drug_to" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="switches_from_self" inverseEntity="Treatment" syncable="YES"/>
     </entity>
+    <entity name="DrugTreatmentPurpose" representedClassName="DrugTreatmentPurpose" syncable="YES" codeGenerationType="category">
+        <attribute name="id_value" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug_purposes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TreatmentPurposes" inverseName="purposes" inverseEntity="TreatmentPurposes" syncable="YES"/>
+        <relationship name="effectivenesses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugTreatmentPurposeEffectiveness" inverseName="drug_treatment_purpose" inverseEntity="DrugTreatmentPurposeEffectiveness" syncable="YES"/>
+        <relationship name="purpose" maxCount="1" deletionRule="Nullify" destinationEntity="TreatmentPurpose" inverseName="drugs_with_purpose" inverseEntity="TreatmentPurpose" syncable="YES"/>
+    </entity>
+    <entity name="DrugTreatmentPurposeEffectiveness" representedClassName="DrugTreatmentPurposeEffectiveness" syncable="YES" codeGenerationType="category">
+        <attribute name="count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="drug_treatment_purpose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="effectivenesses" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
+    </entity>
     <entity name="Treatment" representedClassName="Treatment" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <attribute name="drug_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -106,8 +118,13 @@
         <relationship name="switches_to_self" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSwitches" inverseName="drug_from" inverseEntity="DrugSwitches" syncable="YES"/>
         <relationship name="types" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Treatment" inverseName="generic" inverseEntity="Treatment" syncable="YES"/>
     </entity>
+    <entity name="TreatmentPurpose" representedClassName="TreatmentPurpose" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="drugs_with_purpose" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="purpose" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
+    </entity>
     <entity name="TreatmentPurposes" representedClassName="TreatmentPurposes" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="purposes" inverseEntity="Treatment" syncable="YES"/>
+        <relationship name="purposes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="drug_purposes" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
     </entity>
     <elements>
         <element name="Crawlable" positionX="-54" positionY="-9" width="128" height="120"/>
@@ -124,6 +141,9 @@
         <element name="DrugSwitch" positionX="27" positionY="180" width="128" height="103"/>
         <element name="DrugSwitches" positionX="-18" positionY="135" width="128" height="90"/>
         <element name="Treatment" positionX="-63" positionY="-18" width="128" height="358"/>
-        <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="60"/>
+        <element name="DrugTreatmentPurpose" positionX="-18" positionY="135" width="128" height="120"/>
+        <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="75"/>
+        <element name="TreatmentPurpose" positionX="-18" positionY="135" width="128" height="75"/>
+        <element name="DrugTreatmentPurposeEffectiveness" positionX="-9" positionY="144" width="128" height="90"/>
     </elements>
 </model>

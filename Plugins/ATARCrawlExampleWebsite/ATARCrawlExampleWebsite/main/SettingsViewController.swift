@@ -123,6 +123,9 @@ class SettingsViewController: NSViewController {
                     if object.generic?.name == drugName { return false }
                     if ((object.types as? Set<Treatment>)?.reduce(false) { x, o in x || o.name == drugName }) == true { return false }
                     return true
+                case let object as TreatmentPurpose:
+                    if ((object.drugs_with_purpose as? Set<DrugTreatmentPurpose>)?.reduce(false) { x, o in x || o.drug_purposes?.drug?.name == drugName }) == true { return false }
+                    return true
                 case let object as TreatmentPurposes:
                     if object.drug?.name == drugName { return false }
                     return true

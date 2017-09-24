@@ -15,6 +15,8 @@ func crawl(object: CrawlableObject, usingRepository repository: Repository, with
         try crawlTreatment(o, usingRepository: repository, withPlugin: plugin)
     case let o as DrugSwitches:
         try crawlDrugSwitches(o, usingRepository: repository, withPlugin: plugin)
+    case let o as TreatmentPurposes:
+        try crawlTreatmentPurposes(o, usingRepository: repository, withPlugin: plugin)
     default:
         let url = repository.performAndWait { object.objectUrl }
         throw CrawlError(url: url, info: "Unsupported object type \(type(of: object)) for \(type(of: plugin))")

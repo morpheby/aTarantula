@@ -50,14 +50,14 @@ func crawlDrugSwitches(_ object: DrugSwitches, usingRepository repo: Repository,
     let switched: [DrugSwitch] = {
         html.xpath("//tr[@data-yah-key='\(switch_selector[selected.rawValue])']").flatMap { element in
             guard let id_value_str = element.xpath("@data-yah-value").first?.text,
-                let id_value = Int(id_value_str) else { return nil }
+            let id_value = Int(id_value_str) else { return nil }
 
             let tmpArray = element.xpath("td | th")
 
             guard tmpArray.count == 3,
-                let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
-                let countStr = tmpArray[1].text?.trimmingCharacters(in: .whitespacesAndNewlines),
-                let count = Int(countStr) else { return nil }
+            let name = (tmpArray[0].xpath("text()").flatMap { x in x.text?.trimmingCharacters(in: .whitespacesAndNewlines) } .filter { x in x.count != 0 }.first),
+            let countStr = tmpArray[1].text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            let count = Int(countStr) else { return nil }
 
             guard let assembledUrl = URL(string: "https://examplewebsite/treatments/show/\(id_value)") else { return nil }
 
@@ -108,6 +108,13 @@ func crawlDrugSwitches(_ object: DrugSwitches, usingRepository repo: Repository,
         object.drug_switch = Set(switched) as NSSet
 
         object.objectIsCrawled = true
+
+        if needsToBeFiltered(object: object, method: plugin.filterMethod) {
+            object.filter(newObjects: relatedCrawlables)
+        } else {
+            object.unfilter(newObjects: relatedCrawlables)
+        }
+
     }
 }
 
