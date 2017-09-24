@@ -96,6 +96,16 @@ class ApplicationController {
         })
     }
 
+    func initPlugin(plugin: TarantulaCrawlingPlugin) {
+        plugin.networkManager = DefaultNetworkManager()
+    }
+
+    func initAllPlugins() {
+        for plugin in pluginLoader.crawlers {
+            initPlugin(plugin: plugin)
+        }
+    }
+
     func loadPlugins() throws {
         try self.pluginLoader.loadPlugins()
     }

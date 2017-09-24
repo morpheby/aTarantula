@@ -165,6 +165,8 @@
 		F64083BD1F65A4FB00008FEB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083BC1F65A4FB00008FEB /* Resources.swift */; };
 		F64083BF1F65B31800008FEB /* OpenPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */; };
 		F64083C31F66DC4D00008FEB /* SynchronizedBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083C21F66DC4C00008FEB /* SynchronizedBox.swift */; };
+		F66E3D671F7816E400C77457 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D661F7816E400C77457 /* NetworkManager.swift */; };
+		F66E3D691F7817BD00C77457 /* DefaultNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D681F7817BD00C77457 /* DefaultNetworkManager.swift */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
@@ -492,6 +494,8 @@
 		F64083BE1F65B31800008FEB /* OpenPanelAccessory.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OpenPanelAccessory.xib; sourceTree = "<group>"; };
 		F64083C21F66DC4C00008FEB /* SynchronizedBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedBox.swift; sourceTree = "<group>"; };
 		F65CB8F61F6FEFB100299F7B /* CrawlingPlayround.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CrawlingPlayround.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F66E3D661F7816E400C77457 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F66E3D681F7817BD00C77457 /* DefaultNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkManager.swift; sourceTree = "<group>"; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1543,6 +1547,7 @@
 				F6BEFC011F4AA58E00CA7AB4 /* Info.plist */,
 				F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */,
 				F6E94E151F721A6D00EDEB87 /* FilterSupport.swift */,
+				F66E3D661F7816E400C77457 /* NetworkManager.swift */,
 			);
 			path = TarantulaPluginCore;
 			sourceTree = "<group>";
@@ -1598,6 +1603,7 @@
 			children = (
 				F6C4639A1F474C9400782C88 /* Crawler.swift */,
 				F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */,
+				F66E3D681F7817BD00C77457 /* DefaultNetworkManager.swift */,
 			);
 			path = crawler;
 			sourceTree = "<group>";
@@ -1847,6 +1853,7 @@
 				F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */,
 				F6E94E161F721A6D00EDEB87 /* FilterSupport.swift in Sources */,
 				F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */,
+				F66E3D671F7816E400C77457 /* NetworkManager.swift in Sources */,
 				F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1953,6 +1960,7 @@
 				F63FD8271F591345003A5F01 /* CDEStringAttributeViewController.m in Sources */,
 				F63FD8C21F5BAF60003A5F01 /* NSManagedObjectID+CDEAdditions.m in Sources */,
 				F63FD86E1F591345003A5F01 /* CDERelationshipsContainerView.m in Sources */,
+				F66E3D691F7817BD00C77457 /* DefaultNetworkManager.swift in Sources */,
 				F63FD8691F591345003A5F01 /* CDEMenuWindowItemBadgeView.m in Sources */,
 				F63FD81B1F591345003A5F01 /* CDEEntityTableCellView.m in Sources */,
 				F63FD9091F5BBFE7003A5F01 /* RSVerticallyCenteredTextFieldCell.m in Sources */,

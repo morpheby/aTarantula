@@ -1,0 +1,79 @@
+//
+//  DefaultNetworkManager.swift
+//  aTarantula
+//
+//  Created by Ilya Mikhaltsou on 9/24/17.
+//  Copyright © 2017 morpheby. All rights reserved.
+//
+
+import Foundation
+import TarantulaPluginCore
+
+public class DefaultNetworkManager: NetworkManager {
+
+    let session = URLSession()
+    let sessionQueue = NSApplication.shared.controller.backgroundQueue()
+
+    init() {
+    }
+
+    public func stringData(url: URL) throws -> String {
+        let condition = NSCondition()
+        var completed: Bool = false
+        var data: Data?
+        var response: URLResponse?
+        var error: Error?
+
+        let task = session.dataTask(with: url, completionHandler: { (data_, response_, error_) in
+            data = data_
+            response = response_
+            error = error_
+            completed = true
+            condition.signal()
+        })
+
+        sessionQueue.addOperation {
+            task.resume()
+        }
+        while !completed {
+            condition.wait()
+        }
+
+        if let e = error {
+            throw URLSessionError(urlSessionError: e, response: response, data: data)
+        }
+
+        if let d = data, let result = String(data: d, encoding: .utf8) {
+            return result
+        }
+
+        throw UnknownURLSessionError(response: response)
+    }
+
+    struct URLSessionError: LocalizedError {
+        let urlSessionError: Error
+        let response: URLResponse?
+        let data: Data?
+
+        var errorDescription: String? {
+            return "URLSession returned error \(urlSessionError)"
+        }
+
+        var failureReason: String? {
+            return "Received \(String(describing: response)) and \(String(describing: data))"
+        }
+    }
+
+    struct UnknownURLSessionError: LocalizedError {
+        let response: URLResponse?
+
+        var errorDescription: String? {
+            return "No data returned by URLSession"
+        }
+
+        var failureReason: String? {
+            return "\(String(describing: response))"
+        }
+    }
+
+}

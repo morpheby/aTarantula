@@ -49,6 +49,8 @@ import TarantulaPluginCore
 
     public var repository: Repository? = nil
 
+    public var networkManager: NetworkManager? = nil
+
     let storyboard = NSStoryboard(name: .settings, bundle: Bundle(for: ATARCrawlExampleWebsiteCrawlerPlugin.self))
 
     public lazy var settingsViewController: NSViewController? = {
