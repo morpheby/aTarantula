@@ -3,7 +3,7 @@
     <entity name="Condition" representedClassName="Condition" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="drugs_with_purpose" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="purpose" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
-        <relationship name="drugs_with_sideeffect" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSideEffects" inverseName="sideeffects" inverseEntity="DrugSideEffects" syncable="YES"/>
+        <relationship name="drugs_with_sideeffect" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSideEffect" inverseName="sideeffect" inverseEntity="DrugSideEffect" syncable="YES"/>
     </entity>
     <entity name="Crawlable" representedClassName="Crawlable" isAbstract="YES" syncable="YES" codeGenerationType="category">
         <attribute name="crawl_url" attributeType="String" syncable="YES"/>
@@ -58,9 +58,15 @@
     <entity name="DrugPatients" representedClassName="DrugPatients" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="patients" inverseEntity="Treatment" syncable="YES"/>
     </entity>
+    <entity name="DrugSideEffect" representedClassName="DrugSideEffect" syncable="YES" codeGenerationType="category">
+        <attribute name="id_value" attributeType="String" syncable="YES"/>
+        <attribute name="patients_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="drug_sideeffects" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugSideEffects" inverseName="sideeffects" inverseEntity="DrugSideEffects" syncable="YES"/>
+        <relationship name="sideeffect" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="drugs_with_sideeffect" inverseEntity="Condition" syncable="YES"/>
+    </entity>
     <entity name="DrugSideEffects" representedClassName="DrugSideEffects" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="drug" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Treatment" inverseName="sideeffects" inverseEntity="Treatment" syncable="YES"/>
-        <relationship name="sideeffects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="drugs_with_sideeffect" inverseEntity="Condition" syncable="YES"/>
+        <relationship name="sideeffects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugSideEffect" inverseName="drug_sideeffects" inverseEntity="DrugSideEffect" syncable="YES"/>
     </entity>
     <entity name="DrugSideEffectSeverity" representedClassName="DrugSideEffectSeverity" syncable="YES" codeGenerationType="category">
         <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -151,5 +157,6 @@
         <element name="DrugTreatmentPurposeEffectiveness" positionX="-9" positionY="144" width="128" height="90"/>
         <element name="Condition" positionX="0" positionY="153" width="128" height="90"/>
         <element name="Symptom" positionX="9" positionY="162" width="128" height="45"/>
+        <element name="DrugSideEffect" positionX="18" positionY="171" width="128" height="105"/>
     </elements>
 </model>
