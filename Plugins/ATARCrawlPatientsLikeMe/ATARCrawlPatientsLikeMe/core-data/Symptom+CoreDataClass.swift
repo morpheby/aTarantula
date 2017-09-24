@@ -1,5 +1,5 @@
 //
-//  TreatmentPurpose+CoreDataClass.swift
+//  Symptom+CoreDataClass.swift
 //  ATARCrawlExampleWebsite
 //
 //  Created by Ilya Mikhaltsou on 9/24/17.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(TreatmentPurpose)
-public class TreatmentPurpose: Condition {
+@objc(Symptom)
+public class Symptom: Condition {
 
 }

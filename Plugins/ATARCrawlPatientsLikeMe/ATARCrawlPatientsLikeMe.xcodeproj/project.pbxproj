@@ -31,8 +31,10 @@
 		F64083D91F67441800008FEB /* crawlTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083D81F67441800008FEB /* crawlTreatment.swift */; };
 		F64083DB1F6748E000008FEB /* crawl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64083DA1F6748E000008FEB /* crawl.swift */; };
 		F66E3D591F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D581F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift */; };
-		F66E3D5B1F77FE5B00C77457 /* TreatmentPurpose+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D5A1F77FE5B00C77457 /* TreatmentPurpose+CoreDataClass.swift */; };
+		F66E3D5B1F77FE5B00C77457 /* Condition+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D5A1F77FE5B00C77457 /* Condition+CoreDataClass.swift */; };
 		F66E3D5D1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D5C1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift */; };
+		F66E3D5F1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */; };
+		F66E3D611F780A9900C77457 /* Symptom+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */; };
 		F6E94E141F7218F800EDEB87 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E131F7218F800EDEB87 /* Filter.swift */; };
 		F6E94E181F72696F00EDEB87 /* crawlTreatmentPurposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */; };
 		F6EFF7701F709B3C00379EB9 /* crawlDrugSwitches.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EFF76F1F709B3C00379EB9 /* crawlDrugSwitches.swift */; };
@@ -67,8 +69,10 @@
 		F64083D81F67441800008FEB /* crawlTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatment.swift; sourceTree = "<group>"; };
 		F64083DA1F6748E000008FEB /* crawl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawl.swift; sourceTree = "<group>"; };
 		F66E3D581F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTreatmentPurpose+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F66E3D5A1F77FE5B00C77457 /* TreatmentPurpose+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TreatmentPurpose+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F66E3D5A1F77FE5B00C77457 /* Condition+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Condition+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F66E3D5C1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugTreatmentPurposeEffectiveness+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TreatmentPurpose+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Symptom+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6E94E131F7218F800EDEB87 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatmentPurposes.swift; sourceTree = "<group>"; };
 		F6EFF76F1F709B3C00379EB9 /* crawlDrugSwitches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlDrugSwitches.swift; sourceTree = "<group>"; };
@@ -143,8 +147,10 @@
 				F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */,
 				F6286C0F1F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift */,
 				F66E3D581F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift */,
-				F66E3D5A1F77FE5B00C77457 /* TreatmentPurpose+CoreDataClass.swift */,
+				F66E3D5A1F77FE5B00C77457 /* Condition+CoreDataClass.swift */,
 				F66E3D5C1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift */,
+				F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */,
+				F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */,
 			);
 			path = "core-data";
 			sourceTree = "<group>";
@@ -258,11 +264,12 @@
 				F6286C291F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift in Sources */,
 				F6286C3F1F6FD5D100FAA994 /* DrugSideEffectSeverity+CoreDataClass.swift in Sources */,
 				F6E94E181F72696F00EDEB87 /* crawlTreatmentPurposes.swift in Sources */,
+				F66E3D611F780A9900C77457 /* Symptom+CoreDataClass.swift in Sources */,
 				F6286C341F6FD5D100FAA994 /* DrugDosageCount+CoreDataClass.swift in Sources */,
 				F64083D21F6737AB00008FEB /* Crawlable+CoreDataClass.swift in Sources */,
 				F6286C361F6FD5D100FAA994 /* DrugStopReason+CoreDataClass.swift in Sources */,
 				F6286C3B1F6FD5D100FAA994 /* DrugCategory+CoreDataClass.swift in Sources */,
-				F66E3D5B1F77FE5B00C77457 /* TreatmentPurpose+CoreDataClass.swift in Sources */,
+				F66E3D5B1F77FE5B00C77457 /* Condition+CoreDataClass.swift in Sources */,
 				F6286C381F6FD5D100FAA994 /* DrugPatients+CoreDataClass.swift in Sources */,
 				F6286C321F6FD5D100FAA994 /* DrugBurden+CoreDataClass.swift in Sources */,
 				F6EFF7721F709B6B00379EB9 /* DrugSwitches+CoreDataClass.swift in Sources */,
@@ -273,6 +280,7 @@
 				F64083AA1F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld in Sources */,
 				F6286C2C1F6FD5D100FAA994 /* DrugSideEffects+CoreDataClass.swift in Sources */,
 				F6286C2E1F6FD5D100FAA994 /* DrugAdherence+CoreDataClass.swift in Sources */,
+				F66E3D5F1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift in Sources */,
 				F66E3D5D1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift in Sources */,
 				F64083C91F6730F700008FEB /* Resources.swift in Sources */,
 				F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */,
