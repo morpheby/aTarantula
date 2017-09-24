@@ -97,7 +97,10 @@ class ApplicationController {
     }
 
     func initPlugin(plugin: TarantulaCrawlingPlugin) {
-        plugin.networkManager = DefaultNetworkManager()
+        let nm = DefaultNetworkManager()
+        nm.configuration.httpCookieStorage = HTTPCookieStorage.sharedCookieStorage(forGroupContainerIdentifier: plugin.name)
+        nm.configuration.httpCookieStorage?.cookieAcceptPolicy = .always
+        plugin.networkManager = nm
     }
 
     func initAllPlugins() {
@@ -140,6 +143,28 @@ class ApplicationController {
         }
         queue.addOperation {
             tail(self.pluginLoader.crawlers)
+        }
+    }
+
+    func cookies(inPlugin plugin: TarantulaCrawlingPlugin) -> [HTTPCookie] {
+        guard let nm = plugin.networkManager as? DefaultNetworkManager else {
+            fatalError("Invalid NetworkManager instance")
+        }
+        let cookieStorage = nm.session.configuration.httpCookieStorage!
+        return cookieStorage.cookies ?? []
+    }
+
+    func setCookies(_ cookies: [HTTPCookie], inPlugin plugin: TarantulaCrawlingPlugin) {
+        let cookieCopy = cookies.map { c in HTTPCookie(properties: c.properties!)! }
+        guard let nm = plugin.networkManager as? DefaultNetworkManager else {
+            fatalError("Invalid NetworkManager instance")
+        }
+        let cookieStorage = nm.session.configuration.httpCookieStorage!
+        cookieStorage.removeCookies(since: .distantPast)
+        mainQueue.addOperation {
+            for cookie in cookieCopy {
+                cookieStorage.setCookie(cookie)
+            }
         }
     }
 

@@ -18,6 +18,8 @@ public protocol TarantulaCrawlingPlugin: AnyObject {
 
     var name: String { get }
 
+    var baseUrl: URL { get }
+
     var repository: Repository? { get set }
 
     var networkManager: NetworkManager? { get set }

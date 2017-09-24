@@ -11,10 +11,13 @@ import TarantulaPluginCore
 
 public class DefaultNetworkManager: NetworkManager {
 
-    let session = URLSession()
+    let configuration: URLSessionConfiguration
+    let session: URLSession
     let sessionQueue = NSApplication.shared.controller.backgroundQueue()
 
     init() {
+        configuration = URLSessionConfiguration.default.copy() as! URLSessionConfiguration
+        session = URLSession(configuration: configuration)
     }
 
     public func stringData(url: URL) throws -> String {

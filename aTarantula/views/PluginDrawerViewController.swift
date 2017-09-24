@@ -105,6 +105,13 @@ class PluginDrawerViewController: NSViewController {
         presentViewControllerAsModalWindow(viewController)
     }
 
+    @IBAction func openNetworkSettings(_ object: AnyObject) {
+        assert(object is String, "Invalid object supplied to action")
+
+        activeObject = object
+        performSegue(withIdentifier: .networkSettingsSegue, sender: self)
+    }
+
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
@@ -140,7 +147,24 @@ class PluginDrawerViewController: NSViewController {
             default:
                 fatalError("Invalid state of activeObject")
             }
+        case .some(.networkSettingsSegue):
+            guard let networkViewController = segue.destinationController as? NetworkSettingsViewController else {
+                fatalError("Invalid segue: \(segue)")
+            }
 
+            guard let selectedName = activeObject as? String else {
+                fatalError("Invalid state of activeObject")
+            }
+
+            let appController = NSApplication.shared.controller
+            guard let plugin = (appController.pluginLoader.crawlers.filter { plugin in plugin.name == selectedName } .first) else {
+                fatalError("Plugin was reported, but doesn't exist")
+            }
+            guard let networkManager = plugin.networkManager as? DefaultNetworkManager else {
+                fatalError("Internal Error: Network Manager unset or invalid")
+            }
+            networkViewController.networkManager = networkManager
+            networkViewController.plugin = plugin
         default:
             break
         }

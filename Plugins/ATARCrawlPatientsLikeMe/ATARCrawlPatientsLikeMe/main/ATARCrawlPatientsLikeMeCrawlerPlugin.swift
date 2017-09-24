@@ -43,7 +43,7 @@ import TarantulaPluginCore
         try crawl(object: object, usingRepository: repository, withPlugin: self)
     }
 
-    let baseUrl: URL = URL(string: "https://examplewebsite")!
+    public let baseUrl: URL = URL(string: "https://examplewebsite")!
 
     public let name = "ATARCrawlExampleWebsiteCrawlerPlugin"
 

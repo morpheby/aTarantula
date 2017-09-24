@@ -37,6 +37,7 @@
 		F66E3D611F780A9900C77457 /* Symptom+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */; };
 		F66E3D631F780D6F00C77457 /* crawlDrugSideEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D621F780D6F00C77457 /* crawlDrugSideEffects.swift */; };
 		F66E3D651F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D641F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift */; };
+		F66E3D6D1F7828E300C77457 /* crawlDrugPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D6C1F7828E300C77457 /* crawlDrugPatients.swift */; };
 		F6E94E141F7218F800EDEB87 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E131F7218F800EDEB87 /* Filter.swift */; };
 		F6E94E181F72696F00EDEB87 /* crawlTreatmentPurposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */; };
 		F6EFF7701F709B3C00379EB9 /* crawlDrugSwitches.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EFF76F1F709B3C00379EB9 /* crawlDrugSwitches.swift */; };
@@ -77,6 +78,7 @@
 		F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Symptom+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F66E3D621F780D6F00C77457 /* crawlDrugSideEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlDrugSideEffects.swift; sourceTree = "<group>"; };
 		F66E3D641F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrugSideEffect+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F66E3D6C1F7828E300C77457 /* crawlDrugPatients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlDrugPatients.swift; sourceTree = "<group>"; };
 		F6E94E131F7218F800EDEB87 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatmentPurposes.swift; sourceTree = "<group>"; };
 		F6EFF76F1F709B3C00379EB9 /* crawlDrugSwitches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlDrugSwitches.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				F6EFF76F1F709B3C00379EB9 /* crawlDrugSwitches.swift */,
 				F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */,
 				F66E3D621F780D6F00C77457 /* crawlDrugSideEffects.swift */,
+				F66E3D6C1F7828E300C77457 /* crawlDrugPatients.swift */,
 			);
 			path = crawling;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				F6286C341F6FD5D100FAA994 /* DrugDosageCount+CoreDataClass.swift in Sources */,
 				F64083D21F6737AB00008FEB /* Crawlable+CoreDataClass.swift in Sources */,
 				F6286C361F6FD5D100FAA994 /* DrugStopReason+CoreDataClass.swift in Sources */,
+				F66E3D6D1F7828E300C77457 /* crawlDrugPatients.swift in Sources */,
 				F6286C3B1F6FD5D100FAA994 /* DrugCategory+CoreDataClass.swift in Sources */,
 				F66E3D5B1F77FE5B00C77457 /* Condition+CoreDataClass.swift in Sources */,
 				F6286C381F6FD5D100FAA994 /* DrugPatients+CoreDataClass.swift in Sources */,

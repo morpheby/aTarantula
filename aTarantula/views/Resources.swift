@@ -10,7 +10,9 @@ import Foundation
 
 extension NSStoryboardSegue.Identifier {
     static let editorSegue = NSStoryboardSegue.Identifier("editor")
+    static let networkSettingsSegue = NSStoryboardSegue.Identifier("network")
     static let migrateSegue = NSStoryboardSegue.Identifier("migrate")
+    static let webviewSegue = NSStoryboardSegue.Identifier("webview")
     static let pluginDrawerSegue = NSStoryboardSegue.Identifier("pluginsDrawer")
 }
 

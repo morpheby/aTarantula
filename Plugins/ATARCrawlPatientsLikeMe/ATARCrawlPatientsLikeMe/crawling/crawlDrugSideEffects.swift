@@ -21,7 +21,7 @@ func crawlDrugSideEffects(_ object: DrugSideEffects, usingRepository repo: Repos
         return
     }
 
-    let data = try String(contentsOf: objectUrl)
+    let data = try plugin.networkManager?.stringData(url: objectUrl) ?? String(contentsOf: objectUrl)
 
     var relatedCrawlables: [CrawlableObject] = []
 

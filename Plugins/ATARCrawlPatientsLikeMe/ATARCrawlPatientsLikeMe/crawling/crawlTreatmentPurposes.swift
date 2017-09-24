@@ -21,7 +21,7 @@ func crawlTreatmentPurposes(_ object: TreatmentPurposes, usingRepository repo: R
         return
     }
 
-    let data = try String(contentsOf: objectUrl)
+    let data = try plugin.networkManager?.stringData(url: objectUrl) ?? String(contentsOf: objectUrl)
 
     var relatedCrawlables: [CrawlableObject] = []
 
