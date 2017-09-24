@@ -151,6 +151,7 @@ class LoadingViewController: NSViewController {
             appController.withDefaultError {
                 try appController.loadPlugins()
                 appController.loadAllDataInBackground {
+                    appController.initAllPlugins()
                     appController.mainQueue.addOperation {
                         self.status = "All data loaded"
                         self.log.append(self.status)
