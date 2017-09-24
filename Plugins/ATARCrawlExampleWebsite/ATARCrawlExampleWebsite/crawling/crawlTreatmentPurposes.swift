@@ -36,13 +36,21 @@ func crawlTreatmentPurposes(_ object: TreatmentPurposes, usingRepository repo: R
             let tmpArray = element.xpath("td | th")
 
             guard tmpArray.count == 4,
-            let purpose: TreatmentPurpose = (tmpArray[0].xpath(".//a/@href").flatMap { element in
+            let purpose: Condition = (tmpArray[0].xpath(".//a/@href").flatMap { element in
                 guard let urlString = element.text,
                 let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
-                let relatedObject = repo.performAndWait {
-                    repo.readAllObjects(TreatmentPurpose.self, withSelection: .object(url: url)).first ??
-                        repo.newObject(forUrl: url, type: TreatmentPurpose.self)
+                let relatedObject: Condition = repo.performAndWait {
+                    if url.absoluteString.contains("symptoms") {
+                        return repo.readAllObjects(Symptom.self, withSelection: .object(url: url)).first ??
+                            repo.newObject(forUrl: url, type: Symptom.self)
+                    } else if url.absoluteString.contains("treatment_purposes") {
+                        return repo.readAllObjects(TreatmentPurpose.self, withSelection: .object(url: url)).first ??
+                            repo.newObject(forUrl: url, type: TreatmentPurpose.self)
+                    } else {
+                        return repo.readAllObjects(Condition.self, withSelection: .object(url: url)).first ??
+                            repo.newObject(forUrl: url, type: Condition.self)
+                    }
                 }
                 relatedCrawlables.append(relatedObject)
                 return relatedObject
