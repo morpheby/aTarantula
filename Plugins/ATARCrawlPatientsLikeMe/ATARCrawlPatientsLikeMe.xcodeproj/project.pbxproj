@@ -131,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F64083A81F6596F300008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.xcdatamodeld */,
+				F66E3D5A1F77FE5B00C77457 /* Condition+CoreDataClass.swift */,
 				F64083CE1F6737AB00008FEB /* Crawlable+CoreDataClass.swift */,
 				F6286C141F6FD5D100FAA994 /* DrugAdherence+CoreDataClass.swift */,
 				F6286C181F6FD5D100FAA994 /* DrugBurden+CoreDataClass.swift */,
@@ -144,13 +145,12 @@
 				F6286C1C1F6FD5D100FAA994 /* DrugStopReason+CoreDataClass.swift */,
 				F6286C231F6FD5D100FAA994 /* DrugSwitch+CoreDataClass.swift */,
 				F6EFF7711F709B6B00379EB9 /* DrugSwitches+CoreDataClass.swift */,
-				F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */,
-				F6286C0F1F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift */,
 				F66E3D581F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift */,
-				F66E3D5A1F77FE5B00C77457 /* Condition+CoreDataClass.swift */,
 				F66E3D5C1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift */,
-				F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */,
 				F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */,
+				F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */,
+				F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */,
+				F6286C0F1F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift */,
 			);
 			path = "core-data";
 			sourceTree = "<group>";
