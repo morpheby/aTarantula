@@ -35,15 +35,15 @@
                                     <action selector="eraseDatabase:" target="hcI-8S-4Tz" id="aQ9-Sa-vti"/>
                                 </connections>
                             </button>
-                            <box title="Filtering" translatesAutoresizingMaskIntoConstraints="NO" id="78V-sP-4Fg">
+                            <box title="Selection" translatesAutoresizingMaskIntoConstraints="NO" id="78V-sP-4Fg">
                                 <rect key="frame" x="17" y="90" width="416" height="150"/>
                                 <view key="contentView" id="YgQ-H5-FcL">
                                     <rect key="frame" x="2" y="2" width="412" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f6I-Ue-gpx">
-                                            <rect key="frame" x="14" y="85" width="172" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Reset filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7G-NE-Kn6">
+                                            <rect key="frame" x="14" y="85" width="200" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Reset selection (select all)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7G-NE-Kn6">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -52,7 +52,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-PS-Gdi">
-                                            <rect key="frame" x="14" y="49" width="172" height="32"/>
+                                            <rect key="frame" x="14" y="49" width="200" height="32"/>
                                             <buttonCell key="cell" type="push" title="Assign filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="APi-4c-4NM">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -62,8 +62,8 @@
                                             </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="RGp-nT-nJJ">
-                                            <rect key="frame" x="211" y="96" width="140" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="No filter" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Nxd-Il-66H">
+                                            <rect key="frame" x="239" y="96" width="145" height="18"/>
+                                            <buttonCell key="cell" type="radio" title="No filter (all objects)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Nxd-Il-66H">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -72,7 +72,7 @@
                                             </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="5Mu-4w-gA1">
-                                            <rect key="frame" x="211" y="70" width="140" height="18"/>
+                                            <rect key="frame" x="239" y="70" width="145" height="18"/>
                                             <buttonCell key="cell" type="radio" title="Filter by drug name" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kL6-Rv-xJk">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -82,7 +82,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-1g-UoB">
-                                            <rect key="frame" x="212" y="39" width="137" height="22"/>
+                                            <rect key="frame" x="240" y="39" width="142" height="22"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Drug name" drawsBackground="YES" id="Ao5-Px-iln">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -98,8 +98,8 @@
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lHj-RC-ch4">
-                                            <rect key="frame" x="14" y="13" width="172" height="32"/>
-                                            <buttonCell key="cell" type="push" title="Reassign filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Prc-Qd-Bv0">
+                                            <rect key="frame" x="14" y="13" width="200" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Update selection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Prc-Qd-Bv0">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>

@@ -100,7 +100,7 @@ extension CoredataRepository: Repository {
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
                 argumentArray: [true, false])
-        case .filteredObjects:
+        case .unselectedObjects:
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.disabled)) == %@",
                 argumentArray: [true])
