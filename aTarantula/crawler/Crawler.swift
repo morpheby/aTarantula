@@ -170,12 +170,17 @@ import TarantulaPluginCore
                 }
             }
 
+            // Remove elements already present in the crawllist
             collectedObjects = collectedObjects.filter { collectedObj in
                 !c.contains { existingObj in
                     collectedObj === existingObj
                 } &&
                 !a.contains(collectedObj as! AnyHashable)
             }
+
+            // Remove repeating elements
+            collectedObjects = Array(Set(collectedObjects as! [AnyHashable])) as! [CrawlableObject]
+
             c.append(contentsOf: collectedObjects)
 
             let requiresStop = (c.count == 0)
