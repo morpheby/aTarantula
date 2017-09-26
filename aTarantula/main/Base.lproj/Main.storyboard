@@ -704,7 +704,7 @@
                                             <integer key="NSNullPlaceholder" value="0"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="xcY-MY-Rj5" name="value" keyPath="selection.filteredCount" previousBinding="AXG-sq-a9s" id="Eeh-NF-HiF">
+                                    <binding destination="xcY-MY-Rj5" name="value" keyPath="selection.unselectedCount" previousBinding="AXG-sq-a9s" id="PpP-Qn-BbF">
                                         <dictionary key="options">
                                             <integer key="NSNoSelectionPlaceholder" value="0"/>
                                             <integer key="NSNullPlaceholder" value="0"/>
@@ -1252,6 +1252,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="0HH-Yt-JgJ"/>
         <segue reference="gqI-qz-qoE"/>
     </inferredMetricsTieBreakers>
 </document>
