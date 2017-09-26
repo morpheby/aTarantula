@@ -25,14 +25,15 @@ import TarantulaPluginCore
     public var crawlableObjectTypes: [CrawlableManagedObject.Type] {
         return [
             Treatment.self, TreatmentPurposes.self, DrugCategory.self, DrugPatients.self, DrugSideEffects.self,
-            DrugSwitches.self,
+            DrugSwitches.self, Condition.self, Patient.self, Symptom.self, TreatmentPurpose.self,
         ]
     }
 
     public var allObjectTypes: [NSManagedObject.Type] {
         return crawlableObjectTypes as [NSManagedObject.Type] + [
             DrugAdherence.self, DrugBurden.self, DrugCost.self, DrugDosageCount.self, DrugDuration.self,
-            DrugSideEffectSeverity.self, DrugStopReason.self, DrugSwitch.self,
+            DrugSideEffect.self, DrugSideEffectSeverity.self, DrugStopReason.self, DrugSwitch.self,
+            DrugTreatmentPurpose.self, DrugTreatmentPurposeEffectiveness.self,
         ]
     }
 
