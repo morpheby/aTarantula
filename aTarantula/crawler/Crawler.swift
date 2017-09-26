@@ -16,7 +16,7 @@ import TarantulaPluginCore
         return crawledCount + currentSessionCrawled
     }
     @objc dynamic var currentSessionCrawled: Int = 0
-    @objc dynamic var filteredCount: Int = 20
+    @objc dynamic var unselectedCount: Int = 20
     @objc dynamic var remainingCount: Int = 0
     @objc dynamic var name: String?
     @objc dynamic var maxCrawlingCount: Int = 100
@@ -154,7 +154,7 @@ import TarantulaPluginCore
             let appController = NSApplication.shared.controller
             var crawledCount = 0
             var discoveredCount = 0
-            var filteredCount = 0
+            var unselectedCount = 0
 
             for plugin in appController.pluginLoader.crawlers {
                 plugin.repository?.performAndWait {
@@ -165,7 +165,7 @@ import TarantulaPluginCore
                         }
                         crawledCount += plugin.repository?.countAllObjects(type, withSelection: .crawledObjects) ?? 0
                         discoveredCount += plugin.repository?.countAllObjects(type, withSelection: .all) ?? 0
-                        filteredCount += plugin.repository?.countAllObjects(type, withSelection: .filteredObjects) ?? 0
+                        unselectedCount += plugin.repository?.countAllObjects(type, withSelection: .unselectedObjects) ?? 0
                     }
                 }
             }
@@ -186,7 +186,7 @@ import TarantulaPluginCore
                 self.currentSessionCrawled = 0
                 self.crawledCount = crawledCount
                 self.discoveredCount = discoveredCount
-                self.filteredCount = filteredCount
+                self.unselectedCount = unselectedCount
                 if requiresStop {
                     self.running = false
                 }

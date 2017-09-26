@@ -83,7 +83,7 @@ public enum RepositoryCrawlableSelection {
     case object(url: URL)
     case crawledObjects
     case objectsToCrawl
-    case filteredObjects
+    case unselectedObjects
     case all
 }
 

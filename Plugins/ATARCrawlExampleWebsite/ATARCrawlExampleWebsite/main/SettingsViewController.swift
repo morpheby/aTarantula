@@ -95,9 +95,9 @@ class SettingsViewController: NSViewController {
 
         repository.performAndWait {
             for type in self.plugin.crawlableObjectTypes {
-                let allObjects = repository.readAllObjects(type, withSelection: .filteredObjects) as! [CrawlableObject]
+                let allObjects = repository.readAllObjects(type, withSelection: .unselectedObjects) as! [CrawlableObject]
                 for object in allObjects {
-                    object.objectIsSelected = false
+                    object.objectIsSelected = true
                 }
             }
         }
