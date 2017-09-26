@@ -25,8 +25,9 @@ func crawlDrugPatients(_ object: DrugPatients, usingRepository repo: Repository,
 
     var patientsAll: [Patient] = []
     var pageNum: Int = 1
-    var allPages: [Int]? = nil
+    var allPages: [Int] = [1]
     var pageCount: Int? = nil
+    var allPagesFound = false
 
     repeat {
         guard var objectUrlComponents = URLComponents(url: objectUrl, resolvingAgainstBaseURL: true) else {
@@ -62,7 +63,7 @@ func crawlDrugPatients(_ object: DrugPatients, usingRepository repo: Repository,
 
         patientsAll.append(contentsOf: patients)
 
-        if allPages == nil {
+        if !allPagesFound {
             let pages: [Int] = {
                 html.xpath("//div[contains(@class, 'paging-ui')]//div[@class='pagination']/a[position() > 1 and position() < last()]").flatMap { element in
                     guard let pageNumStr = element.text,
@@ -72,16 +73,16 @@ func crawlDrugPatients(_ object: DrugPatients, usingRepository repo: Repository,
                 }
             }() .flatMap { x in x }
 
-            precondition({
+            allPages = Array(Set(allPages + pages)).sorted()
+
+            allPagesFound = {
                 for (prevPage, page) in zip([1] + pages.dropLast(), pages) {
                     if prevPage + 1 != page {
                         return false
                     }
                 }
                 return true
-            }(), "Missing pages in paginator page list: \(pages)")
-
-            allPages = pages
+            }()
 
             if let lastPage = pages.last {
                 pageCount = lastPage
