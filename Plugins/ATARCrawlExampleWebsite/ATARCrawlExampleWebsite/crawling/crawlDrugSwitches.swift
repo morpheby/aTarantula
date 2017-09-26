@@ -64,7 +64,7 @@ func crawlDrugSwitches(_ object: DrugSwitches, usingRepository repo: Repository,
             let relatedObject: Treatment = repo.performAndWait {
                 let o = repo.readAllObjects(Treatment.self, withSelection: .object(url: assembledUrl)).first ??
                     repo.newObject(forUrl: assembledUrl, type: Treatment.self)
-                assert(o.name == nil || o.name == name, "Invalid DrugSwitch parameters: Treatment names mismatch")
+                precondition(o.name == nil || o.name == name, "Invalid DrugSwitch parameters: Treatment names mismatch")
                 return o
             }
             relatedCrawlables.append(relatedObject)

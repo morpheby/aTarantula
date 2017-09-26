@@ -184,7 +184,7 @@ func combinedTryLock<T: NSRecursiveLock, S: BidirectionalCollection>(_ boxes: S)
 func combinedLock<T: NSRecursiveLock>(_ boxes: T...) {
     var boxesCopy = Deque(boxes)
     var failed: T?
-    assert(boxesCopy.count > 1)
+    precondition(boxesCopy.count > 1)
     repeat {
         let first = boxesCopy.popFirst()!
         first.lock()
