@@ -148,6 +148,7 @@
 				F6286C1A1F6FD5D100FAA994 /* DrugDosageCount+CoreDataClass.swift */,
 				F6286C161F6FD5D100FAA994 /* DrugDuration+CoreDataClass.swift */,
 				F6286C1E1F6FD5D100FAA994 /* DrugPatients+CoreDataClass.swift */,
+				F66E3D641F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift */,
 				F6286C121F6FD5D100FAA994 /* DrugSideEffects+CoreDataClass.swift */,
 				F6286C251F6FD5D100FAA994 /* DrugSideEffectSeverity+CoreDataClass.swift */,
 				F6286C1C1F6FD5D100FAA994 /* DrugStopReason+CoreDataClass.swift */,
@@ -155,12 +156,11 @@
 				F6EFF7711F709B6B00379EB9 /* DrugSwitches+CoreDataClass.swift */,
 				F66E3D581F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift */,
 				F66E3D5C1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift */,
+				F6D5356F1F7A8010008DE620 /* Patient+CoreDataClass.swift */,
 				F66E3D601F780A9900C77457 /* Symptom+CoreDataClass.swift */,
 				F64083CC1F6737AB00008FEB /* Treatment+CoreDataClass.swift */,
 				F66E3D5E1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift */,
 				F6286C0F1F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift */,
-				F66E3D641F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift */,
-				F6D5356F1F7A8010008DE620 /* Patient+CoreDataClass.swift */,
 			);
 			path = "core-data";
 			sourceTree = "<group>";
