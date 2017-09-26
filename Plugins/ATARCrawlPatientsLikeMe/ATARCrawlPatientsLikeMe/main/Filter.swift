@@ -14,10 +14,11 @@ enum FilterMethod {
     case closure((CrawlableObject) -> Bool)
 }
 
+// Returns true if the object needs to be included in the output with the given filter method
 func needsToBeFiltered(object: CrawlableObject, method: FilterMethod) -> Bool {
     switch method {
     case .none:
-        return false
+        return true
     case let .closure(f):
         return f(object)
     }
