@@ -110,8 +110,8 @@ import TarantulaPluginCore
         // 1. Determine object type
         // 2. Crawl the object with all relationships
         // 3. Collect all new objects
-        // 4. Run filter
-        // 5. Set filter result on the object and all new objects
+        // 4. Run select
+        // 5. Set select result on the object and all new objects
         // 6. Perform AND on each non-new related object for `filtered`
         //
 

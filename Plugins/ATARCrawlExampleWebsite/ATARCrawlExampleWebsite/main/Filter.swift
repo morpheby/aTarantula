@@ -15,7 +15,7 @@ enum FilterMethod {
 }
 
 // Returns true if the object needs to be included in the output with the given filter method
-func needsToBeFiltered(object: CrawlableObject, method: FilterMethod) -> Bool {
+func needsToBeSelected(object: CrawlableObject, filterMethod method: FilterMethod) -> Bool {
     switch method {
     case .none:
         return true
