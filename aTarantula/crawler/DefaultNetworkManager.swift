@@ -38,9 +38,12 @@ public class DefaultNetworkManager: NetworkManager {
         sessionQueue.addOperation {
             task.resume()
         }
+
+        condition.lock()
         while !completed {
             condition.wait()
         }
+        condition.unlock()
 
         if let e = error {
             throw URLSessionError(urlSessionError: e, response: response, data: data)
