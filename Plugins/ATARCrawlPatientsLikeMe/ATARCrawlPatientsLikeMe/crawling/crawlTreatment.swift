@@ -315,7 +315,7 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
         object.category = category
         object.types = Set(types) as NSSet
 
-        assert(generic == nil || object.generic == nil || object.generic == generic,
+        precondition(generic == nil || object.generic == nil || object.generic == generic,
                "Generic for Treatment \(name ?? "nil") (\(generic?.id ?? "nil"): \(generic?.name ?? "nil")) does not equal previously known generic (\(object.generic?.id ?? "nil"): \(object.generic?.name ?? "nil"))")
         object.generic = generic
 

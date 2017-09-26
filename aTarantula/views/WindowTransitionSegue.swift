@@ -21,17 +21,14 @@ class WindowTransitionSegue: NSStoryboardSegue {
             sourceWindowController = wnd
         case let vc as NSViewController:
             guard let window = vc.view.window else {
-                assertionFailure("No window present for source")
-                fatalError()
+                fatalError("No window present for source")
             }
             guard let wndController = window.windowController else {
-                assertionFailure("Source window must be managed by a controller")
-                fatalError()
+                fatalError("Source window must be managed by a controller")
             }
             sourceWindowController = wndController
         default:
-            assertionFailure("Invalid source controller")
-            fatalError()
+            fatalError("Invalid source controller")
         }
 
         destinationWindowController.window?.makeKeyAndOrderFront(self)

@@ -88,7 +88,7 @@ class PluginLoader {
         let fileManager = FileManager.default
         let list = fileManager.urls(for: .applicationSupportDirectory,
                                     in: .userDomainMask)
-        assert(list.count == 1, "Wrong number of items for single-directory search")
+        precondition(list.count == 1, "Wrong number of items for single-directory search")
         let rootPath = list.first!
         let path = rootPath.appendingPathComponent(NSApplication.shared.name, isDirectory: true).appendingPathComponent(PluginLoader.pluginsDirectoryName, isDirectory: true)
         return path
