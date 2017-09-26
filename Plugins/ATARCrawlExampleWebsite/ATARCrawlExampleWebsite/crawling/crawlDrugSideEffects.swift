@@ -67,7 +67,7 @@ func crawlDrugSideEffects(_ object: DrugSideEffects, usingRepository repo: Repos
             }
             return relatedObject
         }
-        }() .flatMap { x in x }
+    }() .flatMap { x in x }
 
     // Store object
     repo.perform {
