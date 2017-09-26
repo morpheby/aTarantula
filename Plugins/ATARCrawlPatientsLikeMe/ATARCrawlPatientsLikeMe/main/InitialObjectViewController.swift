@@ -30,7 +30,7 @@ class InitialObjectViewController: NSViewController {
         reposotiry.perform {
             let treatment = reposotiry.newObject(forUrl: url, type: Treatment.self)
             treatment.objectIsCrawled = false
-            treatment.objectIsFiltered = false
+            treatment.objectIsSelected = false
         }
 
         dismiss(self)

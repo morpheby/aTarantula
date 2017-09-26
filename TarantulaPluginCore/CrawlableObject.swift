@@ -60,15 +60,15 @@ public extension CrawlableObject {
         }
     }
 
-    /// Shows that the object has been marked as *not satisfying filtering criteria*.
-    /// Such object is supposed to be *not* crawled, and so is not intented to be, and
+    /// Shows that the object has been marked as selected under current filtering criteria.
+    /// If `false`, object is supposed to be *not* crawled, and so is not intented to be, and
     /// hence will be omitted in the request for all uncrawled objects.
-    var objectIsFiltered: Bool {
+    var objectIsSelected: Bool {
         get {
-            return self.disabled
+            return !self.disabled
         }
         set {
-            self.disabled = newValue
+            self.disabled = !newValue
         }
     }
 }

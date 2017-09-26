@@ -340,12 +340,11 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
 
         object.objectIsCrawled = true
 
-        if needsToBeFiltered(object: object, method: plugin.filterMethod) {
-            object.filter(newObjects: relatedCrawlables)
+        if needsToBeSelected(object: object, filterMethod: plugin.filterMethod) {
+            object.select(newObjects: relatedCrawlables)
         } else {
-            object.unfilter(newObjects: relatedCrawlables)
+            object.unselect(newObjects: relatedCrawlables)
         }
-
     }
 }
 

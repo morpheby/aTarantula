@@ -97,7 +97,7 @@ class SettingsViewController: NSViewController {
             for type in self.plugin.crawlableObjectTypes {
                 let allObjects = repository.readAllObjects(type, withSelection: .filteredObjects) as! [CrawlableObject]
                 for object in allObjects {
-                    object.objectIsFiltered = false
+                    object.objectIsSelected = false
                 }
             }
         }
@@ -119,32 +119,35 @@ class SettingsViewController: NSViewController {
             self.plugin.filterMethod = .closure({ object in
                 switch object {
                 case let object as Treatment:
-                    if object.name == drugName { return false }
-                    if object.generic?.name == drugName { return false }
-                    if ((object.types as? Set<Treatment>)?.reduce(false) { x, o in x || o.name == drugName }) == true { return false }
-                    return true
+                    if object.name == drugName { return true }
+                    if object.generic?.name == drugName { return true }
+                    if ((object.types as? Set<Treatment>)?.reduce(false) { x, o in x || o.name == drugName }) == true { return true }
+                    return false
                 case let object as Condition:
-                    if ((object.drugs_with_purpose as? Set<DrugTreatmentPurpose>)?.reduce(false) { x, o in x || o.drug_purposes?.drug?.name == drugName }) == true { return false }
-                    if ((object.drugs_with_sideeffect as? Set<DrugSideEffect>)?.reduce(false) { x, o in x || o.drug_sideeffects?.drug?.name == drugName }) == true { return false }
-                    return true
+                    if ((object.drugs_with_purpose as? Set<DrugTreatmentPurpose>)?.reduce(false) { x, o in x || o.drug_purposes?.drug?.name == drugName }) == true { return true }
+                    if ((object.drugs_with_sideeffect as? Set<DrugSideEffect>)?.reduce(false) { x, o in x || o.drug_sideeffects?.drug?.name == drugName }) == true { return true }
+                    return false
                 case let object as TreatmentPurposes:
-                    if object.drug?.name == drugName { return false }
-                    return true
+                    if object.drug?.name == drugName { return true }
+                    return false
                 case let object as DrugCategory:
-                    if ((object.drugs as? Set<Treatment>)?.reduce(false) { x, o in x || o.name == drugName }) == true { return false }
-                    return true
+                    if ((object.drugs as? Set<Treatment>)?.reduce(false) { x, o in x || o.name == drugName }) == true { return true }
+                    return false
                 case let object as DrugPatients:
-                    if object.drug?.name == drugName { return false }
-                    return true
+                    if object.drug?.name == drugName { return true }
+                    return false
                 case let object as DrugSideEffects:
-                    if object.drug?.name == drugName { return false }
-                    return true
+                    if object.drug?.name == drugName { return true }
+                    return false
                 case let object as DrugSwitches:
-                    if object.drug_to?.name == drugName { return false }
-                    if object.drug_from?.name == drugName { return false }
-                    return true
+                    if object.drug_to?.name == drugName { return true }
+                    if object.drug_from?.name == drugName { return true }
+                    return false
+                case let object as Patient:
+                    if ((object.using_drugs_meta as? Set<DrugPatients>)?.reduce(false) { x, o in x || o.drug?.name == drugName }) == true { return true }
+                    return false
                 default:
-                    return true
+                    return false
                 }
             })
         }
@@ -159,7 +162,7 @@ class SettingsViewController: NSViewController {
             for type in self.plugin.crawlableObjectTypes {
                 let allObjects = repository.readAllObjects(type, withSelection: .all) as! [CrawlableObject]
                 for object in allObjects {
-                    object.objectIsFiltered = needsToBeFiltered(object: object, method: self.plugin.filterMethod)
+                    object.objectIsSelected = needsToBeSelected(object: object, filterMethod: self.plugin.filterMethod)
                 }
             }
         }
