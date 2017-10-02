@@ -30,6 +30,14 @@ script, if you have never done so before.*
 *Note: You can verify if it is properly managed by creating a simple Swift project or playground, importing `xml2`
 and then trying to use any of the module functions. If it works, then this step is no longer required.*
 
+#### Pods Swift version ####
+
+If you encounter bugs while building Pods, it could be due to wrong Swift version set for Pods targets.
+Cocoa Pods 1.3.1 sets Swift 4.0 as default, so you may need to change that.
+
+Open "Pods" project settings, select target "CrossroadRegex", in the "Build Settings" tab find "Swift Language Version"
+and set that to "Swift 3.2". Repeat the same for "Kanna" target.
+
 ### Building ###
 
 Open `aTarantula.xcworkspace` in Xcode and build target `aTarantula`.
