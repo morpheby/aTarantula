@@ -85,12 +85,8 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
     // Despite the chosen option, we would still need one JSON object to be fetched right here:
     // registry of available objects.
 
-    struct JsonChartRef: Codable {
-        let name: String
-        let url: String
-    }
+    let chartObjects: [PatientChart]? = try {
 
-    let specificUrls: [JsonChartRef]? = try {
         guard let assembledUrl: URL = ({
             guard let url = URL(string: "/members/\(id)/chart_json.json", relativeTo: plugin.baseUrl),
             var urlComponents = URLComponents(url: url,
@@ -101,15 +97,61 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
             return urlComponents.url
         }()) else { return nil }
 
-        let jsonData = try plugin.networkManager?.data(url: objectUrl) ?? Data(contentsOf: objectUrl)
+        struct JsonChartRef: Codable {
+            let name: String
+            let url: String
+        }
+
+        let jsonData = try plugin.networkManager?.data(url: assembledUrl) ?? Data(contentsOf: assembledUrl)
         let decoder = JSONDecoder()
         let decoded = try decoder.decode([String: [String: JsonChartRef]].self, from: jsonData)
-        return decoded.flatMap { key, value in
-            return value.map { key, value in
-                return value
+        return try decoded.flatMap { key, value in
+            return try value.flatMap { key, value in
+                let type: PatientChart.Type
+                switch key {
+                case "instant_mood":
+                    type = PatientInstantMood.self
+                case "milestones":
+                    type = PatientMilestones.self
+                case "labs":
+                    type = PatientLabs.self
+                case "lab_results":
+                    type = PatientLabResults.self
+                case "weight":
+                    type = PatientWeight.self
+                case "quality_of_life":
+                    type = PatientQualityOfLife.self
+                case "hospitalizations":
+                    type = PatientHospitalizations.self
+                case "symptoms":
+                    type = PatientSymptoms.self
+                case "symptom_reports":
+                    type = PatientSymptomReports.self
+                case "treatments":
+                    type = PatientTreatments.self
+                case "treatment_dosages":
+                    type = PatientTreatmentDosages.self
+
+                case "chart_state":
+                    // Ignore those, since they contain no useful data
+                    return nil
+                default:
+                    throw CrawlError(url: objectUrl, info: "Unknown chart data type discovered: \(key) — \(value)")
+                }
+                guard let url = url(string: value.url) else { throw CrawlError(url: objectUrl, info: "One of the CSRF crawlables contains invalid URL: \(value)") }
+                let relatedObject: PatientChart = repo.performAndWait {
+                    let object = repo.readAllObjects(type, withSelection: .object(url: url)).first ??
+                        repo.newObject(forUrl: url, type: type)
+                    object.csrfToken = csrfToken
+                    return object
+                }
+                relatedCrawlables.append(relatedObject)
+                return relatedObject
             }
         }
+
     }()
+
 
     // Store object
     repo.perform {

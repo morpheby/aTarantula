@@ -99,7 +99,7 @@ public class DefaultNetworkManager: NetworkManager {
         }
 
         var failureReason: String? {
-            return "Problem appeared while reading \(problematicData) as UTF-8 String"
+            return "Problem appeared while reading \(String(describing: problematicData)) as UTF-8 String"
         }
     }
 

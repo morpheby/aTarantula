@@ -44,6 +44,19 @@
 		F68716421F83D5260010FD33 /* PatientInterest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716381F83D5260010FD33 /* PatientInterest+CoreDataClass.swift */; };
 		F68716441F83D5260010FD33 /* PatientFollowings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687163A1F83D5260010FD33 /* PatientFollowings+CoreDataClass.swift */; };
 		F68716461F83D5260010FD33 /* CSRFToken+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687163C1F83D5260010FD33 /* CSRFToken+CoreDataClass.swift */; };
+		F68716601F83E86B0010FD33 /* PatientQualityOfLife+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716481F83E86A0010FD33 /* PatientQualityOfLife+CoreDataClass.swift */; };
+		F68716621F83E86B0010FD33 /* PatientMilestones+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687164A1F83E86A0010FD33 /* PatientMilestones+CoreDataClass.swift */; };
+		F68716641F83E86B0010FD33 /* PatientLabResults+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687164C1F83E86A0010FD33 /* PatientLabResults+CoreDataClass.swift */; };
+		F68716661F83E86B0010FD33 /* PatientHospitalizations+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687164E1F83E86A0010FD33 /* PatientHospitalizations+CoreDataClass.swift */; };
+		F68716681F83E86B0010FD33 /* PatientSymptomReports+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716501F83E86A0010FD33 /* PatientSymptomReports+CoreDataClass.swift */; };
+		F687166A1F83E86B0010FD33 /* PatientTreatmentDosages+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716521F83E86B0010FD33 /* PatientTreatmentDosages+CoreDataClass.swift */; };
+		F687166C1F83E86B0010FD33 /* PatientInstantMood+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716541F83E86B0010FD33 /* PatientInstantMood+CoreDataClass.swift */; };
+		F687166E1F83E86B0010FD33 /* CSRFCrawlable+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716561F83E86B0010FD33 /* CSRFCrawlable+CoreDataClass.swift */; };
+		F68716701F83E86B0010FD33 /* PatientTreatments+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716581F83E86B0010FD33 /* PatientTreatments+CoreDataClass.swift */; };
+		F68716721F83E86B0010FD33 /* PatientLabs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687165A1F83E86B0010FD33 /* PatientLabs+CoreDataClass.swift */; };
+		F68716741F83E86B0010FD33 /* PatientWeight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687165C1F83E86B0010FD33 /* PatientWeight+CoreDataClass.swift */; };
+		F68716761F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F687165E1F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift */; };
+		F687167A1F83EC170010FD33 /* PatientChart+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68716781F83EC170010FD33 /* PatientChart+CoreDataClass.swift */; };
 		F6D535701F7A8010008DE620 /* Patient+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5356F1F7A8010008DE620 /* Patient+CoreDataClass.swift */; };
 		F6E94E141F7218F800EDEB87 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E131F7218F800EDEB87 /* Filter.swift */; };
 		F6E94E181F72696F00EDEB87 /* crawlTreatmentPurposes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */; };
@@ -92,6 +105,19 @@
 		F68716381F83D5260010FD33 /* PatientInterest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientInterest+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F687163A1F83D5260010FD33 /* PatientFollowings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientFollowings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F687163C1F83D5260010FD33 /* CSRFToken+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSRFToken+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716481F83E86A0010FD33 /* PatientQualityOfLife+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientQualityOfLife+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687164A1F83E86A0010FD33 /* PatientMilestones+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientMilestones+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687164C1F83E86A0010FD33 /* PatientLabResults+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientLabResults+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687164E1F83E86A0010FD33 /* PatientHospitalizations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientHospitalizations+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716501F83E86A0010FD33 /* PatientSymptomReports+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientSymptomReports+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716521F83E86B0010FD33 /* PatientTreatmentDosages+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientTreatmentDosages+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716541F83E86B0010FD33 /* PatientInstantMood+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientInstantMood+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716561F83E86B0010FD33 /* CSRFCrawlable+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSRFCrawlable+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716581F83E86B0010FD33 /* PatientTreatments+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientTreatments+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687165A1F83E86B0010FD33 /* PatientLabs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientLabs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687165C1F83E86B0010FD33 /* PatientWeight+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientWeight+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F687165E1F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientSymptoms+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F68716781F83EC170010FD33 /* PatientChart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientChart+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6D5356F1F7A8010008DE620 /* Patient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Patient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6E94E131F7218F800EDEB87 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatmentPurposes.swift; sourceTree = "<group>"; };
@@ -150,6 +176,19 @@
 		F64083D41F6743BB00008FEB /* core-data */ = {
 			isa = PBXGroup;
 			children = (
+				F68716781F83EC170010FD33 /* PatientChart+CoreDataClass.swift */,
+				F68716481F83E86A0010FD33 /* PatientQualityOfLife+CoreDataClass.swift */,
+				F687164A1F83E86A0010FD33 /* PatientMilestones+CoreDataClass.swift */,
+				F687164C1F83E86A0010FD33 /* PatientLabResults+CoreDataClass.swift */,
+				F687164E1F83E86A0010FD33 /* PatientHospitalizations+CoreDataClass.swift */,
+				F68716501F83E86A0010FD33 /* PatientSymptomReports+CoreDataClass.swift */,
+				F68716521F83E86B0010FD33 /* PatientTreatmentDosages+CoreDataClass.swift */,
+				F68716541F83E86B0010FD33 /* PatientInstantMood+CoreDataClass.swift */,
+				F68716561F83E86B0010FD33 /* CSRFCrawlable+CoreDataClass.swift */,
+				F68716581F83E86B0010FD33 /* PatientTreatments+CoreDataClass.swift */,
+				F687165A1F83E86B0010FD33 /* PatientLabs+CoreDataClass.swift */,
+				F687165C1F83E86B0010FD33 /* PatientWeight+CoreDataClass.swift */,
+				F687165E1F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift */,
 				F68716341F83D5260010FD33 /* PatientFollowers+CoreDataClass.swift */,
 				F68716361F83D5260010FD33 /* PatientForumPosts+CoreDataClass.swift */,
 				F68716381F83D5260010FD33 /* PatientInterest+CoreDataClass.swift */,
@@ -288,10 +327,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6286C3D1F6FD5D100FAA994 /* DrugSwitch+CoreDataClass.swift in Sources */,
+				F68716721F83E86B0010FD33 /* PatientLabs+CoreDataClass.swift in Sources */,
 				F64083D91F67441800008FEB /* crawlTreatment.swift in Sources */,
+				F687167A1F83EC170010FD33 /* PatientChart+CoreDataClass.swift in Sources */,
 				F64083DB1F6748E000008FEB /* crawl.swift in Sources */,
+				F68716741F83E86B0010FD33 /* PatientWeight+CoreDataClass.swift in Sources */,
 				F64083CB1F67351F00008FEB /* InitialObjectViewController.swift in Sources */,
+				F68716601F83E86B0010FD33 /* PatientQualityOfLife+CoreDataClass.swift in Sources */,
 				F6286C291F6FD5D100FAA994 /* TreatmentPurposes+CoreDataClass.swift in Sources */,
+				F68716661F83E86B0010FD33 /* PatientHospitalizations+CoreDataClass.swift in Sources */,
 				F68716421F83D5260010FD33 /* PatientInterest+CoreDataClass.swift in Sources */,
 				F6D535701F7A8010008DE620 /* Patient+CoreDataClass.swift in Sources */,
 				F68716441F83D5260010FD33 /* PatientFollowings+CoreDataClass.swift in Sources */,
@@ -299,16 +343,21 @@
 				F6E94E181F72696F00EDEB87 /* crawlTreatmentPurposes.swift in Sources */,
 				F66E3D611F780A9900C77457 /* Symptom+CoreDataClass.swift in Sources */,
 				F6286C341F6FD5D100FAA994 /* DrugDosageCount+CoreDataClass.swift in Sources */,
+				F68716621F83E86B0010FD33 /* PatientMilestones+CoreDataClass.swift in Sources */,
 				F64083D21F6737AB00008FEB /* Crawlable+CoreDataClass.swift in Sources */,
 				F6286C361F6FD5D100FAA994 /* DrugStopReason+CoreDataClass.swift in Sources */,
 				F66E3D6D1F7828E300C77457 /* crawlDrugPatients.swift in Sources */,
+				F687166E1F83E86B0010FD33 /* CSRFCrawlable+CoreDataClass.swift in Sources */,
 				F687163E1F83D5260010FD33 /* PatientFollowers+CoreDataClass.swift in Sources */,
+				F68716761F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift in Sources */,
 				F6286C3B1F6FD5D100FAA994 /* DrugCategory+CoreDataClass.swift in Sources */,
 				F66E3D5B1F77FE5B00C77457 /* Condition+CoreDataClass.swift in Sources */,
 				F6286C381F6FD5D100FAA994 /* DrugPatients+CoreDataClass.swift in Sources */,
 				F6286C321F6FD5D100FAA994 /* DrugBurden+CoreDataClass.swift in Sources */,
 				F6EFF7721F709B6B00379EB9 /* DrugSwitches+CoreDataClass.swift in Sources */,
+				F68716681F83E86B0010FD33 /* PatientSymptomReports+CoreDataClass.swift in Sources */,
 				F6E94E141F7218F800EDEB87 /* Filter.swift in Sources */,
+				F68716641F83E86B0010FD33 /* PatientLabResults+CoreDataClass.swift in Sources */,
 				F66E3D591F77FE1A00C77457 /* DrugTreatmentPurpose+CoreDataClass.swift in Sources */,
 				F6286C411F6FD5D100FAA994 /* DrugCost+CoreDataClass.swift in Sources */,
 				F6286C301F6FD5D100FAA994 /* DrugDuration+CoreDataClass.swift in Sources */,
@@ -319,12 +368,15 @@
 				F66E3D5F1F780A7000C77457 /* TreatmentPurpose+CoreDataClass.swift in Sources */,
 				F66E3D5D1F7801F900C77457 /* DrugTreatmentPurposeEffectiveness+CoreDataClass.swift in Sources */,
 				F66E3D651F780FAD00C77457 /* DrugSideEffect+CoreDataClass.swift in Sources */,
+				F687166A1F83E86B0010FD33 /* PatientTreatmentDosages+CoreDataClass.swift in Sources */,
 				F64083C91F6730F700008FEB /* Resources.swift in Sources */,
 				F64083A71F65946000008FEB /* ATARCrawlExampleWebsiteCrawlerPlugin.swift in Sources */,
 				F68716331F83C2DD0010FD33 /* crawlPatient.swift in Sources */,
 				F68716461F83D5260010FD33 /* CSRFToken+CoreDataClass.swift in Sources */,
 				F64083D01F6737AB00008FEB /* Treatment+CoreDataClass.swift in Sources */,
 				F66E3D631F780D6F00C77457 /* crawlDrugSideEffects.swift in Sources */,
+				F687166C1F83E86B0010FD33 /* PatientInstantMood+CoreDataClass.swift in Sources */,
+				F68716701F83E86B0010FD33 /* PatientTreatments+CoreDataClass.swift in Sources */,
 				F64083C71F6729E800008FEB /* SettingsViewController.swift in Sources */,
 				F6EFF7701F709B3C00379EB9 /* crawlDrugSwitches.swift in Sources */,
 			);

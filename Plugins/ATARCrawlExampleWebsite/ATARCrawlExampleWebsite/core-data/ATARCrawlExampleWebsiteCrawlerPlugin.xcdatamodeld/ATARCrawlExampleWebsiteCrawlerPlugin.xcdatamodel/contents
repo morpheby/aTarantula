@@ -22,10 +22,14 @@
             <fetchIndexElement property="disabled" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="CSRFCrawlable" representedClassName="CSRFCrawlable" isAbstract="YES" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
+        <relationship name="csrfToken" maxCount="1" deletionRule="Nullify" destinationEntity="CSRFToken" inverseName="crawlables" inverseEntity="CSRFToken" syncable="YES"/>
+    </entity>
     <entity name="CSRFToken" representedClassName="CSRFToken" syncable="YES" codeGenerationType="category">
         <attribute name="original_url" attributeType="String" syncable="YES"/>
         <attribute name="token_param" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token_value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="crawlables" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CSRFCrawlable" inverseName="csrfToken" inverseEntity="CSRFCrawlable" syncable="YES"/>
     </entity>
     <entity name="DrugAdherence" representedClassName="DrugAdherence" syncable="YES" codeGenerationType="category">
         <attribute name="id_value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -122,14 +126,19 @@
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chart_objects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientChart" inverseName="patient" inverseEntity="PatientChart" syncable="YES"/>
         <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientFollowings" inverseName="followings" inverseEntity="PatientFollowings" syncable="YES"/>
         <relationship name="following" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientFollowers" inverseName="followers" inverseEntity="PatientFollowers" syncable="YES"/>
+        <relationship name="forum_posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientForumPosts" inverseName="patient" inverseEntity="PatientForumPosts" syncable="YES"/>
         <relationship name="interests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientInterest" inverseName="patients_with_interest" inverseEntity="PatientInterest" syncable="YES"/>
         <relationship name="other_conditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="patients_with_other_condition" inverseEntity="Condition" syncable="YES"/>
         <relationship name="patient_followers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientFollowers" inverseName="patient" inverseEntity="PatientFollowers" syncable="YES"/>
         <relationship name="patient_followings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientFollowings" inverseName="patient" inverseEntity="PatientFollowings" syncable="YES"/>
         <relationship name="primary_condition" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Condition" inverseName="patients_with_primary_condition" inverseEntity="Condition" syncable="YES"/>
         <relationship name="using_drugs_meta" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DrugPatients" inverseName="patients" inverseEntity="DrugPatients" syncable="YES"/>
+    </entity>
+    <entity name="PatientChart" representedClassName="PatientChart" isAbstract="YES" parentEntity="CSRFCrawlable" syncable="YES" codeGenerationType="category">
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="chart_objects" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="PatientFollowers" representedClassName="PatientFollowers" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="following" inverseEntity="Patient" syncable="YES"/>
@@ -140,11 +149,22 @@
         <relationship name="patient" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="patient_followings" inverseEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="PatientForumPosts" representedClassName="PatientForumPosts" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
-        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="forum_posts" inverseEntity="Patient" syncable="YES"/>
     </entity>
+    <entity name="PatientHospitalizations" representedClassName="PatientHospitalizations" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientInstantMood" representedClassName="PatientInstantMood" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
     <entity name="PatientInterest" representedClassName="PatientInterest" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="patients_with_interest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="interests" inverseEntity="Patient" syncable="YES"/>
     </entity>
+    <entity name="PatientLabResults" representedClassName="PatientLabResults" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientLabs" representedClassName="PatientLabs" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientMilestones" representedClassName="PatientMilestones" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientQualityOfLife" representedClassName="PatientQualityOfLife" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientSymptomReports" representedClassName="PatientSymptomReports" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientSymptoms" representedClassName="PatientSymptoms" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientTreatmentDosages" representedClassName="PatientTreatmentDosages" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientTreatments" representedClassName="PatientTreatments" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
+    <entity name="PatientWeight" representedClassName="PatientWeight" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
     <entity name="Symptom" representedClassName="Symptom" parentEntity="Condition" syncable="YES" codeGenerationType="category"/>
     <entity name="Treatment" representedClassName="Treatment" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <attribute name="drug_description" optional="YES" attributeType="String" syncable="YES"/>
@@ -192,7 +212,7 @@
         <element name="DrugSwitches" positionX="-18" positionY="135" width="128" height="90"/>
         <element name="DrugTreatmentPurpose" positionX="-18" positionY="135" width="128" height="120"/>
         <element name="DrugTreatmentPurposeEffectiveness" positionX="-9" positionY="144" width="128" height="90"/>
-        <element name="Patient" positionX="-18" positionY="135" width="128" height="255"/>
+        <element name="Patient" positionX="-18" positionY="135" width="128" height="285"/>
         <element name="Symptom" positionX="9" positionY="162" width="128" height="45"/>
         <element name="Treatment" positionX="-63" positionY="-18" width="128" height="358"/>
         <element name="TreatmentPurpose" positionX="-18" positionY="135" width="128" height="45"/>
@@ -201,6 +221,19 @@
         <element name="PatientFollowers" positionX="-9" positionY="144" width="128" height="75"/>
         <element name="PatientFollowings" positionX="0" positionY="153" width="128" height="75"/>
         <element name="PatientForumPosts" positionX="9" positionY="162" width="128" height="60"/>
-        <element name="CSRFToken" positionX="18" positionY="171" width="128" height="90"/>
+        <element name="CSRFToken" positionX="18" positionY="171" width="128" height="105"/>
+        <element name="PatientInstantMood" positionX="27" positionY="180" width="128" height="45"/>
+        <element name="PatientMilestones" positionX="36" positionY="189" width="128" height="45"/>
+        <element name="CSRFCrawlable" positionX="-9" positionY="135" width="128" height="60"/>
+        <element name="PatientLabs" positionX="0" positionY="144" width="128" height="45"/>
+        <element name="PatientLabResults" positionX="9" positionY="153" width="128" height="45"/>
+        <element name="PatientWeight" positionX="18" positionY="162" width="128" height="45"/>
+        <element name="PatientQualityOfLife" positionX="27" positionY="171" width="128" height="45"/>
+        <element name="PatientHospitalizations" positionX="36" positionY="180" width="128" height="45"/>
+        <element name="PatientSymptoms" positionX="45" positionY="189" width="128" height="45"/>
+        <element name="PatientSymptomReports" positionX="-9" positionY="135" width="128" height="45"/>
+        <element name="PatientTreatments" positionX="0" positionY="144" width="128" height="45"/>
+        <element name="PatientTreatmentDosages" positionX="9" positionY="153" width="128" height="45"/>
+        <element name="PatientChart" positionX="27" positionY="171" width="128" height="60"/>
     </elements>
 </model>
