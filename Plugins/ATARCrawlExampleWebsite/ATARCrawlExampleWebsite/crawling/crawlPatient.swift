@@ -166,6 +166,18 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         return (gender, age, location)
     } .first ?? (nil, nil, nil)
 
+    let forumPosts: PatientForumPosts? = {
+        // This is a rare case when it is simpler to construct URL, than crawl :)
+        guard let url = URL(string: "/members/\(id)/posts", relativeTo: plugin.baseUrl) else { return nil }
+
+        let relatedObject = repo.performAndWait {
+            repo.readAllObjects(PatientForumPosts.self, withSelection: .object(url: url)).first ??
+                repo.newObject(forUrl: url, type: PatientForumPosts.self)
+        }
+        relatedCrawlables.append(relatedObject)
+        return relatedObject
+    }()
+
     // Store object
     repo.perform {
         object.originalHtml = data
@@ -177,6 +189,8 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         object.name = name
         object.gender = gender
         object.age = age.map { x in Int64(x) }
+
+        object.forum_posts = forumPosts
 
         if needsToBeSelected(object: object, filterMethod: plugin.filterMethod) {
             object.select(newObjects: relatedCrawlables)

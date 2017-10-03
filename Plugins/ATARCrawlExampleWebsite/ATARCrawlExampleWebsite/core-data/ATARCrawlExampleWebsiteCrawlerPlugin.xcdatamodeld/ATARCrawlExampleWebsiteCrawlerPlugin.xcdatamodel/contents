@@ -129,7 +129,7 @@
         <relationship name="chart_objects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientChart" inverseName="patient" inverseEntity="PatientChart" syncable="YES"/>
         <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientFollowings" inverseName="followings" inverseEntity="PatientFollowings" syncable="YES"/>
         <relationship name="following" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientFollowers" inverseName="followers" inverseEntity="PatientFollowers" syncable="YES"/>
-        <relationship name="forum_posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientForumPosts" inverseName="patient" inverseEntity="PatientForumPosts" syncable="YES"/>
+        <relationship name="forum_posts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientForumPosts" inverseName="patient" inverseEntity="PatientForumPosts" syncable="YES"/>
         <relationship name="interests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PatientInterest" inverseName="patients_with_interest" inverseEntity="PatientInterest" syncable="YES"/>
         <relationship name="other_conditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Condition" inverseName="patients_with_other_condition" inverseEntity="Condition" syncable="YES"/>
         <relationship name="patient_followers" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientFollowers" inverseName="patient" inverseEntity="PatientFollowers" syncable="YES"/>
