@@ -189,6 +189,7 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         object.name = name
         object.gender = gender
         object.age = age.map { x in Int64(x) }
+        object.location = location
 
         object.forum_posts = forumPosts
 
