@@ -154,16 +154,17 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
 
     let name = html.xpath("//div[@data-widget='profile_header']//h2/a").first?.text
 
-    let (gender, age): (String?, Int?) = html.xpath("").flatMap { element in
+    let (gender, age, location): (String?, Int?, String?) = html.xpath("//div[@data-widget='profile_header']//h2/../p").flatMap { element in
         guard let text = element.text else { return nil }
-        guard let regex = "(\\w+),\\s+(\\d+)".r else { fatalError("Wrong regex") }
+        guard let regex = "(\\w+),\\s+(\\d+)\\s+((\\w|\\s|,)+)".r else { fatalError("Wrong regex") }
 
         guard let regexMatch = regex.findFirst(in: text),
         let gender = regexMatch.group(at: 1),
         let ageStr = regexMatch.group(at: 2),
+        let location = regexMatch.group(at: 3),
         let age = Int(ageStr) else { return nil }
-        return (gender, age)
-    } .first ?? (nil, nil)
+        return (gender, age, location)
+    } .first ?? (nil, nil, nil)
 
     // Store object
     repo.perform {
