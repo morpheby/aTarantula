@@ -120,7 +120,7 @@
         <relationship name="drug_treatment_purpose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="effectivenesses" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
     </entity>
     <entity name="Patient" representedClassName="Patient" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
-        <attribute name="age" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="age_" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bio_long" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio_short" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>

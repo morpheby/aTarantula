@@ -12,4 +12,13 @@ import CoreData
 @objc(Patient)
 public class Patient: Crawlable {
 
+    var age: Int64? {
+        get {
+            return value(forKey: "age_") as? Int64
+        }
+        set {
+            setValue(newValue as AnyObject?, forKey: "age_")
+        }
+    }
+
 }

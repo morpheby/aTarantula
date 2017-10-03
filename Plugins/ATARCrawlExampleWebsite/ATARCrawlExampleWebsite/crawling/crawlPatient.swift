@@ -33,7 +33,7 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         guard let components = URLComponents(url: objectUrl, resolvingAgainstBaseURL: true) else { return nil }
         let path = components.path
 
-        guard let idRegex = ".*(\\d+)$".r else { fatalError("Wrong regex")}
+        guard let idRegex = ".*(\\d+)$".r else { fatalError("Wrong regex") }
         guard let reResult = idRegex.findFirst(in: path),
         let idStr = reResult.group(at: 1),
         let id = Int(idStr) else { return nil }
@@ -85,7 +85,7 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
     // Despite the chosen option, we would still need one JSON object to be fetched right here:
     // registry of available objects.
 
-    let chartObjects: [PatientChart]? = try {
+    let chartObjects: [PatientChart] = try {
 
         guard let assembledUrl: URL = ({
             guard let url = URL(string: "/members/\(id)/chart_json.json", relativeTo: plugin.baseUrl),
@@ -150,8 +150,20 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
             }
         }
 
-    }()
+    }() ?? []
 
+    let name = html.xpath("//div[@data-widget='profile_header']//h2/a").first?.text
+
+    let (gender, age): (String?, Int?) = html.xpath("").flatMap { element in
+        guard let text = element.text else { return nil }
+        guard let regex = "(\\w+),\\s+(\\d+)".r else { fatalError("Wrong regex") }
+
+        guard let regexMatch = regex.findFirst(in: text),
+        let gender = regexMatch.group(at: 1),
+        let ageStr = regexMatch.group(at: 2),
+        let age = Int(ageStr) else { return nil }
+        return (gender, age)
+    } .first ?? (nil, nil)
 
     // Store object
     repo.perform {
@@ -160,6 +172,10 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         object.objectIsCrawled = true
 
         object.chart_objects = Set(chartObjects) as NSSet
+
+        object.name = name
+        object.gender = gender
+        object.age = age.map { x in Int64(x) }
 
         if needsToBeSelected(object: object, filterMethod: plugin.filterMethod) {
             object.select(newObjects: relatedCrawlables)
