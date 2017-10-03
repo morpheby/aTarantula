@@ -10,4 +10,5 @@ import Foundation
 
 public protocol NetworkManager {
     func stringData(url: URL) throws -> String
+    func data(url: URL) throws -> Data
 }

@@ -20,7 +20,7 @@ public class DefaultNetworkManager: NetworkManager {
         session = URLSession(configuration: configuration)
     }
 
-    public func stringData(url: URL) throws -> String {
+    public func data(url: URL) throws -> Data {
         let condition = NSCondition()
         var completed: Bool = false
         var data: Data?
@@ -49,11 +49,20 @@ public class DefaultNetworkManager: NetworkManager {
             throw URLSessionError(urlSessionError: e, response: response, data: data)
         }
 
-        if let d = data, let result = String(data: d, encoding: .utf8) {
-            return result
+        if let d = data {
+            return d
         }
 
         throw UnknownURLSessionError(response: response)
+    }
+
+    public func stringData(url: URL) throws -> String {
+        let dataValue = try data(url: url)
+        if let result = String(data: dataValue, encoding: .utf8) {
+            return result
+        }
+
+        throw StringConversionError(problematicData: dataValue)
     }
 
     struct URLSessionError: LocalizedError {
@@ -79,6 +88,18 @@ public class DefaultNetworkManager: NetworkManager {
 
         var failureReason: String? {
             return "\(String(describing: response))"
+        }
+    }
+
+    struct StringConversionError: LocalizedError {
+        let problematicData: Data?
+
+        var errorDescription: String? {
+            return "Unable to transform data to UTF-8 string"
+        }
+
+        var failureReason: String? {
+            return "Problem appeared while reading \(problematicData) as UTF-8 String"
         }
     }
 
