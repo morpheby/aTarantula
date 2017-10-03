@@ -159,6 +159,8 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
 
         object.objectIsCrawled = true
 
+        object.chart_objects = Set(chartObjects) as NSSet
+
         if needsToBeSelected(object: object, filterMethod: plugin.filterMethod) {
             object.select(newObjects: relatedCrawlables)
         } else {
