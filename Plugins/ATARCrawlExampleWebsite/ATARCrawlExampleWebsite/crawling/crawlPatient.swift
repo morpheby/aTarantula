@@ -33,7 +33,7 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
         guard let components = URLComponents(url: objectUrl, resolvingAgainstBaseURL: true) else { return nil }
         let path = components.path
 
-        guard let idRegex = ".*(\\d+)$".r else { fatalError("Wrong regex") }
+        guard let idRegex = ".*/(\\d+)$".r else { fatalError("Wrong regex") }
         guard let reResult = idRegex.findFirst(in: path),
         let idStr = reResult.group(at: 1),
         let id = Int(idStr) else { return nil }
@@ -91,18 +91,26 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
             guard let url = URL(string: "/members/\(id)/chart_json.json", relativeTo: plugin.baseUrl),
             var urlComponents = URLComponents(url: url,
                                               resolvingAgainstBaseURL: true) else { return nil }
-            urlComponents.queryItems = [
-                URLQueryItem(name: csrfTokenParam, value: csrfTokenValue)
-            ]
+//            urlComponents.queryItems = [
+//                URLQueryItem(name: csrfTokenParam, value: csrfTokenValue)
+//            ]
+            let encodedValue = csrfTokenValue.addingPercentEncoding(
+                withAllowedCharacters: CharacterSet.urlQueryAllowed.subtracting(CharacterSet(charactersIn: "=+/"))
+                )!
+            urlComponents.percentEncodedQuery = "\(csrfTokenParam)=\(encodedValue)"
             return urlComponents.url
         }()) else { return nil }
 
         struct JsonChartRef: Codable {
             let name: String
-            let url: String
+            let link: String
         }
 
-        let jsonData = try plugin.networkManager?.data(url: assembledUrl) ?? Data(contentsOf: assembledUrl)
+        let jsonData = try plugin.networkManager?.data(url: assembledUrl, beforeRequest: { request in
+            var r = request
+            r.addValue(csrfTokenValue, forHTTPHeaderField: "X-CSRF-Token")
+            return r
+        }) ?? Data(contentsOf: assembledUrl)
         let decoder = JSONDecoder()
         let decoded = try decoder.decode([String: [String: JsonChartRef]].self, from: jsonData)
         return try decoded.flatMap { key, value in
@@ -136,9 +144,12 @@ func crawlPatient(_ object: Patient, usingRepository repo: Repository, withPlugi
                     // Ignore those, since they contain no useful data
                     return nil
                 default:
-                    throw CrawlError(url: objectUrl, info: "Unknown chart data type discovered: \(key) — \(value)")
+                    // XXX: Ignoring this is not good, but we are nowhere near full data capture for now…
+//                    throw CrawlError(url: objectUrl, info: "Unknown chart data type discovered: \(key) — \(value)")
+                    debugPrint(objectUrl, "Unknown chart data type discovered: \(key) — \(value)")
+                    return nil
                 }
-                guard let url = url(string: value.url) else { throw CrawlError(url: objectUrl, info: "One of the CSRF crawlables contains invalid URL: \(value)") }
+                guard let url = url(string: value.link) else { throw CrawlError(url: objectUrl, info: "One of the CSRF crawlables contains invalid URL: \(value)") }
                 let relatedObject: PatientChart = repo.performAndWait {
                     let object = repo.readAllObjects(type, withSelection: .object(url: url)).first ??
                         repo.newObject(forUrl: url, type: type)

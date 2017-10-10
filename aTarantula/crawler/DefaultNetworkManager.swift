@@ -21,13 +21,19 @@ public class DefaultNetworkManager: NetworkManager {
     }
 
     public func data(url: URL) throws -> Data {
+        return try data(url: url, beforeRequest: {$0})
+    }
+
+    public func data(url: URL, beforeRequest: (URLRequest) -> (URLRequest)) throws -> Data {
         let condition = NSCondition()
         var completed: Bool = false
         var data: Data?
         var response: URLResponse?
         var error: Error?
 
-        let task = session.dataTask(with: url, completionHandler: { (data_, response_, error_) in
+        let request = beforeRequest(URLRequest(url: url))
+
+        let task = session.dataTask(with: request, completionHandler: { (data_, response_, error_) in
             data = data_
             response = response_
             error = error_
