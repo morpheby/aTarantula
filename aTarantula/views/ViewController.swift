@@ -16,10 +16,6 @@ class ViewController: NSViewController {
     @IBOutlet var secondProgressIndicator: NSProgressIndicator!
     @IBOutlet var tableLogView: NSTableView!
 
-    @objc dynamic var pluginNames: [String]  {
-        return NSApplication.shared.controller.pluginLoader.crawlers.map { plugin in plugin.name }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         crawler.logChangeObservable ∆= self >> { s, c in
@@ -54,10 +50,6 @@ class ViewController: NSViewController {
         switch segue.identifier {
         case .some(.pluginDrawerSegue):
             crawler.running = false
-            guard let destinationViewController = segue.destinationController as? NSViewController else {
-                fatalError("Invalid segue: \(segue)")
-            }
-            destinationViewController.representedObject = pluginNames
         default:
             break
         }

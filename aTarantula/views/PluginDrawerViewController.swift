@@ -7,11 +7,38 @@
 //
 
 import Cocoa
+import TarantulaPluginCore
 
 class PluginDrawerViewController: NSViewController {
 
     var rowHeights: [Int: Float] = [:]
-    var activeObject: AnyObject?
+    var activeObject: PluginInfoWrapper?
+    var exportData: (PluginInfoWrapper, URL)? = nil
+    var importData: (PluginInfoWrapper, URL)? = nil
+
+    @objc class PluginInfoWrapper: NSObject {
+        typealias Index = Array<ApplicationController.PluginInfo>.Index
+        let pluginIndex: Index
+
+        var plugin: TarantulaCrawlingPlugin {
+            get { return NSApplication.shared.controller.crawlingPlugins[pluginIndex].plugin }
+        }
+
+        @objc dynamic var name: String {
+            get { return NSApplication.shared.controller.crawlingPlugins[pluginIndex].plugin.name }
+        }
+
+        @objc dynamic var enabled: Bool {
+            get { return NSApplication.shared.controller.crawlingPlugins[pluginIndex].enabled }
+            set { NSApplication.shared.controller.crawlingPlugins[pluginIndex].enabled = newValue }
+        }
+
+        init(pluginIndex: Index) {
+            self.pluginIndex = pluginIndex
+        }
+    }
+
+    @objc dynamic var plugins = NSApplication.shared.controller.crawlingPlugins.indices.map { i in PluginInfoWrapper(pluginIndex: i) }
 
     @objc dynamic var overwriteDatabaseFlag: Bool = false
     
@@ -20,28 +47,30 @@ class PluginDrawerViewController: NSViewController {
     }
 
     @IBAction func openEditor(_ object: AnyObject) {
-        assert(object is String, "Invalid object supplied to action")
+        guard let selected = object as? PluginInfoWrapper else {
+            fatalError("Invalid object supplied")
+        }
 
-        activeObject = object
+        activeObject = selected
         performSegue(withIdentifier: .editorSegue, sender: self)
     }
 
     @IBAction func exportData(_ object: AnyObject) {
-        guard let selectedName = object as? String else {
+        guard let selected = object as? PluginInfoWrapper else {
             fatalError("Invalid object supplied")
         }
 
         let savePanel = NSSavePanel()
         savePanel.message = "Select export location"
         savePanel.nameFieldLabel = "Export file:"
-        savePanel.nameFieldStringValue = selectedName
+        savePanel.nameFieldStringValue = selected.name
         savePanel.allowedFileTypes = ["sqlite"]
         savePanel.allowsOtherFileTypes = false
 
         savePanel.beginSheetModal(for: view.window!, completionHandler: { response in
             switch (response) {
             case .OK:
-                self.activeObject = (selectedName, savePanel.url) as AnyObject
+                self.exportData = (selected, savePanel.url!)
                 self.performSegue(withIdentifier: .migrateSegue, sender: self)
             default:
                 break
@@ -50,14 +79,14 @@ class PluginDrawerViewController: NSViewController {
     }
 
     @IBAction func importData(_ object: AnyObject) {
-        guard let selectedName = object as? String else {
+        guard let selected = object as? PluginInfoWrapper else {
             fatalError("Invalid object supplied")
         }
 
         let openPanel = NSOpenPanel()
-        openPanel.message = "Select database to import for \(selectedName)"
+        openPanel.message = "Select database to import for \(selected.name)"
         openPanel.nameFieldLabel = "Database file:"
-        openPanel.nameFieldStringValue = selectedName
+        openPanel.nameFieldStringValue = selected.name
         openPanel.allowedFileTypes = ["sqlite"]
         openPanel.allowsOtherFileTypes = false
 
@@ -80,7 +109,7 @@ class PluginDrawerViewController: NSViewController {
         openPanel.beginSheetModal(for: view.window!, completionHandler: { response in
             switch (response) {
             case .OK:
-                self.activeObject = (openPanel.url, selectedName) as AnyObject
+                self.importData = (selected, openPanel.url!)
                 self.performSegue(withIdentifier: .migrateSegue, sender: self)
             default:
                 break
@@ -89,14 +118,11 @@ class PluginDrawerViewController: NSViewController {
     }
 
     @IBAction func openSettings(_ object: AnyObject) {
-        guard let selectedName = object as? String else {
+        guard let selected = object as? PluginInfoWrapper else {
             fatalError("Invalid object supplied")
         }
 
-        let appController = NSApplication.shared.controller
-        guard let plugin = (appController.pluginLoader.crawlers.filter { plugin in plugin.name == selectedName } .first) else {
-            fatalError("Plugin was reported, but doesn't exist")
-        }
+        let plugin = selected.plugin
 
         guard let viewController = plugin.settingsViewController else {
             presentError(PluginError.noSettings)
@@ -106,9 +132,11 @@ class PluginDrawerViewController: NSViewController {
     }
 
     @IBAction func openNetworkSettings(_ object: AnyObject) {
-        assert(object is String, "Invalid object supplied to action")
+        guard let selected = object as? PluginInfoWrapper else {
+            fatalError("Invalid object supplied")
+        }
 
-        activeObject = object
+        activeObject = selected
         performSegue(withIdentifier: .networkSettingsSegue, sender: self)
     }
 
@@ -120,13 +148,10 @@ class PluginDrawerViewController: NSViewController {
             guard let editorViewController = segue.destinationController as? CDEEditorViewController else {
                 fatalError("Invalid segue: \(segue)")
             }
-            guard let selectedName = activeObject as? String else {
-                fatalError("Invalid state of activeObject")
-            }
             let configuration = CDEConfiguration()
             let appController = NSApplication.shared.controller
-            guard let plugin = (appController.pluginLoader.crawlers.filter { plugin in plugin.name == selectedName } .first) else {
-                fatalError("Plugin was reported, but doesn't exist")
+            guard let plugin = activeObject?.plugin else {
+                fatalError("Button was pushed, but no information persisted")
             }
             let store = appController.dataLoader.stores[plugin.name]!
             appController.withDefaultError {
@@ -137,28 +162,21 @@ class PluginDrawerViewController: NSViewController {
                 fatalError("Invalid segue: \(segue)")
             }
 
-            switch (activeObject) {
-            case let (selectedName, targetUrl) as (String, URL):
-                // Export
-                loadingViewController.task = .exportStore(name: selectedName, to: targetUrl)
-            case let (targetUrl, selectedName) as (URL, String):
-                // Import (yep, this is ugly, and I'm lazy)
-                loadingViewController.task = .importStore(name: selectedName, from: targetUrl, destroy: overwriteDatabaseFlag)
-            default:
-                fatalError("Invalid state of activeObject")
+            if let (selected, targetUrl) = exportData {
+                loadingViewController.task = .exportStore(name: selected.name, to: targetUrl)
+            } else if let (selected, targetUrl) = importData {
+                loadingViewController.task = .importStore(name: selected.name, from: targetUrl, destroy: overwriteDatabaseFlag)
+            } else {
+                fatalError("Button was pushed, but no information persisted")
             }
         case .some(.networkSettingsSegue):
             guard let networkViewController = segue.destinationController as? NetworkSettingsViewController else {
                 fatalError("Invalid segue: \(segue)")
             }
 
-            guard let selectedName = activeObject as? String else {
-                fatalError("Invalid state of activeObject")
-            }
-
             let appController = NSApplication.shared.controller
-            guard let plugin = (appController.pluginLoader.crawlers.filter { plugin in plugin.name == selectedName } .first) else {
-                fatalError("Plugin was reported, but doesn't exist")
+            guard let plugin = activeObject?.plugin else {
+                fatalError("Button was pushed, but no information persisted")
             }
             guard let networkManager = plugin.networkManager as? DefaultNetworkManager else {
                 fatalError("Internal Error: Network Manager unset or invalid")
@@ -168,6 +186,11 @@ class PluginDrawerViewController: NSViewController {
         default:
             break
         }
+
+        // Reset active objects
+        activeObject = nil
+        exportData = nil
+        importData = nil
     }
 
     override func dismissViewController(_ viewController: NSViewController) {

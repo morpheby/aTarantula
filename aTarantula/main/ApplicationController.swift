@@ -18,6 +18,33 @@ class ApplicationController {
     var pluginLoader: PluginLoader
     var dataLoader: DataLoader
 
+    struct PluginInfo {
+        private let key: String
+
+        init(plugin: TarantulaCrawlingPlugin) {
+            self.plugin = plugin
+            self.key = "aTarantula_PluginEnabled_\(plugin.name)"
+            if UserDefaults.standard.value(forKey: key) == nil {
+                UserDefaults.standard.set(true, forKey: key)
+            }
+        }
+
+        var plugin: TarantulaCrawlingPlugin
+        var enabled: Bool {
+            get {
+                return UserDefaults.standard.bool(forKey: key)
+            }
+            set {
+                UserDefaults.standard.set(newValue, forKey: key)
+            }
+        }
+    }
+
+    var crawlingPlugins: [PluginInfo] = []
+    var crawlers: [TarantulaCrawlingPlugin] {
+        return crawlingPlugins.lazy.filter { pi in pi.enabled } .map { pi in pi.plugin }
+    }
+
     init() {
         do {
             pluginLoader = try PluginLoader()
@@ -111,6 +138,9 @@ class ApplicationController {
 
     func loadPlugins() throws {
         try self.pluginLoader.loadPlugins()
+        self.crawlingPlugins = self.pluginLoader.crawlers.map { plugin in
+            PluginInfo(plugin: plugin)
+        }
     }
 
     func loadDataSingle(plugin: TarantulaCrawlingPlugin, finished: @escaping () -> ()) throws {

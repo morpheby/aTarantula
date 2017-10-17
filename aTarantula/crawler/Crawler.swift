@@ -61,7 +61,7 @@ import TarantulaPluginCore
 
     func resolvePlugin(for object: CrawlableObject) -> TarantulaCrawlingPlugin {
         let appController = NSApplication.shared.controller
-        let result = appController.pluginLoader.crawlers.filter { plugin in plugin.crawlableObjectTypes.contains { o in o == type(of: object as Any) } } .first
+        let result = appController.crawlers.filter { plugin in plugin.crawlableObjectTypes.contains { o in o == type(of: object as Any) } } .first
         assert(result != nil, "Object not present in plugins")
         return result!
     }
@@ -156,7 +156,7 @@ import TarantulaPluginCore
             var discoveredCount = 0
             var unselectedCount = 0
 
-            for plugin in appController.pluginLoader.crawlers {
+            for plugin in appController.crawlers {
                 plugin.repository?.performAndWait {
                     for type in plugin.crawlableObjectTypes {
                         if let objectsTmp = plugin.repository?.readAllObjects(type, withSelection: .objectsToCrawl, max: addCount),
@@ -225,9 +225,7 @@ import TarantulaPluginCore
                 self.runningCrawlersCount += 1
             }
             do {
-                let delay = random_gauss(m: 2.0, sigma: 2.0)
-                let clamped = delay < 0.5 ? 0.5 : delay
-                sleep(UInt32(clamped.rounded()))
+                randomDelay(mean: 2.0, sigma: 3.0)
                 try self.crawlerSingleTask()
             }
             catch let error {

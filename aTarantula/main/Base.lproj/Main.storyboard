@@ -914,7 +914,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="3ov-73-L4W" name="value" keyPath="objectValue" id="ySV-vz-lf6"/>
+                                                                        <binding destination="3ov-73-L4W" name="value" keyPath="objectValue.name" id="axL-bz-LPe"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J7a-hf-Eo8">
@@ -1012,13 +1012,26 @@
                                                                         </binding>
                                                                     </connections>
                                                                 </button>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="4ds-0K-aVC">
+                                                                    <rect key="frame" x="115" y="38" width="71" height="18"/>
+                                                                    <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="WYq-zG-dij">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <binding destination="3ov-73-L4W" name="value" keyPath="objectValue.enabled" id="dLc-eK-fLP"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="J7a-hf-Eo8" firstAttribute="top" secondItem="9bp-FC-pmi" secondAttribute="bottom" constant="8" id="2oq-nG-Eyc"/>
                                                                 <constraint firstItem="axU-bz-7Of" firstAttribute="width" secondItem="J7a-hf-Eo8" secondAttribute="width" id="5yB-My-oPA"/>
                                                                 <constraint firstItem="lo2-Vs-dZk" firstAttribute="leading" secondItem="axU-bz-7Of" secondAttribute="trailing" constant="12" id="64p-IU-PIj"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4ds-0K-aVC" secondAttribute="trailing" constant="30" id="6S8-Yf-e0c"/>
                                                                 <constraint firstItem="J7a-hf-Eo8" firstAttribute="leading" secondItem="3ov-73-L4W" secondAttribute="leading" constant="13" id="7DM-xw-NbV"/>
                                                                 <constraint firstItem="2bR-dH-6pY" firstAttribute="top" secondItem="J7a-hf-Eo8" secondAttribute="top" id="Abx-ak-y5G"/>
+                                                                <constraint firstItem="4ds-0K-aVC" firstAttribute="leading" secondItem="9bp-FC-pmi" secondAttribute="trailing" constant="30" id="Ae0-Wh-e9z"/>
+                                                                <constraint firstItem="4ds-0K-aVC" firstAttribute="baseline" secondItem="9bp-FC-pmi" secondAttribute="baseline" id="HD4-jJ-CPE"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lo2-Vs-dZk" secondAttribute="trailing" constant="14" id="RzB-wK-z3M"/>
                                                                 <constraint firstItem="MdH-mR-H1Y" firstAttribute="leading" secondItem="2bR-dH-6pY" secondAttribute="trailing" constant="12" id="UVQ-Wc-j6g"/>
                                                                 <constraint firstItem="MdH-mR-H1Y" firstAttribute="width" secondItem="J7a-hf-Eo8" secondAttribute="width" id="Utt-Rt-4Hp"/>
@@ -1042,7 +1055,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="vSQ-Xp-d2p" name="content" keyPath="self.representedObject" id="UGI-VJ-Xh1"/>
+                                                <binding destination="vSQ-Xp-d2p" name="content" keyPath="self.plugins" id="qGU-B3-9qN"/>
                                                 <outlet property="delegate" destination="vSQ-Xp-d2p" id="iq0-Em-ZAJ"/>
                                             </connections>
                                         </tableView>
@@ -1252,6 +1265,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jQM-YI-MzB"/>
+        <segue reference="gqI-qz-qoE"/>
     </inferredMetricsTieBreakers>
 </document>
