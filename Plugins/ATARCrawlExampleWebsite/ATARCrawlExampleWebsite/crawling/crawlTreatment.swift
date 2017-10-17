@@ -23,6 +23,10 @@ func crawlTreatment(_ object: Treatment, usingRepository repo: Repository, withP
 
     let data = try plugin.networkManager?.stringData(url: objectUrl) ?? String(contentsOf: objectUrl)
 
+    if !checkLoggedIn(in: data) {
+        throw CrawlError(url: objectUrl, info: "Not logged in")
+    }
+    
     var relatedCrawlables: [CrawlableObject] = []
 
     guard let html = Kanna.HTML(html: data, encoding: .utf8) else {

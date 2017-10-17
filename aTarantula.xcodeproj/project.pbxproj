@@ -170,6 +170,8 @@
 		F66E3D6B1F7821C900C77457 /* NetworkSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D6A1F7821C900C77457 /* NetworkSettingsViewController.swift */; };
 		F66E3D701F782C5700C77457 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66E3D6E1F782C5700C77457 /* WebViewViewController.swift */; };
 		F6ACB55C1F95F009007BFC62 /* NSWindow+endEditing.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ACB55B1F95F009007BFC62 /* NSWindow+endEditing.m */; };
+		F6ACB5601F96180B007BFC62 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACB55F1F96180B007BFC62 /* Delay.swift */; };
+		F6ACB5621F961843007BFC62 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACB5611F961843007BFC62 /* Utils.swift */; };
 		F6BEFC021F4AA58E00CA7AB4 /* TarantulaPluginCore.h in Headers */ = {isa = PBXBuildFile; fileRef = F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC0A1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift */; };
 		F6BEFC2B1F4ABBFC00CA7AB4 /* PluginLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BEFC2A1F4ABBFC00CA7AB4 /* PluginLoader.swift */; };
@@ -503,6 +505,8 @@
 		F66E3D6E1F782C5700C77457 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		F6ACB5541F95EF7C007BFC62 /* NSWindow+endEditing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSWindow+endEditing.h"; sourceTree = "<group>"; };
 		F6ACB55B1F95F009007BFC62 /* NSWindow+endEditing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+endEditing.m"; sourceTree = "<group>"; };
+		F6ACB55F1F96180B007BFC62 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		F6ACB5611F961843007BFC62 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		F6BEFBD41F47E3FA00CA7AB4 /* CrawlableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrawlableObject.swift; sourceTree = "<group>"; };
 		F6BEFBFE1F4AA58E00CA7AB4 /* TarantulaPluginCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TarantulaPluginCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC001F4AA58E00CA7AB4 /* TarantulaPluginCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TarantulaPluginCore.h; sourceTree = "<group>"; };
@@ -1555,6 +1559,8 @@
 				F6BEFC2C1F4BCD6500CA7AB4 /* Repository.swift */,
 				F6E94E151F721A6D00EDEB87 /* FilterSupport.swift */,
 				F66E3D661F7816E400C77457 /* NetworkManager.swift */,
+				F6ACB55F1F96180B007BFC62 /* Delay.swift */,
+				F6ACB5611F961843007BFC62 /* Utils.swift */,
 			);
 			path = TarantulaPluginCore;
 			sourceTree = "<group>";
@@ -1864,6 +1870,8 @@
 				F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */,
 				F6E94E161F721A6D00EDEB87 /* FilterSupport.swift in Sources */,
 				F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */,
+				F6ACB5621F961843007BFC62 /* Utils.swift in Sources */,
+				F6ACB5601F96180B007BFC62 /* Delay.swift in Sources */,
 				F66E3D671F7816E400C77457 /* NetworkManager.swift in Sources */,
 				F6BEFC2D1F4BCD6500CA7AB4 /* Repository.swift in Sources */,
 			);

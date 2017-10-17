@@ -43,6 +43,10 @@ func crawlDrugPatients(_ object: DrugPatients, usingRepository repo: Repository,
         }
         let data = try plugin.networkManager?.stringData(url: actualUrl) ?? String(contentsOf: actualUrl)
 
+        if !checkLoggedIn(in: data) {
+            throw CrawlError(url: objectUrl, info: "Not logged in")
+        }
+        
         guard let html = Kanna.HTML(html: data, encoding: .utf8) else {
             throw CrawlError(url: objectUrl, info: "Unable to parse HTML")
         }

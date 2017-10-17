@@ -43,12 +43,16 @@ func crawlForumPosts(_ object: PatientForumPosts, usingRepository repo: Reposito
         }
         let data = try plugin.networkManager?.stringData(url: actualUrl) ?? String(contentsOf: actualUrl)
 
+        if !checkLoggedIn(in: data) {
+            throw CrawlError(url: objectUrl, info: "Not logged in")
+        }
+
         guard let html = Kanna.HTML(html: data, encoding: .utf8) else {
             throw CrawlError(url: objectUrl, info: "Unable to parse HTML")
         }
 
         let posts: [ForumPost] = {
-            html.xpath("//div[@class='table-container']//td").flatMap { element in
+            html.xpath("//table//td").flatMap { element in
                 guard let urlString = element.xpath("a/@href").first?.text,
                 let url = URL(string: urlString, relativeTo: plugin.baseUrl) else { return nil }
 
@@ -66,7 +70,7 @@ func crawlForumPosts(_ object: PatientForumPosts, usingRepository repo: Reposito
                 }
                 return relatedObject
             }
-            }() .flatMap { x in x }
+        }() .flatMap { x in x }
 
         postsAll.append(contentsOf: posts)
 
@@ -99,6 +103,8 @@ func crawlForumPosts(_ object: PatientForumPosts, usingRepository repo: Reposito
         }
 
         pageNum += 1
+
+        randomDelay(mean: 1.0, sigma: 3.0)
     } while pageNum <= pageCount!
 
     // Store object

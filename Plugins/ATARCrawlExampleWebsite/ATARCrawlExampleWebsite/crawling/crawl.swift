@@ -30,3 +30,7 @@ func crawl(object: CrawlableObject, usingRepository repository: Repository, with
         throw CrawlError(url: url, info: "Unsupported object type \(type(of: object)) for \(type(of: plugin))")
     }
 }
+
+func checkLoggedIn(in data: String) -> Bool {
+    return !data.contains("/users/sign_in")
+}
