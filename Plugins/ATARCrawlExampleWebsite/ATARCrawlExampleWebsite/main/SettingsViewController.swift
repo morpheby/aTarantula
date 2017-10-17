@@ -173,6 +173,7 @@ class SettingsViewController: NSViewController {
 
     @IBAction func specialButton(_ sender: Any?) {
         // A special place to implement any temporary function :)
+        Configuration.specialButton(self.plugin)
     }
 }
 

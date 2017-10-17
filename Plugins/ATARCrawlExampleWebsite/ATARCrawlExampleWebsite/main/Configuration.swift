@@ -10,4 +10,8 @@ import Foundation
 
 internal struct Configuration {
     static let websiteBaseUrl = "https://www.example.com"
+
+    static let specialButton: (ATARCrawlExampleWebsiteCrawlerPlugin) -> () = { plugin in
+        // Input here any code for the "Special Button" in Settings dialog
+    }
 }
