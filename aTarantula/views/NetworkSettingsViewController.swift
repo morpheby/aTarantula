@@ -53,6 +53,7 @@ class NetworkSettingsViewController: NSViewController {
     }
 
     @IBAction func done(_ sender: Any) {
+        view.window?.endEditing()
         self.dismiss(sender)
     }
 
@@ -65,6 +66,7 @@ class NetworkSettingsViewController: NSViewController {
 
         switch segue.identifier {
         case .some(.webviewSegue):
+            view.window?.endEditing()
             guard let webviewController = segue.destinationController as? WebViewViewController else {
                 fatalError("Invalid segue: \(segue)")
             }

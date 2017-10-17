@@ -122,6 +122,8 @@
 		F687165E1F83E86B0010FD33 /* PatientSymptoms+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientSymptoms+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F68716781F83EC170010FD33 /* PatientChart+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientChart+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6ACB5521F95E77F007BFC62 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		F6ACB55D1F95F12B007BFC62 /* NSWindow+endEditing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSWindow+endEditing.h"; path = "../../../../aTarantula/utils/NSWindow+endEditing.h"; sourceTree = "<group>"; };
+		F6ACB55E1F95F12E007BFC62 /* NSWindow+endEditing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSWindow+endEditing.m"; path = "../../../../aTarantula/utils/NSWindow+endEditing.m"; sourceTree = "<group>"; };
 		F6D5356F1F7A8010008DE620 /* Patient+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Patient+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F6E94E131F7218F800EDEB87 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F6E94E171F72696E00EDEB87 /* crawlTreatmentPurposes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crawlTreatmentPurposes.swift; sourceTree = "<group>"; };
@@ -233,6 +235,8 @@
 			children = (
 				F64083A51F65945F00008FEB /* ATARCrawlExampleWebsite-Bridging-Header.h */,
 				F613BBC01F65936D005BBE68 /* Info.plist */,
+				F6ACB55D1F95F12B007BFC62 /* NSWindow+endEditing.h */,
+				F6ACB55E1F95F12E007BFC62 /* NSWindow+endEditing.m */,
 			);
 			path = support;
 			sourceTree = "<group>";

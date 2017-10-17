@@ -14,7 +14,7 @@ class InitialObjectViewController: NSViewController {
     @objc dynamic var urlString: String? = nil
 
     @IBAction func ok(_ sender: Any?) {
-        self.resignFirstResponder()
+        view.window?.endEditing()
         guard let urlString = urlString else {
             presentError(InputError.noInput)
             return

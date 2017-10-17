@@ -11,6 +11,6 @@
 
 #import "CDEEditorViewController.h"
 #import "CDEConfiguration.h"
-
+#import "NSWindow+endEditing.h"
 
 #endif /* Header_h */
