@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hcI-8S-4Tz">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ExampleWebsite Crawler Settings-->
+        <scene sceneID="Fdx-fh-PpD">
+            <objects>
+                <viewController title="___PRODUCTNAME___ Crawler Settings" id="hcI-8S-4Tz" customClass="SettingsViewController" customModule="___PACKAGENAMEASIDENTIFIER___" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="eA0-Hj-tHZ">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="260"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cvl-TM-8Ka">
+                                <rect key="frame" x="14" y="46" width="142" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add initial object" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Os-dV-Tho">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="gED-ag-WIt" kind="popover" identifier="initialObject" popoverAnchorView="cvl-TM-8Ka" popoverBehavior="t" preferredEdge="maxX" id="i3D-PU-xQo"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V3y-7l-RJH">
+                                <rect key="frame" x="14" y="13" width="142" height="32"/>
+                                <buttonCell key="cell" type="push" title="Erase database" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7Ma-4C-1AZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="eraseDatabase:" target="hcI-8S-4Tz" id="aQ9-Sa-vti"/>
+                                </connections>
+                            </button>
+                            <box title="Selection" translatesAutoresizingMaskIntoConstraints="NO" id="78V-sP-4Fg">
+                                <rect key="frame" x="17" y="90" width="416" height="150"/>
+                                <view key="contentView" id="YgQ-H5-FcL">
+                                    <rect key="frame" x="2" y="2" width="412" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f6I-Ue-gpx">
+                                            <rect key="frame" x="14" y="85" width="200" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Reset selection (select all)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="r7G-NE-Kn6">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="unfilterAll:" target="hcI-8S-4Tz" id="o8P-1L-bbf"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cAW-PS-Gdi">
+                                            <rect key="frame" x="14" y="49" width="200" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Assign filter setting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="APi-4c-4NM">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="assignFilter:" target="hcI-8S-4Tz" id="w6V-qb-A8m"/>
+                                            </connections>
+                                        </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="RGp-nT-nJJ">
+                                            <rect key="frame" x="239" y="96" width="145" height="18"/>
+                                            <buttonCell key="cell" type="radio" title="No filter (all objects)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Nxd-Il-66H">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="selectFilter:" target="hcI-8S-4Tz" id="lyw-6J-XVg"/>
+                                            </connections>
+                                        </button>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="5Mu-4w-gA1">
+                                            <rect key="frame" x="239" y="70" width="145" height="18"/>
+                                            <buttonCell key="cell" type="radio" title="Filter by drug name" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="kL6-Rv-xJk">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="selectFilter:" target="hcI-8S-4Tz" id="Xuy-sp-3oF"/>
+                                            </connections>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oyd-1g-UoB">
+                                            <rect key="frame" x="240" y="39" width="142" height="22"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Drug name" drawsBackground="YES" id="Ao5-Px-iln">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="hcI-8S-4Tz" name="value" keyPath="self.filterDrugName" id="Twi-0U-k74">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <string key="NSNullPlaceholder">Drug name</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lHj-RC-ch4">
+                                            <rect key="frame" x="14" y="13" width="200" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Update selection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Prc-Qd-Bv0">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="invokeFilter:" target="hcI-8S-4Tz" id="BdS-0X-SE6"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="trailing" secondItem="f6I-Ue-gpx" secondAttribute="trailing" id="4C5-bU-IIV"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="leading" secondItem="cAW-PS-Gdi" secondAttribute="leading" id="533-0q-OdQ"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="top" secondItem="5Mu-4w-gA1" secondAttribute="bottom" constant="10" id="AjO-Ex-7t6"/>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="top" secondItem="f6I-Ue-gpx" secondAttribute="bottom" constant="15" id="BUd-Np-6Lv"/>
+                                        <constraint firstItem="f6I-Ue-gpx" firstAttribute="top" secondItem="YgQ-H5-FcL" secondAttribute="top" constant="20" id="Fay-Du-g07"/>
+                                        <constraint firstItem="RGp-nT-nJJ" firstAttribute="top" secondItem="YgQ-H5-FcL" secondAttribute="top" constant="20" id="GwK-Wb-j5U"/>
+                                        <constraint firstItem="f6I-Ue-gpx" firstAttribute="leading" secondItem="YgQ-H5-FcL" secondAttribute="leading" constant="20" id="PKc-Tb-Z7f"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="trailing" secondItem="5Mu-4w-gA1" secondAttribute="trailing" id="Po2-YL-7bz"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lHj-RC-ch4" secondAttribute="bottom" constant="20" id="RXm-Ad-fei"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="leading" secondItem="RGp-nT-nJJ" secondAttribute="leading" id="TI5-5p-n1d"/>
+                                        <constraint firstItem="oyd-1g-UoB" firstAttribute="leading" secondItem="5Mu-4w-gA1" secondAttribute="leading" id="YQK-uE-1js"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="trailing" secondItem="cAW-PS-Gdi" secondAttribute="trailing" id="aLz-a4-yr4"/>
+                                        <constraint firstItem="cAW-PS-Gdi" firstAttribute="leading" secondItem="YgQ-H5-FcL" secondAttribute="leading" constant="20" id="gKw-km-mi0"/>
+                                        <constraint firstItem="RGp-nT-nJJ" firstAttribute="leading" secondItem="f6I-Ue-gpx" secondAttribute="trailing" constant="32" id="jbI-Nj-bji"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="top" secondItem="RGp-nT-nJJ" secondAttribute="bottom" constant="10" id="rse-wt-EZJ"/>
+                                        <constraint firstItem="lHj-RC-ch4" firstAttribute="top" secondItem="cAW-PS-Gdi" secondAttribute="bottom" constant="15" id="tg5-lk-epZ"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oyd-1g-UoB" secondAttribute="bottom" constant="20" id="xNs-ag-UaZ"/>
+                                        <constraint firstItem="5Mu-4w-gA1" firstAttribute="trailing" secondItem="RGp-nT-nJJ" secondAttribute="trailing" id="xPj-ga-UNV"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGp-nT-nJJ" secondAttribute="trailing" constant="20" id="zO5-lC-b8q"/>
+                                    </constraints>
+                                </view>
+                            </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kra-9U-c9a">
+                                <rect key="frame" x="296" y="13" width="140" height="32"/>
+                                <buttonCell key="cell" type="push" title="Special button :)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="No7-SN-zQg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="specialButton:" target="hcI-8S-4Tz" id="SpN-x7-GnZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="V3y-7l-RJH" firstAttribute="width" secondItem="cvl-TM-8Ka" secondAttribute="width" id="4Y8-dA-fo8"/>
+                            <constraint firstItem="cvl-TM-8Ka" firstAttribute="top" secondItem="78V-sP-4Fg" secondAttribute="bottom" constant="20" id="6fY-UR-V9d"/>
+                            <constraint firstItem="78V-sP-4Fg" firstAttribute="top" secondItem="eA0-Hj-tHZ" secondAttribute="top" constant="20" id="EJo-vh-1Nq"/>
+                            <constraint firstItem="cvl-TM-8Ka" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="Fvz-Jv-uMp"/>
+                            <constraint firstItem="78V-sP-4Fg" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="Nnb-dG-WYn"/>
+                            <constraint firstAttribute="bottom" secondItem="Kra-9U-c9a" secondAttribute="bottom" constant="20" id="Oit-ft-6Hf"/>
+                            <constraint firstItem="V3y-7l-RJH" firstAttribute="top" secondItem="cvl-TM-8Ka" secondAttribute="bottom" constant="12" id="YIZ-aI-hEb"/>
+                            <constraint firstItem="Kra-9U-c9a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="78V-sP-4Fg" secondAttribute="bottom" constant="25" id="YYm-7m-ujh"/>
+                            <constraint firstItem="V3y-7l-RJH" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="bgB-z8-XiO"/>
+                            <constraint firstAttribute="bottom" secondItem="V3y-7l-RJH" secondAttribute="bottom" constant="20" id="onb-FM-RJE"/>
+                            <constraint firstAttribute="trailing" secondItem="78V-sP-4Fg" secondAttribute="trailing" constant="20" id="qmJ-lA-y7U"/>
+                            <constraint firstItem="Kra-9U-c9a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V3y-7l-RJH" secondAttribute="trailing" constant="20" id="rLX-Ny-fmc"/>
+                            <constraint firstAttribute="trailing" secondItem="Kra-9U-c9a" secondAttribute="trailing" constant="20" id="vFe-kC-g1R"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filterByNameButton" destination="5Mu-4w-gA1" id="GYn-NH-cis"/>
+                        <outlet property="noFilterButton" destination="RGp-nT-nJJ" id="JP8-BU-mud"/>
+                    </connections>
+                </viewController>
+                <customObject id="MZ6-lj-q64" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="194.5"/>
+        </scene>
+        <!--Initial object-->
+        <scene sceneID="9Ld-jx-lb2">
+            <objects>
+                <viewController title="Initial object" id="gED-ag-WIt" customClass="InitialObjectViewController" customModule="___PACKAGENAMEASIDENTIFIER___" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="wtd-bK-7m9">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="87"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0V-Rn-7lQ">
+                                <rect key="frame" x="18" y="50" width="183" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Provide URL to the drug page" id="bMz-cu-dHa">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lRz-c8-eul">
+                                <rect key="frame" x="377" y="13" width="59" height="33"/>
+                                <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="sKa-iv-jxJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ok:" target="xJl-WM-xbx" id="RXg-9L-SSe"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QVJ-F0-96g">
+                                <rect key="frame" x="20" y="20" width="343" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="https://examplewebsite/treatments" drawsBackground="YES" id="sHe-z7-rxQ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="gED-ag-WIt" name="value" keyPath="self.urlString" id="Xz0-Kb-K29">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            <string key="NSNullPlaceholder">https://examplewebsite/treatments</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEw-Do-6mN">
+                                <rect key="frame" x="259" y="19" width="104" height="23"/>
+                                <buttonCell key="cell" type="inline" title="Recessed" bezelStyle="inline" image="NSCaution" imagePosition="right" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SLd-4l-Mk7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystemBold"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="lRz-c8-eul" firstAttribute="height" secondItem="QVJ-F0-96g" secondAttribute="height" id="BXq-hq-qTG"/>
+                            <constraint firstItem="EEw-Do-6mN" firstAttribute="centerY" secondItem="QVJ-F0-96g" secondAttribute="centerY" id="M5i-jh-mDS"/>
+                            <constraint firstItem="QVJ-F0-96g" firstAttribute="top" secondItem="Q0V-Rn-7lQ" secondAttribute="bottom" constant="8" id="PDY-Lo-zaC"/>
+                            <constraint firstItem="lRz-c8-eul" firstAttribute="leading" secondItem="QVJ-F0-96g" secondAttribute="trailing" constant="20" id="QFP-eD-Ooa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Q0V-Rn-7lQ" secondAttribute="trailing" constant="20" id="Snh-Vt-Mpy"/>
+                            <constraint firstAttribute="trailing" secondItem="lRz-c8-eul" secondAttribute="trailing" constant="20" id="TdL-2o-pAV"/>
+                            <constraint firstAttribute="bottom" secondItem="QVJ-F0-96g" secondAttribute="bottom" constant="20" id="bbA-lD-Ov1"/>
+                            <constraint firstItem="Q0V-Rn-7lQ" firstAttribute="top" secondItem="wtd-bK-7m9" secondAttribute="top" constant="20" id="d3Y-je-l2Z"/>
+                            <constraint firstItem="lRz-c8-eul" firstAttribute="centerY" secondItem="QVJ-F0-96g" secondAttribute="centerY" id="htY-Mf-KK2"/>
+                            <constraint firstItem="QVJ-F0-96g" firstAttribute="leading" secondItem="wtd-bK-7m9" secondAttribute="leading" constant="20" id="mM7-3D-fiW"/>
+                            <constraint firstItem="EEw-Do-6mN" firstAttribute="trailing" secondItem="QVJ-F0-96g" secondAttribute="trailing" id="qrm-sE-vHG"/>
+                            <constraint firstItem="EEw-Do-6mN" firstAttribute="height" secondItem="QVJ-F0-96g" secondAttribute="height" id="wcF-PG-EcE"/>
+                            <constraint firstItem="Q0V-Rn-7lQ" firstAttribute="leading" secondItem="wtd-bK-7m9" secondAttribute="leading" constant="20" id="zoo-hF-BP7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorShow" destination="EEw-Do-6mN" id="RUH-pi-JW8"/>
+                    </connections>
+                </viewController>
+                <customObject id="xJl-WM-xbx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="654" y="239.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSCaution" width="32" height="32"/>
+    </resources>
+</document>
