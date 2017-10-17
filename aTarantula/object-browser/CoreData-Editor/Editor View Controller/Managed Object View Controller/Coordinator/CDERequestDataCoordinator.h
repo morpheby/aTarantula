@@ -19,6 +19,7 @@
 @property (nonatomic, weak, readonly) NSSearchField *searchField;
 @property (nonatomic, copy, readonly) NSPredicate *filterPredicate;
 @property (nonatomic, weak, readonly) CDEManagedObjectsViewController *managedObjectsViewController;
+@property (nonatomic, strong, readwrite) NSArray<NSSortDescriptor *> *sortDescriptors;
 
 #pragma mark - For Subclassers
 // The default implementation returns columns for supported attributes, relationships and a column for the objectID

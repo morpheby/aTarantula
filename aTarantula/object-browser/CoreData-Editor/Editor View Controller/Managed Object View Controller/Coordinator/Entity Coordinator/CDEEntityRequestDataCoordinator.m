@@ -122,6 +122,7 @@
 
 - (void)didChangeFilterPredicate {
   [self.filteringArray setFilterPredicate:self.filterPredicate];
+  [self.filteringArray setSortDescriptors:self.sortDescriptors];
   [self.tableView reloadData];
   NSNotification *notification = [NSNotification notificationWithName:NSTableViewSelectionDidChangeNotification object:self.tableView userInfo:@{}];
   [self.tableView.delegate tableViewSelectionDidChange:notification];

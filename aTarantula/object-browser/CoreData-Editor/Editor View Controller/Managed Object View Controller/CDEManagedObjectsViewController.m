@@ -334,6 +334,10 @@
   return result;
 }
 
+- (void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray<NSSortDescriptor *> *)oldDescriptors {
+  self.dataCoordinator.sortDescriptors = tableView.sortDescriptors;
+}
+
 #pragma mark - NSTableViewDelegate
 - (BOOL)selectionShouldChangeInTableView:(NSTableView *)tableView {
   return YES;

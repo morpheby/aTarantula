@@ -301,7 +301,7 @@
 		F63FD7841F591345003A5F01 /* CDEBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEBarView.h; sourceTree = "<group>"; };
 		F63FD7851F591345003A5F01 /* CDEBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEBarView.m; sourceTree = "<group>"; };
 		F63FD7861F591345003A5F01 /* CDEManagedObjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEManagedObjectsViewController.h; sourceTree = "<group>"; };
-		F63FD7871F591345003A5F01 /* CDEManagedObjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEManagedObjectsViewController.m; sourceTree = "<group>"; };
+		F63FD7871F591345003A5F01 /* CDEManagedObjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = CDEManagedObjectsViewController.m; sourceTree = "<group>"; tabWidth = 2; };
 		F63FD7881F591345003A5F01 /* CDEManagedObjectsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CDEManagedObjectsViewController.xib; sourceTree = "<group>"; };
 		F63FD7891F591345003A5F01 /* CDEManagedObjectsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEManagedObjectsViewControllerDelegate.h; sourceTree = "<group>"; };
 		F63FD78C1F591345003A5F01 /* CDEBinaryValuePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEBinaryValuePreviewView.h; sourceTree = "<group>"; };
@@ -343,9 +343,9 @@
 		F63FD7BB1F591345003A5F01 /* CDERequestDataCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDERequestDataCoordinator.m; sourceTree = "<group>"; };
 		F63FD7BC1F591345003A5F01 /* CDERequestDataCoordinator_Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDERequestDataCoordinator_Subclass.h; sourceTree = "<group>"; };
 		F63FD7BE1F591345003A5F01 /* CDEEntityRequestDataCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEEntityRequestDataCoordinator.h; sourceTree = "<group>"; };
-		F63FD7BF1F591345003A5F01 /* CDEEntityRequestDataCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEEntityRequestDataCoordinator.m; sourceTree = "<group>"; };
+		F63FD7BF1F591345003A5F01 /* CDEEntityRequestDataCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = CDEEntityRequestDataCoordinator.m; sourceTree = "<group>"; };
 		F63FD7C01F591345003A5F01 /* FilteringArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteringArray.h; sourceTree = "<group>"; };
-		F63FD7C11F591345003A5F01 /* FilteringArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteringArray.m; sourceTree = "<group>"; };
+		F63FD7C11F591345003A5F01 /* FilteringArray.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = FilteringArray.m; sourceTree = "<group>"; tabWidth = 2; };
 		F63FD7C31F591345003A5F01 /* NSTableColumn+CDERequestDataCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableColumn+CDERequestDataCoordinator.h"; sourceTree = "<group>"; };
 		F63FD7C41F591345003A5F01 /* NSTableColumn+CDERequestDataCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTableColumn+CDERequestDataCoordinator.m"; sourceTree = "<group>"; };
 		F63FD7C61F591345003A5F01 /* CDEOrderedRelationshipRequestDataCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEOrderedRelationshipRequestDataCoordinator.h; sourceTree = "<group>"; };

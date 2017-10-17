@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 
 @interface FilteringArray<ObjectType>: NSObject
+
+- (void)setSortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 - (void)setFilterPredicate:(NSPredicate *)predicate;
 - (void)addObject:(ObjectType)anObject;
 - (void)removeObjectAtIndex:(NSUInteger)index;

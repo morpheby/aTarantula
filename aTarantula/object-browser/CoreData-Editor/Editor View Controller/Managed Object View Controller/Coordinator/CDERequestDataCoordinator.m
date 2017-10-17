@@ -142,6 +142,11 @@
     return [self initWithManagedObjectsRequest:nil tableView:nil searchField:nil managedObjectsViewController:nil];
 }
 
+- (void)setSortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+    _sortDescriptors = sortDescriptors;
+    [self didChangeFilterPredicate];
+}
+
 #pragma mark - For Subclassers
 - (NSInteger)numberOfObjects {
     @throw [NSException exceptionWithName:@"CDEAbstractNotImplemented" reason:nil userInfo:nil];
