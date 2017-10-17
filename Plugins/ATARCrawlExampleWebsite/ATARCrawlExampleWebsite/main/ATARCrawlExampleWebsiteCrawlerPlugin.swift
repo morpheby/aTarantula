@@ -26,6 +26,10 @@ import TarantulaPluginCore
         return [
             Treatment.self, TreatmentPurposes.self, DrugCategory.self, DrugPatients.self, DrugSideEffects.self,
             DrugSwitches.self, Condition.self, Patient.self, Symptom.self, TreatmentPurpose.self,
+            PatientFollowers.self, PatientFollowings.self, PatientForumPosts.self, PatientHospitalizations.self,
+            PatientInstantMood.self, PatientInterest.self, PatientLabResults.self, PatientLabs.self,
+            PatientMilestones.self, PatientQualityOfLife.self, PatientSymptomReports.self, PatientSymptoms.self,
+            PatientTreatmentDosages.self, PatientTreatments.self, PatientWeight.self,
         ]
     }
 
@@ -33,7 +37,7 @@ import TarantulaPluginCore
         return crawlableObjectTypes as [NSManagedObject.Type] + [
             DrugAdherence.self, DrugBurden.self, DrugCost.self, DrugDosageCount.self, DrugDuration.self,
             DrugSideEffect.self, DrugSideEffectSeverity.self, DrugStopReason.self, DrugSwitch.self,
-            DrugTreatmentPurpose.self, DrugTreatmentPurposeEffectiveness.self,
+            DrugTreatmentPurpose.self, DrugTreatmentPurposeEffectiveness.self, ForumPost.self,
         ]
     }
 
@@ -44,7 +48,7 @@ import TarantulaPluginCore
         try crawl(object: object, usingRepository: repository, withPlugin: self)
     }
 
-    public let baseUrl: URL = URL(string: "https://examplewebsite")!
+    public let baseUrl: URL = URL(string: Configuration.websiteBaseUrl)!
 
     public let name = "ATARCrawlExampleWebsiteCrawlerPlugin"
 

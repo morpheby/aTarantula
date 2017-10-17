@@ -131,6 +131,16 @@
                                     </constraints>
                                 </view>
                             </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kra-9U-c9a">
+                                <rect key="frame" x="296" y="13" width="140" height="32"/>
+                                <buttonCell key="cell" type="push" title="Special button :)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="No7-SN-zQg">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="specialButton:" target="hcI-8S-4Tz" id="SpN-x7-GnZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="V3y-7l-RJH" firstAttribute="width" secondItem="cvl-TM-8Ka" secondAttribute="width" id="4Y8-dA-fo8"/>
@@ -138,10 +148,14 @@
                             <constraint firstItem="78V-sP-4Fg" firstAttribute="top" secondItem="eA0-Hj-tHZ" secondAttribute="top" constant="20" id="EJo-vh-1Nq"/>
                             <constraint firstItem="cvl-TM-8Ka" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="Fvz-Jv-uMp"/>
                             <constraint firstItem="78V-sP-4Fg" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="Nnb-dG-WYn"/>
+                            <constraint firstAttribute="bottom" secondItem="Kra-9U-c9a" secondAttribute="bottom" constant="20" id="Oit-ft-6Hf"/>
                             <constraint firstItem="V3y-7l-RJH" firstAttribute="top" secondItem="cvl-TM-8Ka" secondAttribute="bottom" constant="12" id="YIZ-aI-hEb"/>
+                            <constraint firstItem="Kra-9U-c9a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="78V-sP-4Fg" secondAttribute="bottom" constant="25" id="YYm-7m-ujh"/>
                             <constraint firstItem="V3y-7l-RJH" firstAttribute="leading" secondItem="eA0-Hj-tHZ" secondAttribute="leading" constant="20" id="bgB-z8-XiO"/>
                             <constraint firstAttribute="bottom" secondItem="V3y-7l-RJH" secondAttribute="bottom" constant="20" id="onb-FM-RJE"/>
                             <constraint firstAttribute="trailing" secondItem="78V-sP-4Fg" secondAttribute="trailing" constant="20" id="qmJ-lA-y7U"/>
+                            <constraint firstItem="Kra-9U-c9a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="V3y-7l-RJH" secondAttribute="trailing" constant="20" id="rLX-Ny-fmc"/>
+                            <constraint firstAttribute="trailing" secondItem="Kra-9U-c9a" secondAttribute="trailing" constant="20" id="vFe-kC-g1R"/>
                         </constraints>
                     </view>
                     <connections>

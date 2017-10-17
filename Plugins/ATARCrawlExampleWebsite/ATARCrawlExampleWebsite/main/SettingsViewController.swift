@@ -146,6 +146,9 @@ class SettingsViewController: NSViewController {
                 case let object as Patient:
                     if ((object.using_drugs_meta as? Set<DrugPatients>)?.reduce(false) { x, o in x || o.drug?.name == drugName }) == true { return true }
                     return false
+                case let object as PatientForumPosts:
+                    if ((object.patient?.using_drugs_meta as? Set<DrugPatients>)?.reduce(false) { x, o in x || o.drug?.name == drugName }) == true { return true }
+                    return false
                 default:
                     return false
                 }
@@ -166,6 +169,10 @@ class SettingsViewController: NSViewController {
                 }
             }
         }
+    }
+
+    @IBAction func specialButton(_ sender: Any?) {
+        // A special place to implement any temporary function :)
     }
 }
 

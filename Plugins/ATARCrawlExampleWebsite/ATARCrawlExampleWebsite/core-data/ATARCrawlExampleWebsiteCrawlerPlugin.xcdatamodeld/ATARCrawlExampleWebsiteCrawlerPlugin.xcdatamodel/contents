@@ -119,6 +119,12 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="drug_treatment_purpose" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DrugTreatmentPurpose" inverseName="effectivenesses" inverseEntity="DrugTreatmentPurpose" syncable="YES"/>
     </entity>
+    <entity name="ForumPost" representedClassName="ForumPost" syncable="YES" codeGenerationType="category">
+        <attribute name="postUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient_forum_posts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PatientForumPosts" inverseName="posts" inverseEntity="PatientForumPosts" syncable="YES"/>
+    </entity>
     <entity name="Patient" representedClassName="Patient" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <attribute name="age_" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="bio_long" optional="YES" attributeType="String" syncable="YES"/>
@@ -150,6 +156,7 @@
     </entity>
     <entity name="PatientForumPosts" representedClassName="PatientForumPosts" parentEntity="Crawlable" syncable="YES" codeGenerationType="category">
         <relationship name="patient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="forum_posts" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForumPost" inverseName="patient_forum_posts" inverseEntity="ForumPost" syncable="YES"/>
     </entity>
     <entity name="PatientHospitalizations" representedClassName="PatientHospitalizations" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
     <entity name="PatientInstantMood" representedClassName="PatientInstantMood" parentEntity="PatientChart" syncable="YES" codeGenerationType="category"/>
@@ -197,6 +204,8 @@
     <elements>
         <element name="Condition" positionX="0" positionY="153" width="128" height="120"/>
         <element name="Crawlable" positionX="-54" positionY="-9" width="128" height="120"/>
+        <element name="CSRFCrawlable" positionX="-9" positionY="135" width="128" height="60"/>
+        <element name="CSRFToken" positionX="18" positionY="171" width="128" height="105"/>
         <element name="DrugAdherence" positionX="-9" positionY="117" width="128" height="105"/>
         <element name="DrugBurden" positionX="0" positionY="126" width="128" height="105"/>
         <element name="DrugCategory" positionX="-54" positionY="9" width="128" height="75"/>
@@ -213,27 +222,26 @@
         <element name="DrugTreatmentPurpose" positionX="-18" positionY="135" width="128" height="120"/>
         <element name="DrugTreatmentPurposeEffectiveness" positionX="-9" positionY="144" width="128" height="90"/>
         <element name="Patient" positionX="-18" positionY="135" width="128" height="285"/>
+        <element name="PatientChart" positionX="27" positionY="171" width="128" height="60"/>
+        <element name="PatientFollowers" positionX="-9" positionY="144" width="128" height="75"/>
+        <element name="PatientFollowings" positionX="0" positionY="153" width="128" height="75"/>
+        <element name="PatientForumPosts" positionX="9" positionY="162" width="128" height="75"/>
+        <element name="PatientHospitalizations" positionX="36" positionY="180" width="128" height="45"/>
+        <element name="PatientInstantMood" positionX="27" positionY="180" width="128" height="45"/>
+        <element name="PatientInterest" positionX="-18" positionY="135" width="128" height="60"/>
+        <element name="PatientLabResults" positionX="9" positionY="153" width="128" height="45"/>
+        <element name="PatientLabs" positionX="0" positionY="144" width="128" height="45"/>
+        <element name="PatientMilestones" positionX="36" positionY="189" width="128" height="45"/>
+        <element name="PatientQualityOfLife" positionX="27" positionY="171" width="128" height="45"/>
+        <element name="PatientSymptomReports" positionX="-9" positionY="135" width="128" height="45"/>
+        <element name="PatientSymptoms" positionX="45" positionY="189" width="128" height="45"/>
+        <element name="PatientTreatmentDosages" positionX="9" positionY="153" width="128" height="45"/>
+        <element name="PatientTreatments" positionX="0" positionY="144" width="128" height="45"/>
+        <element name="PatientWeight" positionX="18" positionY="162" width="128" height="45"/>
         <element name="Symptom" positionX="9" positionY="162" width="128" height="45"/>
         <element name="Treatment" positionX="-63" positionY="-18" width="128" height="358"/>
         <element name="TreatmentPurpose" positionX="-18" positionY="135" width="128" height="45"/>
         <element name="TreatmentPurposes" positionX="-45" positionY="36" width="128" height="75"/>
-        <element name="PatientInterest" positionX="-18" positionY="135" width="128" height="60"/>
-        <element name="PatientFollowers" positionX="-9" positionY="144" width="128" height="75"/>
-        <element name="PatientFollowings" positionX="0" positionY="153" width="128" height="75"/>
-        <element name="PatientForumPosts" positionX="9" positionY="162" width="128" height="60"/>
-        <element name="CSRFToken" positionX="18" positionY="171" width="128" height="105"/>
-        <element name="PatientInstantMood" positionX="27" positionY="180" width="128" height="45"/>
-        <element name="PatientMilestones" positionX="36" positionY="189" width="128" height="45"/>
-        <element name="CSRFCrawlable" positionX="-9" positionY="135" width="128" height="60"/>
-        <element name="PatientLabs" positionX="0" positionY="144" width="128" height="45"/>
-        <element name="PatientLabResults" positionX="9" positionY="153" width="128" height="45"/>
-        <element name="PatientWeight" positionX="18" positionY="162" width="128" height="45"/>
-        <element name="PatientQualityOfLife" positionX="27" positionY="171" width="128" height="45"/>
-        <element name="PatientHospitalizations" positionX="36" positionY="180" width="128" height="45"/>
-        <element name="PatientSymptoms" positionX="45" positionY="189" width="128" height="45"/>
-        <element name="PatientSymptomReports" positionX="-9" positionY="135" width="128" height="45"/>
-        <element name="PatientTreatments" positionX="0" positionY="144" width="128" height="45"/>
-        <element name="PatientTreatmentDosages" positionX="9" positionY="153" width="128" height="45"/>
-        <element name="PatientChart" positionX="27" positionY="171" width="128" height="60"/>
+        <element name="ForumPost" positionX="-9" positionY="135" width="128" height="105"/>
     </elements>
 </model>

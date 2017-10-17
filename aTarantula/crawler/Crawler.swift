@@ -225,6 +225,9 @@ import TarantulaPluginCore
                 self.runningCrawlersCount += 1
             }
             do {
+                let delay = random_gauss(m: 2.0, sigma: 2.0)
+                let clamped = delay < 0.5 ? 0.5 : delay
+                sleep(UInt32(clamped.rounded()))
                 try self.crawlerSingleTask()
             }
             catch let error {
