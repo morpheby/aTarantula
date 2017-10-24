@@ -67,7 +67,6 @@
         <string>crawling/crawl.swift</string>
         <string>support/___PRODUCTNAME___-Bridging-Header.h</string>
         <string>support/NSWindow+endEditing.h</string>
-        <string>support/NSWindow+endEditing.m</string>
         <string>TarantulaPluginCore.framework</string>
         <string>Kanna.framework</string>
         <string>Regex.framework</string>
@@ -183,15 +182,6 @@
         <dict>
             <key>Path</key>
             <string>support/NSWindow+endEditing.h</string>
-            <key>Group</key>
-            <array>
-                <string>support</string>
-            </array>
-        </dict>
-        <key>support/NSWindow+endEditing.m</key>
-        <dict>
-            <key>Path</key>
-            <string>support/NSWindow+endEditing.m</string>
             <key>Group</key>
             <array>
                 <string>support</string>
