@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(ForumPost)
+@objc
 public class ForumPost: NSManagedObject {
 
 }

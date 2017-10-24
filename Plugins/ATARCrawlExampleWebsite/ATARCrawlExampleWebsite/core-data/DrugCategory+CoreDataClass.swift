@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugCategory)
+@objc
 public class DrugCategory: Crawlable {
 
 }

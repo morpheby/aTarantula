@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 import TarantulaPluginCore
 
-@objc(Crawlable)
+@objc
 public class Crawlable: NSManagedObject {
 
 }

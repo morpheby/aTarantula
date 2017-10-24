@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugSideEffects)
+@objc
 public class DrugSideEffects: Crawlable {
 
 }

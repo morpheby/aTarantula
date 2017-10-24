@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugDuration)
+@objc
 public class DrugDuration: NSManagedObject {
 
 }

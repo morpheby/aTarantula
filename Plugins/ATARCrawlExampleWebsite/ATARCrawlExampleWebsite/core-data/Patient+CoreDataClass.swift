@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Patient)
+@objc
 public class Patient: Crawlable {
 
     var age: Int64? {

@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(CSRFCrawlable)
+@objc
 public class CSRFCrawlable: Crawlable {
 
 }

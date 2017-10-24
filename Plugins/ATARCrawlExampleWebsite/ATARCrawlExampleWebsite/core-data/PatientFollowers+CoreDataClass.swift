@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(PatientFollowers)
+@objc
 public class PatientFollowers: Crawlable {
 
 }

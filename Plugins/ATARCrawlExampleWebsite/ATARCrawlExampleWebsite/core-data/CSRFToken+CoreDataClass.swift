@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(CSRFToken)
+@objc
 public class CSRFToken: NSManagedObject {
 
 }

@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugTreatmentPurposeEffectiveness)
+@objc
 public class DrugTreatmentPurposeEffectiveness: NSManagedObject {
 
 }

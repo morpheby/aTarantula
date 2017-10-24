@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugSideEffectSeverity)
+@objc
 public class DrugSideEffectSeverity: NSManagedObject {
 
 }

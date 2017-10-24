@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(PatientChart)
+@objc
 public class PatientChart: CSRFCrawlable {
 
 }

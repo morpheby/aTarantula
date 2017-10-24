@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(Condition)
+@objc
 public class Condition: Crawlable {
 
 }

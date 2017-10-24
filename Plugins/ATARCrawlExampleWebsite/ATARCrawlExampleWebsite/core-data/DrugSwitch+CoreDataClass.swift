@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(DrugSwitch)
+@objc
 public class DrugSwitch: NSManagedObject {
 
 }

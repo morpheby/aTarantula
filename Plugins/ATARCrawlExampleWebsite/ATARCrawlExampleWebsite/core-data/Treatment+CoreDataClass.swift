@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 import TarantulaPluginCore
 
-@objc(Treatment)
+@objc
 public class Treatment: Crawlable {
 
 }

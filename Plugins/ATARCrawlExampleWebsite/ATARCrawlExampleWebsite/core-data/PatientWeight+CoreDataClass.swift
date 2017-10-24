@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(PatientWeight)
+@objc
 public class PatientWeight: PatientChart {
 
 }

@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(TreatmentPurpose)
+@objc
 public class TreatmentPurpose: Condition {
 
 }
