@@ -33,7 +33,16 @@ public class DefaultNetworkManager: NetworkManager {
 
         let request = beforeRequest(URLRequest(url: url))
 
+        condition.lock()
+        defer {
+            condition.unlock()
+        }
+
         let task = session.dataTask(with: request, completionHandler: { (data_, response_, error_) in
+            condition.lock()
+            defer {
+                condition.unlock()
+            }
             data = data_
             response = response_
             error = error_
@@ -45,11 +54,9 @@ public class DefaultNetworkManager: NetworkManager {
             task.resume()
         }
 
-        condition.lock()
         while !completed {
             condition.wait()
         }
-        condition.unlock()
 
         if let e = error {
             throw URLSessionError(urlSessionError: e, response: response, data: data)
