@@ -49,6 +49,7 @@ class DataLoader {
         let persistentContainer = NSPersistentContainer(name: name, managedObjectModel: managedObjectModel)
         let description = persistentContainer.persistentStoreDescriptions[0]
         description.shouldMigrateStoreAutomatically = true
+        description.shouldInferMappingModelAutomatically = true
         description.setValue("NORMAL" as NSString, forPragmaNamed: "synchronous")
 
         persistentContainer.loadPersistentStores() { (description, error) in

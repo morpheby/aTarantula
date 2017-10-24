@@ -225,8 +225,8 @@ import TarantulaPluginCore
                 self.runningCrawlersCount += 1
             }
             do {
-                randomDelay(mean: 2.0, sigma: 3.0)
                 try self.crawlerSingleTask()
+                randomDelay(mean: 2.0, sigma: 3.0)
             }
             catch let error {
                 self.pushToLogAsync("Error while crawling: \(error)")
