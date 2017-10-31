@@ -214,6 +214,7 @@
 		F6BEFC411F4C33CB00CA7AB4 /* Kanna.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6BEFC431F4C33CB00CA7AB4 /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */; };
 		F6BEFC441F4C33CB00CA7AB4 /* Regex.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6C0E9141F9FBBA600E3E349 /* ExportProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C0E9131F9FBBA600E3E349 /* ExportProfile.swift */; };
 		F6C463891F474BF000782C88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C463881F474BF000782C88 /* AppDelegate.swift */; };
 		F6C4638B1F474BF000782C88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C4638A1F474BF000782C88 /* ViewController.swift */; };
 		F6C4638D1F474BF000782C88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6C4638C1F474BF000782C88 /* Assets.xcassets */; };
@@ -587,6 +588,7 @@
 		F6BEFC2F1F4BE25500CA7AB4 /* CoredataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoredataRepository.swift; sourceTree = "<group>"; };
 		F6BEFC3F1F4C33CB00CA7AB4 /* Kanna.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kanna.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6BEFC421F4C33CB00CA7AB4 /* Regex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Regex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6C0E9131F9FBBA600E3E349 /* ExportProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportProfile.swift; sourceTree = "<group>"; };
 		F6C463851F474BF000782C88 /* aTarantula.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aTarantula.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C463881F474BF000782C88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6C4638A1F474BF000782C88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1631,6 +1633,7 @@
 				F66E3D661F7816E400C77457 /* NetworkManager.swift */,
 				F6ACB55F1F96180B007BFC62 /* Delay.swift */,
 				F6ACB5611F961843007BFC62 /* Utils.swift */,
+				F6C0E9131F9FBBA600E3E349 /* ExportProfile.swift */,
 			);
 			path = TarantulaPluginCore;
 			sourceTree = "<group>";
@@ -1963,6 +1966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6BEFC2E1F4BD37B00CA7AB4 /* CrawlableObject.swift in Sources */,
+				F6C0E9141F9FBBA600E3E349 /* ExportProfile.swift in Sources */,
 				F6E94E161F721A6D00EDEB87 /* FilterSupport.swift in Sources */,
 				F6BEFC0B1F4AA5A400CA7AB4 /* TarantulaCrawlingPlugin.swift in Sources */,
 				F6ACB5621F961843007BFC62 /* Utils.swift in Sources */,

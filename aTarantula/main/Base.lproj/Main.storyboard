@@ -576,7 +576,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZG-lx-lna">
-                                <rect key="frame" x="14" y="13" width="85" height="32"/>
+                                <rect key="frame" x="14" y="13" width="99" height="32"/>
                                 <buttonCell key="cell" type="push" title="Plugins" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FJi-gV-qUz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -800,6 +800,16 @@
                                     <action selector="clearLog:" target="rPt-NT-nkU" id="qfV-3m-xOO"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fz6-XV-6q7">
+                                <rect key="frame" x="116" y="13" width="99" height="32"/>
+                                <buttonCell key="cell" type="push" title="Exporting" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nOa-6W-sth">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="exporting:" target="rPt-NT-nkU" id="fd9-z6-aoT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Bsa-ko-c73" secondAttribute="trailing" constant="20" id="2Qu-S6-2d2"/>
@@ -810,6 +820,7 @@
                             <constraint firstAttribute="bottom" secondItem="7ez-r2-G4k" secondAttribute="bottom" constant="20" id="AA1-pS-P6x"/>
                             <constraint firstItem="wrY-e6-9HL" firstAttribute="trailing" secondItem="Bsa-ko-c73" secondAttribute="trailing" id="CBg-X2-t3J"/>
                             <constraint firstItem="kvg-CK-Jx3" firstAttribute="baseline" secondItem="2ZG-lx-lna" secondAttribute="baseline" id="D0Z-O3-yhw"/>
+                            <constraint firstItem="fz6-XV-6q7" firstAttribute="baseline" secondItem="2ZG-lx-lna" secondAttribute="baseline" id="DIs-dU-jGH"/>
                             <constraint firstItem="9J6-pO-gD2" firstAttribute="leading" secondItem="5PD-en-MiX" secondAttribute="trailing" constant="25" id="DrH-4U-mRC"/>
                             <constraint firstItem="UAu-jy-5Ji" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Eow-5i-OcL"/>
                             <constraint firstItem="7ez-r2-G4k" firstAttribute="leading" secondItem="kvg-CK-Jx3" secondAttribute="trailing" constant="12" id="FXG-9q-1AC"/>
@@ -820,6 +831,8 @@
                             <constraint firstAttribute="trailing" secondItem="9J6-pO-gD2" secondAttribute="trailing" constant="20" id="LnL-EC-By2"/>
                             <constraint firstItem="Bsa-ko-c73" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="MBQ-4y-dXX"/>
                             <constraint firstItem="0Nz-jW-82H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XU2-Qe-9ks" secondAttribute="leading" id="PhM-2D-9nV"/>
+                            <constraint firstItem="fz6-XV-6q7" firstAttribute="leading" secondItem="2ZG-lx-lna" secondAttribute="trailing" constant="15" id="Py8-PW-QZ6"/>
+                            <constraint firstItem="kvg-CK-Jx3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fz6-XV-6q7" secondAttribute="trailing" constant="20" id="RdE-Ad-n3r"/>
                             <constraint firstAttribute="trailing" secondItem="YFb-wR-Ile" secondAttribute="trailing" constant="20" id="RkQ-Qr-2CN"/>
                             <constraint firstItem="cTZ-uC-E2H" firstAttribute="top" secondItem="tDP-QK-pKL" secondAttribute="bottom" constant="8" id="Ru9-wo-342"/>
                             <constraint firstItem="YFb-wR-Ile" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cTZ-uC-E2H" secondAttribute="trailing" constant="20" id="S1E-pH-yfY"/>
@@ -842,7 +855,7 @@
                             <constraint firstItem="YFb-wR-Ile" firstAttribute="top" secondItem="v4M-qH-Ill" secondAttribute="bottom" constant="8" id="hpc-XP-gRC"/>
                             <constraint firstItem="tDP-QK-pKL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="30" id="iIc-DZ-Kra"/>
                             <constraint firstAttribute="trailing" secondItem="v4M-qH-Ill" secondAttribute="trailing" constant="20" id="iut-ka-1rL"/>
-                            <constraint firstItem="kvg-CK-Jx3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2ZG-lx-lna" secondAttribute="trailing" constant="20" id="kN8-Ie-vay"/>
+                            <constraint firstItem="fz6-XV-6q7" firstAttribute="width" secondItem="2ZG-lx-lna" secondAttribute="width" id="kaP-Mh-4bo"/>
                             <constraint firstItem="9J6-pO-gD2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FEN-N5-FDZ" secondAttribute="leading" priority="748" id="lH5-bC-Szh"/>
                             <constraint firstItem="xXM-Bm-kBX" firstAttribute="leading" secondItem="5PD-en-MiX" secondAttribute="leading" id="n3G-1l-zUc"/>
                             <constraint firstItem="Bsa-ko-c73" firstAttribute="top" secondItem="YFb-wR-Ile" secondAttribute="bottom" constant="7" id="ude-Zu-86x"/>
@@ -1265,6 +1278,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="0HH-Yt-JgJ"/>
         <segue reference="gqI-qz-qoE"/>
     </inferredMetricsTieBreakers>
 </document>

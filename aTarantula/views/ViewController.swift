@@ -65,6 +65,56 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func exporting(_ sender: Any?) {
+        // Temporary function implementation for exporting
+
+        let savePanel = NSSavePanel()
+        savePanel.message = "Select export location"
+        savePanel.nameFieldLabel = "Export file:"
+        savePanel.nameFieldStringValue = "Export" // FIXME: STUB
+        savePanel.allowedFileTypes = ["json"]
+        savePanel.allowsOtherFileTypes = false
+
+        savePanel.beginSheetModal(for: view.window!, completionHandler: { response in
+            switch (response) {
+            case .OK:
+                self.exportData(url: savePanel.url!)
+            default:
+                break
+            }
+        })
+    }
+
+    struct Container: Encodable {
+        var value: Encodable
+        func encode(to encoder: Encoder) throws {
+            try value.encode(to: encoder)
+        }
+    }
+
+    func exportData(url: URL) {
+        // Temporary function implementation for exporting
+
+        let tempId = ExportProfile("tempIdStub")
+        let exporters = NSApplication.shared.controller.crawlers.flatMap { p in p as? TarantulaExportable }
+
+        let data = exporters.flatMap { e in e.export(for: tempId) }
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        encoder.dateEncodingStrategy = .iso8601
+
+        do {
+            let preOutput = data.map { d in Container(value: d) }
+            let output = try encoder.encode(preOutput)
+
+            try output.write(to: url)
+        }
+        catch let e {
+            self.presentError(e)
+        }
+    }
+
     var autoscrollLastRow = 0
 
     func autoscrollToBottom() {

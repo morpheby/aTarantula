@@ -44,3 +44,7 @@ extension CrawlError: LocalizedError {
     }
 }
 
+public protocol TarantulaExportable {
+    func export(for profile: ExportProfile) -> [Encodable]
+}
+
