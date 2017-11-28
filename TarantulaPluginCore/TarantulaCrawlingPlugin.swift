@@ -49,6 +49,7 @@ public protocol TarantulaExportable {
 }
 
 public protocol TarantulaBatchCapable {
+    func addInitialObject(by: String, shadowRepository: Repository) throws
     func addInitialObject(by: String) throws
     func configureFilter(withClosure: @escaping (String) -> Bool)
 }

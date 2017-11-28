@@ -90,10 +90,13 @@ class ViewController: NSViewController {
         do {
             let fileData = try String(contentsOf: fileUrl)
             let values = Set(fileData.lazy.split(separator: "\n").map(String.init))
-            let batchPlugins = NSApplication.shared.controller.crawlers.flatMap { p in p as? TarantulaBatchCapable }
-            for value in values {
-                for plugin in batchPlugins {
-                    try plugin.addInitialObject(by: value)
+            let batchPlugins = NSApplication.shared.controller.crawlers.flatMap { p in p as? TarantulaBatchCapable&TarantulaCrawlingPlugin }
+
+            for plugin in batchPlugins {
+                try plugin.repository?.batch { shadow in
+                    for value in values {
+                        try plugin.addInitialObject(by: value, shadowRepository: shadow)
+                    }
                 }
             }
             for plugin in batchPlugins {
@@ -103,6 +106,7 @@ class ViewController: NSViewController {
             }
 
             for (_, store) in NSApplication.shared.controller.dataLoader.stores {
+                // wait
                 store.repository.perform { }
                 crawler.resetLists()
                 crawler.updateCrawllist()

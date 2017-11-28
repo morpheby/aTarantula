@@ -20,6 +20,9 @@ public protocol Repository {
     ///   the objects themselves
     func performAndWait<U>(_ closure: @escaping () -> U) -> U
 
+    /// Perform internal closure without intermittent saves by using shadow repository
+    func batch<U>(_ closure: @escaping (Repository) throws -> U) rethrows -> U
+
     /// Removes given object from the repository
     func delete<T: NSManagedObject>(object: T)
 
