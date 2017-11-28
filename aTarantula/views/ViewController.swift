@@ -65,8 +65,56 @@ class ViewController: NSViewController {
         }
     }
 
+    @IBAction func batch(_ sender: Any?) {
+        // FIXME: Needs separate dialogue with batch configuration
+
+        let openPanel = NSOpenPanel()
+        openPanel.message = "Select file for batch data"
+        openPanel.nameFieldLabel = "Batch file:"
+        openPanel.nameFieldStringValue = "Batch job"
+        openPanel.allowedFileTypes = nil
+        openPanel.allowsOtherFileTypes = true
+
+        openPanel.beginSheetModal(for: view.window!, completionHandler: { response in
+            switch (response) {
+            case .OK:
+                self.prepareForBatch(with: openPanel.url!)
+            default:
+                break
+            }
+        })
+    }
+
+    // FIXME: Needs separate location
+    func prepareForBatch(with fileUrl: URL) {
+        do {
+            let fileData = try String(contentsOf: fileUrl)
+            let values = Set(fileData.lazy.split(separator: "\n").map(String.init))
+            let batchPlugins = NSApplication.shared.controller.crawlers.flatMap { p in p as? TarantulaBatchCapable }
+            for value in values {
+                for plugin in batchPlugins {
+                    try plugin.addInitialObject(by: value)
+                }
+            }
+            for plugin in batchPlugins {
+                plugin.configureFilter(withClosure: { (s) -> Bool in
+                    values.contains(s)
+                })
+            }
+
+            for (_, store) in NSApplication.shared.controller.dataLoader.stores {
+                store.repository.perform { }
+                crawler.resetLists()
+                crawler.updateCrawllist()
+            }
+        }
+        catch let e {
+            self.presentError(e)
+        }
+    }
+
     @IBAction func exporting(_ sender: Any?) {
-        // Temporary function implementation for exporting
+        // FIXME: Needs separate dialogue with export configuration
 
         let savePanel = NSSavePanel()
         savePanel.message = "Select export location"
@@ -85,6 +133,7 @@ class ViewController: NSViewController {
         })
     }
 
+    // TEMP EXPORT IMPLEMENTATION BEGIN
     struct Container: Encodable {
         var value: Encodable
         func encode(to encoder: Encoder) throws {
@@ -114,6 +163,7 @@ class ViewController: NSViewController {
             self.presentError(e)
         }
     }
+    // TEMP EXPORT IMPLEMENTATION END
 
     var autoscrollLastRow = 0
 

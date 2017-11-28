@@ -48,3 +48,8 @@ public protocol TarantulaExportable {
     func export(for profile: ExportProfile) -> [Encodable]
 }
 
+public protocol TarantulaBatchCapable {
+    func addInitialObject(by: String) throws
+    func configureFilter(withClosure: @escaping (String) -> Bool)
+}
+
