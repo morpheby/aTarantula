@@ -52,6 +52,14 @@ import TarantulaPluginCore
     private var crawllist: SynchronizedBox<Deque<CrawlableObject>> = SynchronizedBox(Deque())
     private var crawlActive: SynchronizedBox<Set<AnyHashable>> = SynchronizedBox(Set())
     private var crawllistNeedsUpdating: SynchronizedBox<Bool> = SynchronizedBox(true)
+    private var statusUpdating: SynchronizedBox<Bool> = SynchronizedBox(false)
+
+    private var backgroundQueue: OperationQueue = {
+        let o = OperationQueue()
+        o.qualityOfService = .background
+        o.maxConcurrentOperationCount = 1
+        return o
+    }()
 
     override required init() {
         super.init()
@@ -144,17 +152,46 @@ import TarantulaPluginCore
                 u = false
             }
 
+            let appController = NSApplication.shared.controller
+
+            self.statusUpdating.modify { status in
+                if !status {
+                    status = true
+                    backgroundQueue.addOperation {
+                        var crawledCount = 0
+                        var discoveredCount = 0
+                        var unselectedCount = 0
+
+                        for plugin in appController.crawlers {
+                            plugin.repository?.performAndWait {
+                                for type in plugin.crawlableObjectTypes {
+                                    crawledCount += plugin.repository?.countAllObjects(type, withSelection: .crawledObjects) ?? 0
+                                    discoveredCount += plugin.repository?.countAllObjects(type, withSelection: .all) ?? 0
+                                    unselectedCount += plugin.repository?.countAllObjects(type, withSelection: .unselectedObjects) ?? 0
+                                }
+                            }
+                        }
+
+                        logDebug("queued info update")
+
+                        NSApplication.shared.controller.mainQueue.addOperation {
+                            self.currentSessionCrawled = 0
+                            self.crawledCount = crawledCount
+                            self.discoveredCount = discoveredCount
+                            self.unselectedCount = unselectedCount
+                            self.statusUpdating.modify { st in st = false }
+                            logDebug("info updated")
+                        }
+                    }
+                }
+            }
+
             let addCount = self.maxCrawlingCount - c.count
-            guard addCount != 0 else {
+            guard addCount > 0 else {
                 return
             }
 
             var collectedObjects: [CrawlableObject] = []
-
-            let appController = NSApplication.shared.controller
-            var crawledCount = 0
-            var discoveredCount = 0
-            var unselectedCount = 0
 
             for plugin in appController.crawlers {
                 plugin.repository?.performAndWait {
@@ -163,9 +200,6 @@ import TarantulaPluginCore
                         let objects = objectsTmp as? [CrawlableObject] {
                             collectedObjects.append(contentsOf: objects)
                         }
-                        crawledCount += plugin.repository?.countAllObjects(type, withSelection: .crawledObjects) ?? 0
-                        discoveredCount += plugin.repository?.countAllObjects(type, withSelection: .all) ?? 0
-                        unselectedCount += plugin.repository?.countAllObjects(type, withSelection: .unselectedObjects) ?? 0
                     }
                 }
             }
@@ -185,17 +219,10 @@ import TarantulaPluginCore
 
             let requiresStop = (c.count == 0)
 
-            logDebug("queued info update")
-
             NSApplication.shared.controller.mainQueue.addOperation {
-                self.currentSessionCrawled = 0
-                self.crawledCount = crawledCount
-                self.discoveredCount = discoveredCount
-                self.unselectedCount = unselectedCount
                 if requiresStop {
                     self.running = false
                 }
-                logDebug("info updated")
             }
         }
     }
