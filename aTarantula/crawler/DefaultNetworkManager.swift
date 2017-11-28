@@ -31,7 +31,9 @@ public class DefaultNetworkManager: NetworkManager {
         var response: URLResponse?
         var error: Error?
 
-        let request = beforeRequest(URLRequest(url: url))
+        var request = beforeRequest(URLRequest(url: url))
+
+        request.setValue("User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38", forHTTPHeaderField: "User-Agent")
 
         condition.lock()
         defer {
