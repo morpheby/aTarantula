@@ -138,7 +138,9 @@ fileprivate class ShadowRepository: Repository {
     }
 
     deinit {
-        self.main.save()
+        self.main.context.performAndWait {
+            self.main.save()
+        }
     }
 
     func perform(_ closure: @escaping () -> ()) {
