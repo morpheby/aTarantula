@@ -151,7 +151,7 @@ class ViewController: NSViewController {
         let tempId = ExportProfile("tempIdStub")
         let exporters = NSApplication.shared.controller.crawlers.flatMap { p in p as? TarantulaExportable }
 
-        let data = exporters.lazy.flatMap { e in e.export(for: tempId) }
+        let data = exporters.flatMap { e in e.export(for: tempId) }
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
