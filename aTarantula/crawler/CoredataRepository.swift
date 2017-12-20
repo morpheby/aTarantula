@@ -27,25 +27,40 @@ class CoredataRepository {
     }
 
     func makeFetchRequest(type: NSManagedObject.Type, withSelection selection: RepositoryCrawlableSelection) -> NSFetchRequest<NSFetchRequestResult> {
-        let request: NSFetchRequest = type.fetchRequest()
+        let request: NSFetchRequest<NSFetchRequestResult>
         switch (selection) {
         case let .object(url):
+            request = type.fetchRequest()
             let cleanedUrlString = customId(fromUrl: url, forType: type)
             request.predicate = NSPredicate(format: "\(#keyPath(CrawlableObject.id)) == %@", argumentArray: [cleanedUrlString])
         case .crawledObjects:
+            request = type.fetchRequest()
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
                 argumentArray: [false, false])
         case .objectsToCrawl:
+            request = type.fetchRequest()
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.obj_deleted)) == %@ && \(#keyPath(CrawlableObject.disabled)) == %@",
                 argumentArray: [true, false])
         case .unselectedObjects:
+            request = type.fetchRequest()
             request.predicate = NSPredicate(
                 format: "\(#keyPath(CrawlableObject.disabled)) == %@",
                 argumentArray: [true])
+        case let .prefetch(objects):
+            request = type.fetchRequest()
+            request.predicate = NSPredicate(
+                format: "self IN %@",
+                argumentArray: objects
+            )
+            request.returnsObjectsAsFaults = false
+        case let .withPrefetchedRelationships(keys, other):
+            request = makeFetchRequest(type: type, withSelection: other)
+            request.relationshipKeyPathsForPrefetching = keys
+            request.returnsObjectsAsFaults = false
         case .all:
-            break
+            request = type.fetchRequest()
         }
         return request
     }

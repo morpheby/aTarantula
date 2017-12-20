@@ -87,6 +87,8 @@ public enum RepositoryCrawlableSelection {
     case crawledObjects
     case objectsToCrawl
     case unselectedObjects
+    case prefetch(objects: [NSManagedObject])
+    indirect case withPrefetchedRelationships(keys: [String], in: RepositoryCrawlableSelection)
     case all
 }
 
